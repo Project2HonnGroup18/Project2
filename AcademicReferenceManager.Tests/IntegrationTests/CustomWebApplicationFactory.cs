@@ -22,6 +22,7 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<Start
                 .AddEntityFrameworkInMemoryDatabase()
                 .BuildServiceProvider();
 
+            //TODO: unsubscribe from original db contexts 
             services.AddSingleton<IBorrowRepository, BorrowRepository>();
             services.AddSingleton<IFriendDbContext, FriendDbContext>();
             services.AddSingleton<IPublicationDbContext, PublicationDbContext>();
