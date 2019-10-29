@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TechnicalRadiation.WebApi.Extensions;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.WebApi
 {
@@ -33,15 +34,13 @@ namespace AcademicReferenceManager.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<ArmDbContext>(options => options.UseSqlite("Data Source=ArmDb.db"));
             services.AddTransient<IFriendService, FriendService>();
             services.AddTransient<IPublicationService, PublicationService>();
             services.AddTransient<IBorrowService, BorrowService>();
             services.AddTransient<IPublicationRepository, PublicationRepository>();
             services.AddTransient<IFriendRepository, FriendRepository>();
-            services.AddSingleton<IBorrowRepository, BorrowRepository>();
-            services.AddSingleton<IFriendDbContext, FriendDbContext>();
-            services.AddSingleton<IPublicationDbContext, PublicationDbContext>();
-            services.AddSingleton<IPublicationToFriendDbContext, PublicationToFriendDbContext>();
+            services.AddTransient<IBorrowRepository, BorrowRepository>();
 
             
             // Register the Swagger generator, defining 1 or more Swagger documents
