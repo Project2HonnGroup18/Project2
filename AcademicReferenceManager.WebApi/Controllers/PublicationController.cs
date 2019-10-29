@@ -16,6 +16,8 @@ namespace AcademicReferenceManager.WebApi.Controllers
             _publicationService = publicationService;
         }
 
+
+        [HttpGet]
         public IActionResult GetAllPublications()
         {
             var publications = _publicationService.GetAllPublications();

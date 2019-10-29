@@ -10,6 +10,7 @@ using AcademicReferenceManager.Models.InputModels;
 public class BorrowControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
 {
     private readonly HttpClient _client;
+
     public class Pub2FriendComparer: IEqualityComparer<PublicationToFriendInputModel>
     {
         public bool Equals(PublicationToFriendInputModel x, PublicationToFriendInputModel y)
