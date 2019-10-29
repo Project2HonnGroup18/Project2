@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TechnicalRadiation.WebApi.Extensions;
 using Microsoft.OpenApi.Models;
+using AcademicReferenceManager.Models.Database;
 
 namespace AcademicReferenceManager.WebApi
 {
@@ -58,6 +59,12 @@ namespace AcademicReferenceManager.WebApi
                 var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = System.IO.Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+            });
+
+            services.Configure<ArmDatabaseSettings>(options => 
+            {
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.DatabaseName = Configuration.GetSection("MongoConnection:Database").Value;
             });
             
         }

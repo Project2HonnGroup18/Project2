@@ -7,27 +7,30 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
+using MongoDB.Driver;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
     public class FriendRepository : IFriendRepository
     {
-        private readonly IFriendDbContext _friendDbContext;
+        private readonly ArmDbContext _dbContext = null;
 
-        public FriendRepository(IFriendDbContext fDbContext) 
+        public FriendRepository(ArmDbContext dbContext) 
         {
-            _friendDbContext = fDbContext;
+            _dbContext = dbContext;
         }
 
-        public IEnumerable<FriendDto> GetAllFriends() => _friendDbContext.Friends.Select(f => new FriendDto
-        {
-            Id = f.Id,
-            FirstName = f.FirstName,
-            LastName = f.LastName,
-            Email = f.Email,
-            Phone = f.Phone,
-            Address = f.Address
-        });
+        public IEnumerable<FriendDto> GetAllFriends() {
+            return _dbContext.Friends.Find(_ => true).ToList().Select(f => new FriendDto
+            {
+                Id = f.Id,
+                FirstName = f.FirstName,
+                LastName = f.LastName,
+                Email = f.Email,
+                Phone = f.Phone,
+                Address = f.Address
+            }) ;
+        } 
 
         public FriendDto GetFriendById(int friendId)
         {
