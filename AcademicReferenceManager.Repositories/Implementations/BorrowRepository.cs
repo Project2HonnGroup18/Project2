@@ -27,8 +27,8 @@ namespace AcademicReferenceManager.Repositories.Implementations
                     _publicationToFriendDbContext.PublicationsToFriend.Select(p => new PublicationToFriendDto
                     {
                         Id = p.Id,
-                        //FriendId = p.FriendId,
-                        //PublicationId = p.PublicationId,
+                        FriendId = p.FriendId,
+                        PublicationId = p.PublicationId,
                         BorrowDate = p.BorrowDate,
                         ReturnDate = p.ReturnDate
                     });
@@ -42,8 +42,8 @@ namespace AcademicReferenceManager.Repositories.Implementations
             return new PublicationToFriendDto
             {
                 Id = connection.Id,
-                //FriendId = connection.FriendId,
-                //PublicationId = connection.PublicationId,
+                FriendId = connection.FriendId,
+                PublicationId = connection.PublicationId,
                 BorrowDate = connection.BorrowDate,
                 ReturnDate = connection.ReturnDate
             };
@@ -63,13 +63,11 @@ namespace AcademicReferenceManager.Repositories.Implementations
                 throw new ResourceNotFoundException($"Publication with id: {body.PublicationId} was not found");
             }
 
-            /* 
             bool alreadyBorrowed = _publicationToFriendDbContext.PublicationsToFriend.Any(p => p.FriendId == friend.Id && p.PublicationId == publication.Id);
             if(alreadyBorrowed)
             {
                 throw new ModelFormatException($"Friend: {friend.FirstName} has already borrowed {publication.Title}");
             }
-            */
 
             int nextInt = 0;
             if(_publicationToFriendDbContext.PublicationsToFriend.Count == 0)
@@ -84,8 +82,8 @@ namespace AcademicReferenceManager.Repositories.Implementations
             var entity = new PublicationToFriend
             {
                 Id = nextInt,
-                //FriendId = body.FriendId,
-                //PublicationId = body.PublicationId,
+                FriendId = body.FriendId,
+                PublicationId = body.PublicationId,
                 BorrowDate = body.BorrowDate,
                 ReturnDate = body.ReturnDate
             };
@@ -94,7 +92,6 @@ namespace AcademicReferenceManager.Repositories.Implementations
             return entity;
         }
 
-        /* 
         public IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date) 
         {
             var connection = _publicationToFriendDbContext.PublicationsToFriend;
@@ -116,8 +113,6 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
             return returnList;
         }
-        */
-        /*
         public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(DateTime date)
         {
             var connection = _publicationToFriendDbContext.PublicationsToFriend;
@@ -144,9 +139,6 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
             return returnList;
         }
-         */
-
-         /* 
         
         public IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
         {
@@ -174,6 +166,5 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
             return returnList;
         }
-        */
     }
 }

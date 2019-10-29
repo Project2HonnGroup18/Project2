@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/egilljoh/Desktop/Skóli/Hönnun og smíði hugb/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj": {}
+    "/Users/arnimagnusson/Desktop/Hr/Haust19/Hönnun og smíði Hugbúnaðar/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj": {}
   },
   "projects": {
-    "/Users/egilljoh/Desktop/Skóli/Hönnun og smíði hugb/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj": {
+    "/Users/arnimagnusson/Desktop/Hr/Haust19/Hönnun og smíði Hugbúnaðar/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/egilljoh/Desktop/Skóli/Hönnun og smíði hugb/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj",
+        "projectUniqueName": "/Users/arnimagnusson/Desktop/Hr/Haust19/Hönnun og smíði Hugbúnaðar/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj",
         "projectName": "AcademicReferenceManager.Models",
-        "projectPath": "/Users/egilljoh/Desktop/Skóli/Hönnun og smíði hugb/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj",
-        "packagesPath": "/Users/egilljoh/.nuget/packages/",
-        "outputPath": "/Users/egilljoh/Desktop/Skóli/Hönnun og smíði hugb/Project2/AcademicReferenceManager.Models/obj/",
+        "projectPath": "/Users/arnimagnusson/Desktop/Hr/Haust19/Hönnun og smíði Hugbúnaðar/Project2/AcademicReferenceManager.Models/AcademicReferenceManager.Models.csproj",
+        "packagesPath": "/Users/arnimagnusson/.nuget/packages/",
+        "outputPath": "/Users/arnimagnusson/Desktop/Hr/Haust19/Hönnun og smíði Hugbúnaðar/Project2/AcademicReferenceManager.Models/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/egilljoh/.nuget/NuGet/NuGet.Config"
+          "/Users/arnimagnusson/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -39,10 +39,6 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
-            "MongoDB.Driver": {
-              "target": "Package",
-              "version": "[2.9.2, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
