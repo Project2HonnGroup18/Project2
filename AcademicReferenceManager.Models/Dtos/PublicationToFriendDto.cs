@@ -4,6 +4,7 @@ namespace AcademicReferenceManager.Models.Dtos
 {
     public class PublicationToFriendDto
     {
+        
         public int Id { get; set; }
         public int FriendId { get; set; }
 

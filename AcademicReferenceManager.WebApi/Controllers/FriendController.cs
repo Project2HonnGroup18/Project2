@@ -11,17 +11,25 @@ namespace AcademicReferenceManager.WebApi.Controllers
     public class FriendController : ControllerBase
     {
         private readonly IFriendService _friendService;
-        public FriendController(IFriendService friendService)
+        private readonly INewFriendService _newFriendService;
+        public FriendController(IFriendService friendService, INewFriendService newFriendService)
         {
             _friendService = friendService;
+            _newFriendService = newFriendService;
         }
 
         [HttpGet]
         [Route("", Name = "GetAllFriends")]
         public IActionResult GetAllFriends()
         {
+            var friends = _newFriendService.Get();
+            Console.WriteLine(friends);
+            return Ok(friends);
+
+            /* 
             var friends = _friendService.GetAllFriends();
             return Ok(friends);
+            */
         }
 
         [HttpGet]

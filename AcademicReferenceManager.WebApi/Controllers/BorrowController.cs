@@ -44,7 +44,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             var entity = _borrowService.CreateFriendBorrowsABookConnection(body);
             return CreatedAtRoute("GetBorrowConnectionById", new { connectionId = entity.Id}, null);
         }
-
+        /*
         [HttpGet]
         [Route("friend-that-borrowed-publications/{date}")]
         public IActionResult GetAllFriendsThatBorrowedPublicationsByParticularDate(string date)
@@ -68,6 +68,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             DateTime converter = DateTime.Parse(date);
             return Ok(_borrowService.GetAllPublicationsThatAreOnLoanByParticularDate(converter));
         }
+         */
     }
 
 }

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AcademicReferenceManager.Repositories.Data;
+﻿using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Implementations;
 using AcademicReferenceManager.Repositories.Interfaces;
 using AcademicReferenceManager.Services.Implementations;
 using AcademicReferenceManager.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TechnicalRadiation.WebApi.Extensions;
+using AcademicReferenceManager.Models.Database;
 
 namespace AcademicReferenceManager.WebApi
 {
@@ -41,6 +36,16 @@ namespace AcademicReferenceManager.WebApi
             services.AddSingleton<IFriendDbContext, FriendDbContext>();
             services.AddSingleton<IPublicationDbContext, PublicationDbContext>();
             services.AddSingleton<IPublicationToFriendDbContext, PublicationToFriendDbContext>();
+
+            // requires using Microsoft.Extensions.Options
+            services.Configure<ArmDatabaseSettings>(
+                Configuration.GetSection(nameof(ArmDatabaseSettings)));
+
+            services.AddSingleton<IArmDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<ArmDatabaseSettings>>().Value);
+
+            services.AddSingleton<NewFriendService>();
+            services.AddTransient<INewFriendService, NewFriendService>();
             
         }
 

@@ -22,11 +22,13 @@ namespace AcademicReferenceManager.Services.Implementations
                 => _borrowRepo.GetBorrowConnectionById(connectionId);
         public PublicationToFriend CreateFriendBorrowsABookConnection(PublicationToFriendInputModel body)
                  => _borrowRepo.CreateFriendBorrowsABookConnection(body);
+        /*
         public IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date)
                 => _borrowRepo.GetAllFriendsThatBorrowedPublicationsByParticularDate(date);
         public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(DateTime date)
                 => _borrowRepo.GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(date);
         public IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
                 => _borrowRepo.GetAllPublicationsThatAreOnLoanByParticularDate(date);
+         */
     }
 }
