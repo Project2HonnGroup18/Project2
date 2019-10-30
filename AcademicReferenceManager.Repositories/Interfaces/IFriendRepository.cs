@@ -10,6 +10,8 @@ namespace AcademicReferenceManager.Repositories.Interfaces
         IEnumerable<FriendDto> GetAllFriends();
         FriendDto GetFriendById(int friendId);
         Friend CreateFriend(FriendInputModel body);
+        Friend UpdateFriendById(int friendId, FriendUpdateInputModel body);
+        Friend DeleteFriendById(int friendId);
     }
 }
 

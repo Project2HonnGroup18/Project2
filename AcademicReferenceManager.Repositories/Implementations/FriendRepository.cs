@@ -73,5 +73,35 @@ namespace AcademicReferenceManager.Repositories.Implementations
             
             return entity;
         }
+        public Friend UpdateFriendById(int friendId, FriendUpdateInputModel body)
+        {
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == friendId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"Friend with id: {friendId} was not found");
+            }
+            
+            friend.FirstName = string.IsNullOrEmpty(body.FirstName) ? friend.FirstName : body.FirstName;
+            friend.LastName = string.IsNullOrEmpty(body.LastName) ? friend.LastName : body.LastName;
+            friend.Email = string.IsNullOrEmpty(body.Email) ? friend.Email : body.Email;
+            friend.Phone = string.IsNullOrEmpty(body.Phone) ? friend.Phone : body.Phone;
+            friend.Address = string.IsNullOrEmpty(body.Address) ? friend.Address : body.Address;
+            _armDbContext.SaveChanges();
+
+            return friend;
+        }
+        public Friend DeleteFriendById(int friendId)
+        {
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == friendId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"Friend with id: {friendId} was not found");
+            }
+
+            _armDbContext.Remove(friend);
+            _armDbContext.SaveChanges();
+
+            return friend;
+        }
     }
 }

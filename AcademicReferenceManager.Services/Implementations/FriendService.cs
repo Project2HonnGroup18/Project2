@@ -17,5 +17,7 @@ namespace AcademicReferenceManager.Services.Implementations
         public IEnumerable<FriendDto> GetAllFriends() => _friendRepo.GetAllFriends();
         public FriendDto GetFriendById(int friendId) => _friendRepo.GetFriendById(friendId);
         public Friend CreateFriend(FriendInputModel body) => _friendRepo.CreateFriend(body);
+        public Friend UpdateFriendById(int friendId, FriendUpdateInputModel body) => _friendRepo.UpdateFriendById(friendId, body);
+        public Friend DeleteFriendById(int friendId) => _friendRepo.DeleteFriendById(friendId);
     }
 }

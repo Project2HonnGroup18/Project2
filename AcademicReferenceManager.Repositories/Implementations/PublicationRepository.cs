@@ -82,24 +82,21 @@ namespace AcademicReferenceManager.Repositories.Implementations
         }
         public Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body)
         {
-            Publication publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+            var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
             if(publication == null)
             {
                 throw new ResourceNotFoundException("Publication with id:" + publicationId + " was not found!");
             }
-            var updatedPublication = new Publication{
-                EditorFirstName = body.EditorFirstName,
-                EditorLastName = string.IsNullOrEmpty(body.EditorLastName) ? publication.EditorFirstName : body.EditorFirstName,
-                Title = string.IsNullOrEmpty(body.Title) ? publication.Title : body.Title,
-                Journal = string.IsNullOrEmpty(body.Journal) ? publication.Journal : body.Journal,
-                Isbn = string.IsNullOrEmpty(body.Isbn) ? publication.Isbn : body.Isbn,
-                Year = body.Year.HasValue ? publication.Year : body.Year,
-                Type = string.IsNullOrEmpty(body.Type) ?  publication.Type : body.Type
-            };
-            _armDbContext.Publications.Update(updatedPublication);
+            publication.EditorFirstName = string.IsNullOrEmpty(body.EditorFirstName) ? publication.EditorFirstName : body.EditorFirstName;
+            publication.EditorLastName = string.IsNullOrEmpty(body.EditorLastName) ? publication.EditorLastName : body.EditorLastName;
+            publication.Title = string.IsNullOrEmpty(body.Title) ? publication.Title : body.Title;
+            publication.Journal = string.IsNullOrEmpty(body.Journal) ? publication.Journal : body.Journal;
+            publication.Isbn = string.IsNullOrEmpty(body.Isbn) ? publication.Isbn : body.Isbn;
+            publication.Year = body.Year.HasValue ? publication.Year : body.Year;
+            publication.Type = string.IsNullOrEmpty(body.Type) ?  publication.Type : body.Type;
             _armDbContext.SaveChanges();
             
-            return updatedPublication;
+            return publication;
         }
         
         public Publication DeletePublicationById(int publicationId) 

@@ -52,6 +52,10 @@ namespace AcademicReferenceManager.WebApi.Controllers
         [Route("{publication_id:int}", Name = "UpdatePublicationById")]
         public IActionResult UpdatePublicationById(int publication_id, [FromBody] PublicationUpdateInputModel body)
         {
+            if(!ModelState.IsValid)
+            {
+                throw new ModelFormatException("Model not properly formatted");
+            }
             var publication = _publicationService.UpdatePublicationById(publication_id, body);
             return Ok(publication);
         }

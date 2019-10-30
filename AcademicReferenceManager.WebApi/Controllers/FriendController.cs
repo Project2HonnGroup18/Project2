@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AcademicReferenceManager.WebApi.Controllers
 {
-    [Route("api/friend")]
+    [Route("api/users")]
     [ApiController]
     public class FriendController : ControllerBase
     {
@@ -25,10 +25,10 @@ namespace AcademicReferenceManager.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("{friendId:int}", Name = "GetFriendById")]
-        public IActionResult GetFriendByID(int friendId)
+        [Route("{userId:int}", Name = "GetFriendById")]
+        public IActionResult GetFriendByID(int userId)
         {
-            var friend = _friendService.GetFriendById(friendId);
+            var friend = _friendService.GetFriendById(userId);
             return Ok(friend);
         }
 
@@ -41,7 +41,23 @@ namespace AcademicReferenceManager.WebApi.Controllers
                 throw new ModelFormatException("Model not properly formatted");
             }
             var entity = _friendService.CreateFriend(body);
-            return CreatedAtRoute("GetFriendById", new { friendId = entity.Id }, null);
-        }           
+            return CreatedAtRoute("GetFriendById", new { userId = entity.Id }, null);
+        }
+
+        [HttpPut]
+        [Route("{userId:int}", Name = "UpdateFriendById")]
+        public IActionResult UpdateFriendById(int userId, [FromBody] FriendUpdateInputModel body) 
+        {
+            var friend = _friendService.UpdateFriendById(userId, body);
+            return Ok(friend);
+        }
+
+        [HttpDelete]
+        [Route("{userId:int}", Name = "DeleteFriendById")]
+        public IActionResult DeleteFriendById(int userId) 
+        {
+            var friend = _friendService.DeleteFriendById(userId);
+            return Ok(friend);
+        }
     }
 }
