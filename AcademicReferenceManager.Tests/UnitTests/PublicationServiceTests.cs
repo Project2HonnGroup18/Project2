@@ -8,7 +8,6 @@ using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Models.Entities;
 using System.Collections;
 using System.Linq;
-
 namespace UnitTests
 {
     //TODO: full CRUD testing

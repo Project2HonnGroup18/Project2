@@ -10,14 +10,15 @@ namespace AcademicReferenceManager.Repositories.Data {
         {
             modelBuilder.Entity<Review>().HasKey(o => new {o.FriendId, o.PublicationId});
 
-            modelBuilder.Entity<Friend>().HasData(_seeder.friends);
-            modelBuilder.Entity<Publication>().HasData(_seeder.publications);
-            modelBuilder.Entity<PublicationToFriend>().HasData(_seeder.borrows);
-            
-        
+            if(_seeder != null)
+            {
+                modelBuilder.Entity<Friend>().HasData(_seeder.friends);
+                modelBuilder.Entity<Publication>().HasData(_seeder.publications);
+                modelBuilder.Entity<PublicationToFriend>().HasData(_seeder.borrows);
+            }
         }
 
-        public ArmDbContext(DatabaseSeeder seeder, DbContextOptions<ArmDbContext> options): base(options)
+        public ArmDbContext(DbContextOptions<ArmDbContext> options, DatabaseSeeder seeder = null): base(options)
         {
             _seeder = seeder;
         }
