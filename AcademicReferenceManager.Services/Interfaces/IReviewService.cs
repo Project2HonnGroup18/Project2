@@ -10,5 +10,6 @@ namespace AcademicReferenceManager.Services.Interfaces
          IEnumerable<ReviewDto> GetReviewsByUser(int friendId);
 
          Review AddUserReviewForPublication(int friendId, int publicationId, ReviewInputModel body);
+         IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications();
     }
 }

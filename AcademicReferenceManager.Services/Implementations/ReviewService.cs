@@ -18,6 +18,11 @@ namespace AcademicReferenceManager.Services.Implementations
 
         public IEnumerable<ReviewDto> GetReviewsByUser(int friendId) => _reviewRepo.GetReviewsByUser(friendId);
 
-        public Review AddUserReviewForPublication(int friendId, int publicationId, ReviewInputModel body) => _reviewRepo.AddUserReviewForPublication(friendId, publicationId, body);
+        public Review AddUserReviewForPublication(int friendId, int publicationId, ReviewInputModel body) 
+            => _reviewRepo.AddUserReviewForPublication(friendId, publicationId, body);
+        public IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications() 
+            => _reviewRepo.GetAllReviewsForAllPublications();
+
+
     }
 }

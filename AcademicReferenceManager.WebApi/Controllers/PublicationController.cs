@@ -11,12 +11,17 @@ namespace AcademicReferenceManager.WebApi.Controllers
     public class PublicationController : ControllerBase
     {
         private readonly IPublicationService _publicationService;
-        public PublicationController(IPublicationService publicationService)
+        private readonly IReviewService _reviewService;
+        public PublicationController(IPublicationService publicationService, IReviewService reviewService)
         {
             _publicationService = publicationService;
+            _reviewService = reviewService;
         }
 
-        // Get all publications
+        // *****************************
+        // * FULL CRUD For Publication *
+        // *****************************
+
         [HttpGet]
         [Route("", Name = "GetAllPublications")]
         public IActionResult GetAllPublications()
@@ -25,7 +30,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publications);
         }
 
-        // Get publication by ID
         [HttpGet]
         [Route("{publication_id:int}", Name = "GetPublicationById")]
         public IActionResult GetPublicationById(int publication_id)
@@ -34,7 +38,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publication);
         }
 
-        // Create new  publication
         [HttpPost]
         [Route("", Name = "CreatePublication")]
         public IActionResult CreatePublication([FromBody] PublicationInputModel body)
@@ -47,7 +50,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return CreatedAtRoute("GetPublicationById", new { publicationId = entity.Id }, null);
         }
 
-        // Update a publication
         [HttpPut]
         [Route("{publication_id:int}", Name = "UpdatePublicationById")]
         public IActionResult UpdatePublicationById(int publication_id, [FromBody] PublicationUpdateInputModel body)
@@ -60,13 +62,24 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publication);
         }
 
-        // Delete a publication
         [HttpPut]
         [Route("{publication_id:int}", Name = "DeletePublicationById")]
         public IActionResult DeletePublicationById(int publication_id)
         {
             var publication = _publicationService.DeletePublicationById(publication_id);
             return Ok(publication);
+        }
+
+        // *************************************
+        // * FULL CRUD For Publication reviews *
+        // *************************************
+
+        [HttpGet]
+        [Route("reviews")]
+        public IActionResult GetAllReviewsForAllPublications()
+        {
+            var reviews = _reviewService.GetAllReviewsForAllPublications();
+            return Ok(reviews);
         }
     }
 }

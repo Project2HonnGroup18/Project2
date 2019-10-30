@@ -45,6 +45,33 @@ namespace AcademicReferenceManager.Repositories.Implementations
             _armDbContext.SaveChanges();
             return review;
         }
+
+        public IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications() 
+        {
+            var publications = _armDbContext.Publications.ToList();
+            List<PublicationReviewsDto> publicationReviews = new List<PublicationReviewsDto>();
+
+            foreach(Publication p in publications)
+            {
+                var reviews = _armDbContext.Reviews.Where(r => r.PublicationId == p.Id).Select(rdto => new ReviewDto 
+                {
+                    FriendId = rdto.FriendId,
+                    PublicationId = rdto.PublicationId,
+                    Rating = rdto.Rating
+                });
+                publicationReviews.Add(new PublicationReviewsDto 
+                {
+                    Id = p.Id,
+                    EditorFirstName = p.EditorFirstName,
+                    EditorLastName = p.EditorLastName,
+                    Title = p.Title,
+                    Reviews = reviews
+                });
+            }
+
+            return publicationReviews;
+        }
+
         
     }
 }

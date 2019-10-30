@@ -7,7 +7,9 @@ namespace AcademicReferenceManager.Repositories.Interfaces
 {
     public interface IReviewRepository
     {
-         IEnumerable<ReviewDto> GetReviewsByUser(int friendId);
-         Review AddUserReviewForPublication(int friendId, int publicationId, ReviewInputModel body);
+        IEnumerable<ReviewDto> GetReviewsByUser(int friendId);
+        Review AddUserReviewForPublication(int friendId, int publicationId, ReviewInputModel body);
+        IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications();
+
     }
 }
