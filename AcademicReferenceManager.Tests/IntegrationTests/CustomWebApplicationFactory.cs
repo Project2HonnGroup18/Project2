@@ -10,6 +10,8 @@ using AcademicReferenceManager.WebApi;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
 using AcademicReferenceManager.Repositories.Implementations;
+using AcademicReferenceManager.Repositories.Seeding;
+using System.Linq;
 
 public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<Startup>
 {
@@ -22,23 +24,48 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<Start
                 .AddEntityFrameworkInMemoryDatabase()
                 .BuildServiceProvider();
 
-            //TODO: unsubscribe from original db contexts 
-            services.AddSingleton<IBorrowRepository, BorrowRepository>();
-            services.AddSingleton<IFriendDbContext, FriendDbContext>();
-            services.AddSingleton<IPublicationDbContext, PublicationDbContext>();
-            services.AddSingleton<IPublicationToFriendDbContext, PublicationToFriendDbContext>();
+            // Remove the app's ApplicationDbContext registration.
+            var descriptor = services.SingleOrDefault(
+                d => d.ServiceType == 
+                    typeof(DbContextOptions<ArmDbContext>));
+
+            if (descriptor != null)
+            {
+                services.Remove(descriptor);
+            }
+            
+            // Add ApplicationDbContext using an in-memory database for testing.
+            services.AddDbContext<ArmDbContext>((options) => 
+            {
+                options.UseInMemoryDatabase("InMemoryDbForTesting");
+                options.UseInternalServiceProvider(serviceProvider);
+            });
+
 
             // Build the service provider.
             var sp = services.BuildServiceProvider();
 
-            // Create a scope to obtain a reference to the database contexts
             using (var scope = sp.CreateScope())
-            {
-                var scopedServices = scope.ServiceProvider;
+                {
+                    var scopedServices = scope.ServiceProvider;
+                    var db = scopedServices.GetRequiredService<ArmDbContext>();
+                    var logger = scopedServices
+                        .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
 
-                var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+                    // Ensure the database is created.
+                    db.Database.EnsureCreated();
 
-            }
+                    try
+                    {
+                        // Seed the database with test data.
+                        DatabaseSeeder seeder = new DatabaseSeeder();
+                        seeder.seedDatabase(db);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError(ex, "An error occurred seeding the database. Error: {Message}", ex.Message);
+                    }
+                }
         });
     }
 }

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace AcademicReferenceManager.Models.Entities
 {
     public class Publication
@@ -10,5 +13,8 @@ namespace AcademicReferenceManager.Models.Entities
         public string Isbn { get; set; }
         public int? Year { get; set; }
         public string Type { get; set; }
+
+        [InverseProperty("Publication")]
+        public List<PublicationToFriend> PublicationsToFriend { get; set; }
     }
 }

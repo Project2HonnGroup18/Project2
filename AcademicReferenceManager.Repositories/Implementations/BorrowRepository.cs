@@ -7,24 +7,20 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
     public class BorrowRepository : IBorrowRepository
     {
+        private readonly ArmDbContext _armDbContext;
 
-        private readonly IFriendDbContext _friendDbContext;
-        private readonly IPublicationDbContext _publicationDbContext;
-        private readonly IPublicationToFriendDbContext _publicationToFriendDbContext;
-
-        public BorrowRepository(IFriendDbContext fDbContext, IPublicationDbContext pDbContext,IPublicationToFriendDbContext ptfDbContext) 
+        public BorrowRepository(ArmDbContext armDbContext) 
         {
-            _friendDbContext = fDbContext;
-            _publicationToFriendDbContext = ptfDbContext;
-            _publicationDbContext = pDbContext;
+            _armDbContext = armDbContext;
         }
         public IEnumerable<PublicationToFriendDto> GetAllFriendBorrowsABookConnections() => 
-                    _publicationToFriendDbContext.PublicationsToFriend.Select(p => new PublicationToFriendDto
+                    _armDbContext.PublicationsToFriend.Select(p => new PublicationToFriendDto
                     {
                         Id = p.Id,
                         FriendId = p.FriendId,
@@ -34,7 +30,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
                     });
         public PublicationToFriendDto GetBorrowConnectionById(int connectionID)
         {
-            var connection = _publicationToFriendDbContext.PublicationsToFriend.FirstOrDefault(p => p.Id == connectionID);
+            var connection = _armDbContext.PublicationsToFriend.FirstOrDefault(p => p.Id == connectionID);
             if(connection == null)
             {
                 throw new ResourceNotFoundException($"Borrow connection with id: {connection.Id} was not found");
@@ -51,32 +47,32 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public PublicationToFriend CreateFriendBorrowsABookConnection(PublicationToFriendInputModel body) 
         {
-            var friend = _friendDbContext.Friends.FirstOrDefault(f => f.Id == body.FriendId);
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == body.FriendId);
             if(friend == null)
             {
                 throw new ResourceNotFoundException($"Friend with id: {body.FriendId} was not found");
             }
 
-            var publication = _publicationDbContext.Publications.FirstOrDefault(p => p.Id == body.PublicationId);
+            var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == body.PublicationId);
             if(publication == null)
             {
                 throw new ResourceNotFoundException($"Publication with id: {body.PublicationId} was not found");
             }
 
-            bool alreadyBorrowed = _publicationToFriendDbContext.PublicationsToFriend.Any(p => p.FriendId == friend.Id && p.PublicationId == publication.Id);
+            bool alreadyBorrowed = _armDbContext.PublicationsToFriend.Any(p => p.FriendId == friend.Id && p.PublicationId == publication.Id);
             if(alreadyBorrowed)
             {
                 throw new ModelFormatException($"Friend: {friend.FirstName} has already borrowed {publication.Title}");
             }
 
             int nextInt = 0;
-            if(_publicationToFriendDbContext.PublicationsToFriend.Count == 0)
+            if(_armDbContext.PublicationsToFriend.Count() == 0)
             {
                 nextInt = 1;
             }
             else 
             {
-                nextInt = _publicationToFriendDbContext.PublicationsToFriend.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
+                nextInt = _armDbContext.PublicationsToFriend.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
             }
 
             var entity = new PublicationToFriend
@@ -88,20 +84,21 @@ namespace AcademicReferenceManager.Repositories.Implementations
                 ReturnDate = body.ReturnDate
             };
 
-            _publicationToFriendDbContext.PublicationsToFriend.Add(entity);
+            _armDbContext.PublicationsToFriend.Add(entity);
+            _armDbContext.SaveChanges();
             return entity;
         }
 
         public IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date) 
         {
-            var connection = _publicationToFriendDbContext.PublicationsToFriend;
+            var connection = _armDbContext.PublicationsToFriend;
             List<FriendThatBorrowedPublicationDto> returnList = new List<FriendThatBorrowedPublicationDto>();
-            for(int i = 0; i < connection.Count(); i++) 
+            foreach(PublicationToFriend p2f in _armDbContext.PublicationsToFriend) 
             {
-                if(connection[i].BorrowDate == date)
+                if(p2f.BorrowDate == date)
                 {
-                   var friend = _friendDbContext.Friends.FirstOrDefault(f => f.Id == connection[i].FriendId);
-                   var publication = _publicationDbContext.Publications.FirstOrDefault(p => p.Id == connection[i].PublicationId);
+                   var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
+                   var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == p2f.PublicationId);
                    returnList.Add(new FriendThatBorrowedPublicationDto
                    {
                        FriendFirstName = friend.FirstName,
@@ -115,17 +112,16 @@ namespace AcademicReferenceManager.Repositories.Implementations
         }
         public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(DateTime date)
         {
-            var connection = _publicationToFriendDbContext.PublicationsToFriend;
             List<FriendDto> returnList = new List<FriendDto>();
-            for(int i = 0; i < connection.Count(); i++) 
+            foreach(PublicationToFriend p2f in _armDbContext.PublicationsToFriend) 
             {
-                if(connection[i].BorrowDate < date && connection[i].ReturnDate > date)
+                if(p2f.BorrowDate < date && p2f.ReturnDate > date)
                 {
-                    var check = Math.Floor(((connection[i].BorrowDate.Year - connection[i].ReturnDate.Year) * 12.0)
-                         + connection[i].BorrowDate.Month - connection[i].ReturnDate.Month);
+                    var check = Math.Floor(((p2f.BorrowDate.Year - p2f.ReturnDate.Year) * 12.0)
+                         + p2f.BorrowDate.Month - p2f.ReturnDate.Month);
                     if(check != 0)
                     {
-                        var friend = _friendDbContext.Friends.FirstOrDefault(f => f.Id == connection[i].FriendId);
+                        var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
                         returnList.Add( new FriendDto
                         {
                             Id = friend.Id,
@@ -142,14 +138,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
         
         public IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
         {
-            var connection = _publicationToFriendDbContext.PublicationsToFriend;
+            var borrows = _armDbContext.PublicationsToFriend.Include(p => p.Publication).Include(f => f.Friend); 
             List<PublicationBorrowedByFriendDto> returnList = new List<PublicationBorrowedByFriendDto>();
-            for(int i = 0; i < connection.Count(); i++)
+            foreach(PublicationToFriend p2f in borrows)
             {
-                if(connection[i].BorrowDate < date && connection[i].ReturnDate > date)
+                if(p2f.BorrowDate < date && p2f.ReturnDate > date)
                 {
-                    var publication = _publicationDbContext.Publications.FirstOrDefault(p => p.Id == connection[i].PublicationId); 
-                    var friend = _friendDbContext.Friends.FirstOrDefault(f => f.Id == connection[i].FriendId);
+                    var publication = p2f.Publication; 
+                    var friend = p2f.Friend;
                     returnList.Add( new PublicationBorrowedByFriendDto
                     {
                         EditorFirstName = publication.EditorFirstName,

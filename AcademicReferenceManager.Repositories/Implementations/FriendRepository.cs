@@ -12,14 +12,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
 {
     public class FriendRepository : IFriendRepository
     {
-        private readonly IFriendDbContext _friendDbContext;
+        private readonly ArmDbContext _armDbContext;
 
-        public FriendRepository(IFriendDbContext fDbContext) 
+        public FriendRepository(ArmDbContext armDbContext) 
         {
-            _friendDbContext = fDbContext;
+            _armDbContext = armDbContext;
         }
 
-        public IEnumerable<FriendDto> GetAllFriends() => _friendDbContext.Friends.Select(f => new FriendDto
+        public IEnumerable<FriendDto> GetAllFriends() => _armDbContext.Friends.Select(f => new FriendDto
         {
             Id = f.Id,
             FirstName = f.FirstName,
@@ -31,7 +31,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public FriendDto GetFriendById(int friendId)
         {
-             var friend = _friendDbContext.Friends.FirstOrDefault(f => f.Id == friendId);
+             var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == friendId);
              if(friend == null)
              {
                  throw new ResourceNotFoundException($"Friend with id: {friendId} was not found");
@@ -50,13 +50,13 @@ namespace AcademicReferenceManager.Repositories.Implementations
         public Friend CreateFriend(FriendInputModel body)
         {
             int nextInt = 0;
-            if(_friendDbContext.Friends.Count == 0)
+            if(_armDbContext.Friends.Count() == 0)
             {
                 nextInt = 1;
             }
             else 
             {
-                nextInt = _friendDbContext.Friends.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
+                nextInt = _armDbContext.Friends.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
             }
             var entity = new Friend
             {
@@ -68,7 +68,9 @@ namespace AcademicReferenceManager.Repositories.Implementations
                 Address = body.Address
             };
 
-            _friendDbContext.Friends.Add(entity);
+            _armDbContext.Friends.Add(entity);
+            _armDbContext.SaveChanges();
+            
             return entity;
         }
     }

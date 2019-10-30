@@ -28,6 +28,7 @@ public class FriendControllerTests : IClassFixture<CustomWebApplicationFactory<S
         // Deserialize and examine results.
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
         var friend = JsonConvert.DeserializeObject<Friend>(stringResponse);
+        System.Console.WriteLine(friend.LastName);
         Assert.True(friend.FirstName == "Con");
     }
 

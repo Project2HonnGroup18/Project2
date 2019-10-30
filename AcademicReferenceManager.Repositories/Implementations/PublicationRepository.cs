@@ -12,14 +12,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
 {
     public class PublicationRepository : IPublicationRepository
     {
-        private readonly IPublicationDbContext _publicationDbContext;
+        private readonly ArmDbContext _armDbContext;
 
-        public PublicationRepository(IPublicationDbContext pDbContext) 
+        public PublicationRepository(ArmDbContext armDbContext) 
         {
-            _publicationDbContext = pDbContext;
+            _armDbContext = armDbContext;
         }
 
-        public IEnumerable<PublicationDto> GetAllPublications() => _publicationDbContext.Publications.Select(p => new PublicationDto
+        public IEnumerable<PublicationDto> GetAllPublications() => _armDbContext.Publications.Select(p => new PublicationDto
         {
             Id = p.Id,
             EditorFirstName = p.EditorFirstName,
@@ -32,7 +32,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public PublicationDto GetPublicationById(int publicationId)
         {
-             var publication = _publicationDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+             var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
              if(publication == null)
              {
                  throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
@@ -51,19 +51,19 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public Publication CreatePublication(PublicationInputModel body)
         {
-            bool publicationsExists = _publicationDbContext.Publications.Any(p => p.Isbn == body.Isbn);
+            bool publicationsExists = _armDbContext.Publications.Any(p => p.Isbn == body.Isbn);
             if(publicationsExists)
             {
                 throw new ModelFormatException("This publication already Exists");
             }
             int nextInt = 0;
-            if(_publicationDbContext.Publications.Count == 0)
+            if(_armDbContext.Publications.Count() == 0)
             {
                 nextInt = 1;
             }
             else 
             {
-                nextInt = _publicationDbContext.Publications.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
+                nextInt = _armDbContext.Publications.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
             }
             var entity = new Publication
             {
@@ -76,7 +76,8 @@ namespace AcademicReferenceManager.Repositories.Implementations
                 Year = body.Year,
                 Type = body.Type
             };
-            _publicationDbContext.Publications.Add(entity);
+            _armDbContext.Publications.Add(entity);
+            _armDbContext.SaveChanges();
             return entity;
         }
     }
