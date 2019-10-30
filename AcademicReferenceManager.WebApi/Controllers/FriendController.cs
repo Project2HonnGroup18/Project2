@@ -76,6 +76,14 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(reviews);
         }
 
+        [HttpGet]
+        [Route("{userId:int}/reviews/{publicationId:int}", Name = "GetUserReviewsForGivenPublication")]
+        public IActionResult GetUserReviewsForPublication(int userId, int publicationId)
+        {
+            var review = _reviewService.GetUserReviewForPublication(userId, publicationId);
+            return Ok(review);
+        }
+
         [HttpPost]
         [Route("{userId:int}/reviews/{publicationId:int}", Name = "AddUserReviewForPublication")]
         public IActionResult AddUserReviewForPublication(int userId, int publicationId, [FromBody] ReviewInputModel body) 
@@ -87,6 +95,15 @@ namespace AcademicReferenceManager.WebApi.Controllers
             var entity = _reviewService.AddUserReviewForPublication(userId, publicationId, body);
             return CreatedAtRoute("GetReviewsByGivenUser", new { userId = entity.FriendId }, null);
         }
+
+        [HttpDelete]
+        [Route("{userId:int}/reviews/{publicationId:int}", Name = "DeleteReview")]
+        public IActionResult DeleteReview(int userId, int publicationId) 
+        {
+            var entity = _reviewService.DeleteReview(userId, publicationId);
+            return Ok(entity);
+        }
+
         // **********************************
         // * FULL CRUD For Loan connections *
         // **********************************
