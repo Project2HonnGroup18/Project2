@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AcademicReferenceManager.Models.Entities
 {
@@ -6,9 +7,9 @@ namespace AcademicReferenceManager.Models.Entities
     {
         public int Id { get; set; }
 
-        public DateTime BorrowDate { get; set; }
+        public DateTime? BorrowDate { get; set; }
 
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         public int PublicationId { get; set; }
         public Publication Publication { get; set; }

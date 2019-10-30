@@ -1,0 +1,394 @@
+[
+ {
+  "Id": -1,
+  "FriendId": 7,
+  "PublicationId": 424,
+  "BorrowDate": "2019-07-20",
+  "ReturnDate": null
+ },
+ {
+  "Id": -2,
+  "FriendId": 7,
+  "PublicationId": 949,
+  "BorrowDate": "2019-03-25",
+  "ReturnDate": null
+ },
+ {
+  "Id": -3,
+  "FriendId": 7,
+  "PublicationId": 907,
+  "BorrowDate": "2016-03-11",
+  "ReturnDate": null
+ },
+ {
+  "Id": -4,
+  "FriendId": 10,
+  "PublicationId": 763,
+  "BorrowDate": "2017-05-06",
+  "ReturnDate": "2017-08-18"
+ },
+ {
+  "Id": -5,
+  "FriendId": 10,
+  "PublicationId": 684,
+  "BorrowDate": "2017-11-26",
+  "ReturnDate": null
+ },
+ {
+  "Id": -6,
+  "FriendId": 10,
+  "PublicationId": 693,
+  "BorrowDate": "2019-08-16",
+  "ReturnDate": null
+ },
+ {
+  "Id": -7,
+  "FriendId": 23,
+  "PublicationId": 756,
+  "BorrowDate": "2015-11-18",
+  "ReturnDate": "2015-12-13"
+ },
+ {
+  "Id": -8,
+  "FriendId": 23,
+  "PublicationId": 766,
+  "BorrowDate": "2017-07-30",
+  "ReturnDate": null
+ },
+ {
+  "Id": -9,
+  "FriendId": 23,
+  "PublicationId": 121,
+  "BorrowDate": "2017-04-05",
+  "ReturnDate": "2017-06-18"
+ },
+ {
+  "Id": -10,
+  "FriendId": 31,
+  "PublicationId": 3,
+  "BorrowDate": "2017-01-14",
+  "ReturnDate": "2017-02-14"
+ },
+ {
+  "Id": -11,
+  "FriendId": 31,
+  "PublicationId": 529,
+  "BorrowDate": "2017-09-13",
+  "ReturnDate": "2017-11-24"
+ },
+ {
+  "Id": -12,
+  "FriendId": 41,
+  "PublicationId": 7,
+  "BorrowDate": "2015-11-18",
+  "ReturnDate": "2015-12-13"
+ },
+ {
+  "Id": -13,
+  "FriendId": 41,
+  "PublicationId": 766,
+  "BorrowDate": "2017-07-30",
+  "ReturnDate": null
+ },
+ {
+  "Id": -14,
+  "FriendId": 41,
+  "PublicationId": 121,
+  "BorrowDate": "2017-04-05",
+  "ReturnDate": "2017-06-18"
+ },
+ {
+  "Id": -15,
+  "FriendId": 44,
+  "PublicationId": 994,
+  "BorrowDate": "2015-12-01",
+  "ReturnDate": "2016-01-24"
+ },
+ {
+  "Id": -16,
+  "FriendId": 44,
+  "PublicationId": 741,
+  "BorrowDate": "2017-04-09",
+  "ReturnDate": "2017-07-29"
+ },
+ {
+  "Id": -17,
+  "FriendId": 44,
+  "PublicationId": 909,
+  "BorrowDate": "2017-11-08",
+  "ReturnDate": "2018-01-17"
+ },
+ {
+  "Id": -18,
+  "FriendId": 48,
+  "PublicationId": 813,
+  "BorrowDate": "2019-04-16",
+  "ReturnDate": "2019-04-18"
+ },
+ {
+  "Id": -19,
+  "FriendId": 48,
+  "PublicationId": 845,
+  "BorrowDate": "2016-07-07",
+  "ReturnDate": "2016-07-11"
+ },
+ {
+  "Id": -20,
+  "FriendId": 48,
+  "PublicationId": 482,
+  "BorrowDate": "2016-07-19",
+  "ReturnDate": "2016-08-20"
+ },
+ {
+  "Id": -21,
+  "FriendId": 52,
+  "PublicationId": 366,
+  "BorrowDate": "2019-01-23",
+  "ReturnDate": "2019-04-04"
+ },
+ {
+  "Id": -22,
+  "FriendId": 52,
+  "PublicationId": 489,
+  "BorrowDate": "2017-06-21",
+  "ReturnDate": "2017-08-14"
+ },
+ {
+  "Id": -23,
+  "FriendId": 56,
+  "PublicationId": 508,
+  "BorrowDate": "2016-11-19",
+  "ReturnDate": "2017-02-21"
+ },
+ {
+  "Id": -24,
+  "FriendId": 56,
+  "PublicationId": 754,
+  "BorrowDate": "2019-05-07",
+  "ReturnDate": "2019-05-27"
+ },
+ {
+  "Id": -25,
+  "FriendId": 60,
+  "PublicationId": 248,
+  "BorrowDate": "2017-03-14",
+  "ReturnDate": null
+ },
+ {
+  "Id": -26,
+  "FriendId": 60,
+  "PublicationId": 544,
+  "BorrowDate": "2017-09-16",
+  "ReturnDate": "2017-10-01"
+ },
+ {
+  "Id": -27,
+  "FriendId": 60,
+  "PublicationId": 685,
+  "BorrowDate": "2017-09-21",
+  "ReturnDate": "2017-10-17"
+ },
+ {
+  "Id": -28,
+  "FriendId": 61,
+  "PublicationId": 754,
+  "BorrowDate": "2017-10-12",
+  "ReturnDate": "2017-11-12"
+ },
+ {
+  "Id": -29,
+  "FriendId": 64,
+  "PublicationId": 779,
+  "BorrowDate": "2016-04-13",
+  "ReturnDate": "2016-07-01"
+ },
+ {
+  "Id": -30,
+  "FriendId": 64,
+  "PublicationId": 790,
+  "BorrowDate": "2015-09-25",
+  "ReturnDate": "2015-10-30"
+ },
+ {
+  "Id": -31,
+  "FriendId": 66,
+  "PublicationId": 13,
+  "BorrowDate": "2017-05-03",
+  "ReturnDate": "2017-08-18"
+ },
+ {
+  "Id": -32,
+  "FriendId": 72,
+  "PublicationId": 889,
+  "BorrowDate": "2016-03-01",
+  "ReturnDate": "2016-05-12"
+ },
+ {
+  "Id": -33,
+  "FriendId": 72,
+  "PublicationId": 838,
+  "BorrowDate": "2019-06-07",
+  "ReturnDate": "2019-08-07"
+ },
+ {
+  "Id": -34,
+  "FriendId": 72,
+  "PublicationId": 822,
+  "BorrowDate": "2016-10-01",
+  "ReturnDate": "2016-10-02"
+ },
+ {
+  "Id": -35,
+  "FriendId": 76,
+  "PublicationId": 312,
+  "BorrowDate": "2017-02-08",
+  "ReturnDate": "2017-03-01"
+ },
+ {
+  "Id": -36,
+  "FriendId": 81,
+  "PublicationId": 287,
+  "BorrowDate": "2017-05-09",
+  "ReturnDate": "2017-08-20"
+ },
+ {
+  "Id": -37,
+  "FriendId": 82,
+  "PublicationId": 520,
+  "BorrowDate": "2017-01-20",
+  "ReturnDate": null
+ },
+ {
+  "Id": -38,
+  "FriendId": 82,
+  "PublicationId": 118,
+  "BorrowDate": "2016-11-08",
+  "ReturnDate": null
+ },
+ {
+  "Id": -39,
+  "FriendId": 85,
+  "PublicationId": 606,
+  "BorrowDate": "2017-06-12",
+  "ReturnDate": null
+ },
+ {
+  "Id": -40,
+  "FriendId": 85,
+  "PublicationId": 638,
+  "BorrowDate": "2016-02-09",
+  "ReturnDate": "2016-03-21"
+ },
+ {
+  "Id": -41,
+  "FriendId": 85,
+  "PublicationId": 554,
+  "BorrowDate": "2016-12-10",
+  "ReturnDate": "2017-03-29"
+ },
+ {
+  "Id": -42,
+  "FriendId": 86,
+  "PublicationId": 126,
+  "BorrowDate": "2019-05-19",
+  "ReturnDate": null
+ },
+ {
+  "Id": -43,
+  "FriendId": 86,
+  "PublicationId": 462,
+  "BorrowDate": "2017-03-08",
+  "ReturnDate": null
+ },
+ {
+  "Id": -44,
+  "FriendId": 89,
+  "PublicationId": 858,
+  "BorrowDate": "2015-11-28",
+  "ReturnDate": null
+ },
+ {
+  "Id": -45,
+  "FriendId": 89,
+  "PublicationId": 187,
+  "BorrowDate": "2017-06-16",
+  "ReturnDate": "2017-07-05"
+ },
+ {
+  "Id": -46,
+  "FriendId": 90,
+  "PublicationId": 966,
+  "BorrowDate": "2017-11-07",
+  "ReturnDate": null
+ },
+ {
+  "Id": -47,
+  "FriendId": 90,
+  "PublicationId": 725,
+  "BorrowDate": "2017-07-04",
+  "ReturnDate": "2017-09-10"
+ },
+ {
+  "Id": -48,
+  "FriendId": 92,
+  "PublicationId": 773,
+  "BorrowDate": "2017-11-15",
+  "ReturnDate": "2018-01-15"
+ },
+ {
+  "Id": -49,
+  "FriendId": 92,
+  "PublicationId": 56,
+  "BorrowDate": "2015-12-24",
+  "ReturnDate": null
+ },
+ {
+  "Id": -50,
+  "FriendId": 92,
+  "PublicationId": 53,
+  "BorrowDate": "2016-10-30",
+  "ReturnDate": "2016-12-20"
+ },
+ {
+  "Id": -51,
+  "FriendId": 93,
+  "PublicationId": 787,
+  "BorrowDate": "2019-03-22",
+  "ReturnDate": null
+ },
+ {
+  "Id": -52,
+  "FriendId": 93,
+  "PublicationId": 923,
+  "BorrowDate": "2016-05-27",
+  "ReturnDate": "2016-07-27"
+ },
+ {
+  "Id": -53,
+  "FriendId": 93,
+  "PublicationId": 233,
+  "BorrowDate": "2017-02-10",
+  "ReturnDate": "2017-05-17"
+ },
+ {
+  "Id": -54,
+  "FriendId": 100,
+  "PublicationId": 883,
+  "BorrowDate": "2019-02-27",
+  "ReturnDate": null
+ },
+ {
+  "Id": -55,
+  "FriendId": 100,
+  "PublicationId": 291,
+  "BorrowDate": "2019-06-20",
+  "ReturnDate": "2019-08-15"
+ },
+ {
+  "Id": -56,
+  "FriendId": 100,
+  "PublicationId": 64,
+  "BorrowDate": "2017-03-03",
+  "ReturnDate": "2017-05-01"
+ }
+]

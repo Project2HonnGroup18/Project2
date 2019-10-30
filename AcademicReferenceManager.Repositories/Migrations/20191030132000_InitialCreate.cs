@@ -1,20 +1,80 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AcademicReferenceManager.Repositories.Migrations
 {
-    public partial class Test : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Friends",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Friends", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Publications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EditorFirstName = table.Column<string>(nullable: true),
+                    EditorLastName = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Journal = table.Column<string>(nullable: true),
+                    Isbn = table.Column<string>(nullable: true),
+                    Year = table.Column<int>(nullable: true),
+                    Type = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Publications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PublicationsToFriend",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BorrowDate = table.Column<DateTime>(nullable: true),
+                    ReturnDate = table.Column<DateTime>(nullable: true),
+                    PublicationId = table.Column<int>(nullable: false),
+                    FriendId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PublicationsToFriend", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PublicationsToFriend_Friends_FriendId",
+                        column: x => x.FriendId,
+                        principalTable: "Friends",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PublicationsToFriend_Publications_PublicationId",
+                        column: x => x.PublicationId,
+                        principalTable: "Publications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[] { 1, "142 Washington Street", "ccochet0@huffingtonpost.com", "Con", "Cochet", "104 315 1584" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 74, "7597 Comanche Avenue", "rbrizell21@vinaora.com", "Robena", "Brizell", "875 439 3603" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -119,6 +179,16 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 53, "386 Texas Trail", "elopez1g@dot.gov", "Edyth", "Lopez", "589 188 0559" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 74, "7597 Comanche Avenue", "rbrizell21@vinaora.com", "Robena", "Brizell", "875 439 3603" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[] { 75, "13647 Coleman Center", "nczyz22@nyu.edu", "Nananne", "Czyz", "713 311 1638" });
 
             migrationBuilder.InsertData(
@@ -130,16 +200,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[] { 77, "5 Swallow Terrace", "dreeds24@angelfire.com", null, "Reeds", "699 149 7172" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 78, "9 Paget Place", "learengey25@gmpg.org", "Lincoln", "Earengey", "786 824 7902" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 200, null, null, "Guy fieri", null, null });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -189,17 +249,17 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 53, "386 Texas Trail", "elopez1g@dot.gov", "Edyth", "Lopez", "589 188 0559" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[] { 91, "91 Park Meadow Hill", "lgoodlake2i@quantcast.com", "Lynna", "Goodlake", "943 200 4699" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 89, "63 Miller Avenue", "whaysom2g@creativecommons.org", "Wittie", "Haysom", "654 920 7051" });
+                values: new object[] { 52, "5664 Twin Pines Crossing", "smcinility1f@example.com", "Shelden", "McInility", "887 223 9858" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 90, "4 Canary Alley", "mfattorini2h@webeden.co.uk", "Merissa", "Fattorini", "375 214 0507" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -239,7 +299,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 80, "49 Longview Street", "smarzellano27@arizona.edu", "Sanders", "Marzellano", "695 644 3093" });
+                values: new object[] { 81, "79 Kim Circle", "ttomney28@microsoft.com", "Tomasina", "Tomney", "735 689 8075" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -249,27 +309,27 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 90, "4 Canary Alley", "mfattorini2h@webeden.co.uk", "Merissa", "Fattorini", "375 214 0507" });
+                values: new object[] { 78, "9 Paget Place", "learengey25@gmpg.org", "Lincoln", "Earengey", "786 824 7902" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 52, "5664 Twin Pines Crossing", "smcinility1f@example.com", "Shelden", "McInility", "887 223 9858" });
+                values: new object[] { 89, "63 Miller Avenue", "whaysom2g@creativecommons.org", "Wittie", "Haysom", "654 920 7051" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 81, "79 Kim Circle", "ttomney28@microsoft.com", "Tomasina", "Tomney", "735 689 8075" });
+                values: new object[] { 51, "85608 East Terrace", "fgingles1e@dell.com", "Fredra", "Gingles", "135 718 4156" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 50, "9 American Center", "siannitti1d@blinklist.com", "Samuele", "Iannitti", "244 440 6241" });
+                values: new object[] { 80, "49 Longview Street", "smarzellano27@arizona.edu", "Sanders", "Marzellano", "695 644 3093" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 23, "793 Ridgeview Point", "sertm@boston.com", "Skippie", "Ert", "399 147 7244" });
+                values: new object[] { 49, "49631 Rowland Circle", null, "Allayne", "Raubenheimers", "559 714 9070" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -319,12 +379,12 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 24, "27 7th Crossing", null, "Brig", "Krollmann", "281 881 5644" });
+                values: new object[] { 13, "98225 Pine View Court", "bbasnettc@bandcamp.com", "Booth", "Basnett", "890 219 5074" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 13, "98225 Pine View Court", "bbasnettc@bandcamp.com", "Booth", "Basnett", "890 219 5074" });
+                values: new object[] { 11, "42 1st Lane", null, "Kessiah", "Figgs", "591 985 8121" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -374,32 +434,22 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 51, "85608 East Terrace", "fgingles1e@dell.com", "Fredra", "Gingles", "135 718 4156" });
+                values: new object[] { 50, "9 American Center", "siannitti1d@blinklist.com", "Samuele", "Iannitti", "244 440 6241" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 11, "42 1st Lane", null, "Kessiah", "Figgs", "591 985 8121" });
+                values: new object[] { 23, "793 Ridgeview Point", "sertm@boston.com", "Skippie", "Ert", "399 147 7244" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 25, "7 Rieder Avenue", "jandriolio@toplist.cz", "Johanna", "Andrioli", "939 845 8333" });
+                values: new object[] { 24, "27 7th Crossing", null, "Brig", "Krollmann", "281 881 5644" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[] { 12, "8179 Basil Terrace", "aproudlerb@dedecms.com", "Andeee", "Proudler", "171 388 1294" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 27, "23 Heath Pass", "mmotionq@ucla.edu", "Mendie", "Motion", "303 981 9626" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 49, "49631 Rowland Circle", null, "Allayne", "Raubenheimers", "559 714 9070" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -410,6 +460,11 @@ namespace AcademicReferenceManager.Repositories.Migrations
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[] { 48, "21709 Almo Crossing", "smckitterick1b@cdc.gov", "Stephanie", "McKitterick", "600 837 9328" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 25, "7 Rieder Avenue", "jandriolio@toplist.cz", "Johanna", "Andrioli", "939 845 8333" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -434,7 +489,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 42, "0990 Emmet Junction", "bcrookes15@cdc.gov", "Berri", "Crookes", "747 903 9283" });
+                values: new object[] { 43, "63 Chive Point", "kboscott16@miibeian.gov.cn", "Kellia", "Boscott", "398 306 5631" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -454,47 +509,12 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 43, "63 Chive Point", "kboscott16@miibeian.gov.cn", "Kellia", "Boscott", "398 306 5631" });
+                values: new object[] { 38, "1540 Larry Way", "ctschirschky11@youtube.com", "Collin", "Tschirschky", "922 736 9130" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 31, "2 Amoth Parkway", "elucau@ameblo.jp", "Emile", "Luca", "246 828 4283" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 37, "31728 Sheridan Court", "kpowderham10@google.it", "Kally", "Powderham", "915 251 9704" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 36, "09177 8th Crossing", "jshellardz@icq.com", "Janel", "Shellard", "160 253 7593" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 35, "409 Shasta Point", "nlangfieldy@geocities.com", "Noell", "Langfield", "116 577 7637" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 34, "70 Prentice Hill", "rpalferyx@tripadvisor.com", "Rozella", "Palfery", "146 945 2378" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 33, "16384 Ilene Lane", null, null, "Wolledge", null });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 32, "33266 Magdeline Crossing", "mfidalv@networkadvertising.org", "Mable", "Fidal", "968 785 7374" });
-
-            migrationBuilder.InsertData(
-                table: "Friends",
-                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 28, "2 Menomonie Junction", "etottler@tinyurl.com", "Emily", "Tottle", "933 231 8658" });
+                values: new object[] { 42, "0990 Emmet Junction", "bcrookes15@cdc.gov", "Berri", "Crookes", "747 903 9283" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
@@ -504,22 +524,57 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 28, "2 Menomonie Junction", "etottler@tinyurl.com", "Emily", "Tottle", "933 231 8658" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 37, "31728 Sheridan Court", "kpowderham10@google.it", "Kally", "Powderham", "915 251 9704" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
                 values: new object[] { 29, "05080 Lukken Park", "kmaysors@wisc.edu", "Kerrill", "Maysor", "612 646 4045" });
 
             migrationBuilder.InsertData(
                 table: "Friends",
                 columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
-                values: new object[] { 38, "1540 Larry Way", "ctschirschky11@youtube.com", "Collin", "Tschirschky", "922 736 9130" });
+                values: new object[] { 31, "2 Amoth Parkway", "elucau@ameblo.jp", "Emile", "Luca", "246 828 4283" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 32, "33266 Magdeline Crossing", "mfidalv@networkadvertising.org", "Mable", "Fidal", "968 785 7374" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 27, "23 Heath Pass", "mmotionq@ucla.edu", "Mendie", "Motion", "303 981 9626" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 33, "16384 Ilene Lane", null, null, "Wolledge", null });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 34, "70 Prentice Hill", "rpalferyx@tripadvisor.com", "Rozella", "Palfery", "146 945 2378" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 35, "409 Shasta Point", "nlangfieldy@geocities.com", "Noell", "Langfield", "116 577 7637" });
+
+            migrationBuilder.InsertData(
+                table: "Friends",
+                columns: new[] { "Id", "Address", "Email", "FirstName", "LastName", "Phone" },
+                values: new object[] { 36, "09177 8th Crossing", "jshellardz@icq.com", "Janel", "Shellard", "160 253 7593" });
 
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 665, "Gisèle", "Clell", "000150729-X", "Oxford University Press", null, "electronic", 1987 });
-
-            migrationBuilder.InsertData(
-                table: "Publications",
-                columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 659, "Léonore", null, "856064140-8", "INFORMS", null, "printed", 2001 });
+                values: new object[] { 664, "Alizée", "Kohring", "223652604-0", "Emerald", null, "printed", 2009 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -529,17 +584,22 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 668, "Léandre", null, "129857781-0", "Versita", null, "electronic", 1998 });
-
-            migrationBuilder.InsertData(
-                table: "Publications",
-                columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
                 values: new object[] { 666, "Audréanne", "Poile", "013405915-8", "IGI Global", null, "printed", 2011 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 664, "Alizée", "Kohring", "223652604-0", "Emerald", null, "printed", 2009 });
+                values: new object[] { 665, "Gisèle", "Clell", "000150729-X", "Oxford University Press", null, "electronic", 1987 });
+
+            migrationBuilder.InsertData(
+                table: "Publications",
+                columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
+                values: new object[] { 668, "Léandre", null, "129857781-0", "Versita", null, "electronic", 1998 });
+
+            migrationBuilder.InsertData(
+                table: "Publications",
+                columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
+                values: new object[] { 659, "Léonore", null, "856064140-8", "INFORMS", null, "printed", 2001 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -659,7 +719,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 631, "Françoise", "Frayling", "279973540-1", "SAGE Publications", null, "printed", 2009 });
+                values: new object[] { 632, "Aimée", "Willerstone", "457577163-5", "Frontiers", null, "electronic", 2003 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -694,7 +754,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 632, "Aimée", "Willerstone", "457577163-5", "Frontiers", null, "electronic", 2003 });
+                values: new object[] { 631, "Françoise", "Frayling", "279973540-1", "SAGE Publications", null, "printed", 2009 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -814,7 +874,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 737, "Béatrice", "Barthrop", "461950336-3", "Springer", null, "printed", 1990 });
+                values: new object[] { 736, "Göran", "Duhig", "451403218-2", "Springer", null, "electronic", 2007 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -899,12 +959,12 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 736, "Göran", "Duhig", "451403218-2", "Springer", null, "electronic", 2007 });
+                values: new object[] { 626, "Mélanie", "Manuel", "910535172-3", "SIAM", null, "printed", 2002 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 626, "Mélanie", "Manuel", "910535172-3", "SIAM", null, "printed", 2002 });
+                values: new object[] { 737, "Béatrice", "Barthrop", "461950336-3", "Springer", null, "printed", 1990 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -1754,7 +1814,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 800, "Bérénice", "Farnan", "623664294-X", "Ingenta", null, "electronic", 2010 });
+                values: new object[] { 799, "Naéva", "Pethick", "950754490-9", "MDPI", null, "electronic", 2006 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -2464,12 +2524,12 @@ namespace AcademicReferenceManager.Repositories.Migrations
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 799, "Naéva", "Pethick", "950754490-9", "MDPI", null, "electronic", 2006 });
+                values: new object[] { 501, "Maëlle", "Barff", "726328542-8", "Hindawi", null, "electronic", 1990 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
-                values: new object[] { 501, "Maëlle", "Barff", "726328542-8", "Hindawi", null, "electronic", 1990 });
+                values: new object[] { 800, "Bérénice", "Farnan", "623664294-X", "Ingenta", null, "electronic", 2010 });
 
             migrationBuilder.InsertData(
                 table: "Publications",
@@ -5510,5514 +5570,308 @@ namespace AcademicReferenceManager.Repositories.Migrations
                 table: "Publications",
                 columns: new[] { "Id", "EditorFirstName", "EditorLastName", "Isbn", "Journal", "Title", "Type", "Year" },
                 values: new object[] { 1000, "Amélie", "Livezey", "512063625-X", "MDPI", null, "electronic", 2007 });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -10, new DateTime(2017, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 31, 3, new DateTime(2017, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -6, new DateTime(2019, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 693, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -47, new DateTime(2017, 7, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 90, 725, new DateTime(2017, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -16, new DateTime(2017, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 44, 741, new DateTime(2017, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -24, new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 56, 754, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -28, new DateTime(2017, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 61, 754, new DateTime(2017, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -7, new DateTime(2015, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 23, 756, new DateTime(2015, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -4, new DateTime(2017, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 763, new DateTime(2017, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -8, new DateTime(2017, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 23, 766, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -13, new DateTime(2017, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 41, 766, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -48, new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 92, 773, new DateTime(2018, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -29, new DateTime(2016, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 64, 779, new DateTime(2016, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -27, new DateTime(2017, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 60, 685, new DateTime(2017, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -51, new DateTime(2019, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 93, 787, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -18, new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 48, 813, new DateTime(2019, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -34, new DateTime(2016, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 72, 822, new DateTime(2016, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -33, new DateTime(2019, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 72, 838, new DateTime(2019, 8, 7, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -19, new DateTime(2016, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 48, 845, new DateTime(2016, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -44, new DateTime(2015, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 89, 858, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -54, new DateTime(2019, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 100, 883, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -32, new DateTime(2016, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 72, 889, new DateTime(2016, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -3, new DateTime(2016, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 907, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -17, new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 44, 909, new DateTime(2018, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -52, new DateTime(2016, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 93, 923, new DateTime(2016, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -2, new DateTime(2019, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 949, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -30, new DateTime(2015, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 64, 790, new DateTime(2015, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -5, new DateTime(2017, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 684, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -40, new DateTime(2016, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 85, 638, new DateTime(2016, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -39, new DateTime(2017, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 85, 606, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -12, new DateTime(2015, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 41, 7, new DateTime(2015, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -31, new DateTime(2017, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 66, 13, new DateTime(2017, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -50, new DateTime(2016, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 92, 53, new DateTime(2016, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -49, new DateTime(2015, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 92, 56, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -56, new DateTime(2017, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 100, 64, new DateTime(2017, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -38, new DateTime(2016, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 82, 118, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -9, new DateTime(2017, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 23, 121, new DateTime(2017, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -14, new DateTime(2017, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 41, 121, new DateTime(2017, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -42, new DateTime(2019, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 86, 126, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -45, new DateTime(2017, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 89, 187, new DateTime(2017, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -53, new DateTime(2017, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 93, 233, new DateTime(2017, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -25, new DateTime(2017, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 60, 248, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -36, new DateTime(2017, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 81, 287, new DateTime(2017, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -55, new DateTime(2019, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 100, 291, new DateTime(2019, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -35, new DateTime(2017, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 76, 312, new DateTime(2017, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -21, new DateTime(2019, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 52, 366, new DateTime(2019, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -1, new DateTime(2019, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 424, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -43, new DateTime(2017, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 86, 462, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -20, new DateTime(2016, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 48, 482, new DateTime(2016, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -22, new DateTime(2017, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 52, 489, new DateTime(2017, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -23, new DateTime(2016, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 56, 508, new DateTime(2017, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -37, new DateTime(2017, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 82, 520, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -11, new DateTime(2017, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 31, 529, new DateTime(2017, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -26, new DateTime(2017, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 60, 544, new DateTime(2017, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -41, new DateTime(2016, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 85, 554, new DateTime(2017, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -46, new DateTime(2017, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 90, 966, null });
+
+            migrationBuilder.InsertData(
+                table: "PublicationsToFriend",
+                columns: new[] { "Id", "BorrowDate", "FriendId", "PublicationId", "ReturnDate" },
+                values: new object[] { -15, new DateTime(2015, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 44, 994, new DateTime(2016, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PublicationsToFriend_FriendId",
+                table: "PublicationsToFriend",
+                column: "FriendId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PublicationsToFriend_PublicationId",
+                table: "PublicationsToFriend",
+                column: "PublicationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 1);
+            migrationBuilder.DropTable(
+                name: "PublicationsToFriend");
 
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 2);
+            migrationBuilder.DropTable(
+                name: "Friends");
 
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 8);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 9);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 10);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 11);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 12);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 13);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 14);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 15);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 17);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 18);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 19);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 20);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 21);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 22);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 23);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 24);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 25);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 26);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 27);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 28);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 29);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 30);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 31);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 32);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 33);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 34);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 35);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 36);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 37);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 38);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 39);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 40);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 41);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 42);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 43);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 44);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 45);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 46);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 47);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 48);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 49);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 50);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 51);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 52);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 53);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 54);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 55);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 56);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 57);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 58);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 59);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 60);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 61);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 62);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 63);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 64);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 65);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 66);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 67);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 68);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 69);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 70);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 71);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 72);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 73);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 74);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 75);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 76);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 77);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 78);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 79);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 80);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 81);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 82);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 83);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 84);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 85);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 86);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 87);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 88);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 89);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 90);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 91);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 92);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 93);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 94);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 95);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 96);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 97);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 98);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 99);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 100);
-
-            migrationBuilder.DeleteData(
-                table: "Friends",
-                keyColumn: "Id",
-                keyValue: 200);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 4);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 6);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 7);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 8);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 9);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 10);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 11);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 12);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 13);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 14);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 15);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 17);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 18);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 19);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 20);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 21);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 22);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 23);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 24);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 25);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 26);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 27);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 28);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 29);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 30);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 31);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 32);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 33);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 34);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 35);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 36);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 37);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 38);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 39);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 40);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 41);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 42);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 43);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 44);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 45);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 46);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 47);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 48);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 49);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 50);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 51);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 52);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 53);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 54);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 55);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 56);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 57);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 58);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 59);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 60);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 61);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 62);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 63);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 64);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 65);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 66);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 67);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 68);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 69);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 70);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 71);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 72);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 73);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 74);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 75);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 76);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 77);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 78);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 79);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 80);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 81);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 82);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 83);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 84);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 85);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 86);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 87);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 88);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 89);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 90);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 91);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 92);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 93);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 94);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 95);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 96);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 97);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 98);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 99);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 100);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 101);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 102);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 103);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 104);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 105);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 106);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 107);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 108);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 109);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 110);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 111);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 112);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 113);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 114);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 115);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 116);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 117);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 118);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 119);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 120);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 121);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 122);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 123);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 124);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 125);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 126);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 127);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 128);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 129);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 130);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 131);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 132);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 133);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 134);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 135);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 136);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 137);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 138);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 139);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 140);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 141);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 142);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 143);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 144);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 145);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 146);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 147);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 148);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 149);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 150);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 151);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 152);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 153);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 154);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 155);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 156);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 157);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 158);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 159);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 160);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 161);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 162);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 163);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 164);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 165);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 166);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 167);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 168);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 169);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 170);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 171);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 172);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 173);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 174);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 175);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 176);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 177);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 178);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 179);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 180);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 181);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 182);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 183);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 184);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 185);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 186);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 187);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 188);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 189);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 190);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 191);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 192);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 193);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 194);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 195);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 196);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 197);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 198);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 199);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 200);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 201);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 202);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 203);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 204);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 205);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 206);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 207);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 208);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 209);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 210);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 211);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 212);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 213);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 214);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 215);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 216);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 217);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 218);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 219);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 220);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 221);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 222);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 223);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 224);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 225);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 226);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 227);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 228);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 229);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 230);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 231);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 232);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 233);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 234);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 235);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 236);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 237);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 238);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 239);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 240);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 241);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 242);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 243);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 244);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 245);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 246);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 247);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 248);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 249);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 250);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 251);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 252);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 253);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 254);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 255);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 256);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 257);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 258);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 259);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 260);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 261);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 262);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 263);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 264);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 265);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 266);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 267);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 268);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 269);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 270);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 271);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 272);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 273);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 274);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 275);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 276);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 277);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 278);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 279);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 280);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 281);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 282);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 283);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 284);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 285);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 286);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 287);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 288);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 289);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 290);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 291);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 292);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 293);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 294);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 295);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 296);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 297);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 298);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 299);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 300);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 301);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 302);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 303);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 304);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 305);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 306);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 307);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 308);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 309);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 310);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 311);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 312);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 313);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 314);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 315);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 316);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 317);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 318);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 319);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 320);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 321);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 322);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 323);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 324);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 325);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 326);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 327);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 328);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 329);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 330);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 331);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 332);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 333);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 334);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 335);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 336);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 337);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 338);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 339);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 340);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 341);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 342);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 343);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 344);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 345);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 346);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 347);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 348);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 349);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 350);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 351);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 352);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 353);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 354);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 355);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 356);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 357);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 358);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 359);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 360);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 361);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 362);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 363);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 364);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 365);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 366);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 367);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 368);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 369);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 370);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 371);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 372);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 373);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 374);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 375);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 376);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 377);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 378);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 379);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 380);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 381);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 382);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 383);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 384);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 385);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 386);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 387);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 388);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 389);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 390);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 391);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 392);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 393);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 394);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 395);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 396);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 397);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 398);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 399);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 400);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 401);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 402);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 403);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 404);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 405);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 406);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 407);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 408);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 409);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 410);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 411);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 412);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 413);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 414);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 415);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 416);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 417);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 418);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 419);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 420);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 421);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 422);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 423);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 424);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 425);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 426);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 427);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 428);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 429);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 430);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 431);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 432);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 433);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 434);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 435);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 436);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 437);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 438);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 439);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 440);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 441);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 442);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 443);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 444);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 445);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 446);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 447);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 448);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 449);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 450);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 451);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 452);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 453);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 454);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 455);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 456);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 457);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 458);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 459);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 460);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 461);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 462);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 463);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 464);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 465);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 466);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 467);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 468);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 469);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 470);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 471);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 472);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 473);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 474);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 475);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 476);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 477);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 478);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 479);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 480);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 481);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 482);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 483);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 484);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 485);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 486);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 487);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 488);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 489);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 490);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 491);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 492);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 493);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 494);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 495);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 496);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 497);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 498);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 499);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 500);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 501);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 502);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 503);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 504);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 505);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 506);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 507);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 508);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 509);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 510);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 511);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 512);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 513);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 514);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 515);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 516);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 517);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 518);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 519);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 520);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 521);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 522);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 523);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 524);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 525);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 526);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 527);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 528);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 529);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 530);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 531);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 532);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 533);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 534);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 535);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 536);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 537);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 538);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 539);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 540);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 541);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 542);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 543);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 544);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 545);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 546);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 547);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 548);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 549);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 550);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 551);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 552);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 553);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 554);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 555);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 556);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 557);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 558);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 559);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 560);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 561);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 562);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 563);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 564);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 565);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 566);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 567);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 568);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 569);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 570);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 571);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 572);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 573);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 574);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 575);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 576);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 577);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 578);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 579);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 580);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 581);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 582);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 583);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 584);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 585);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 586);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 587);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 588);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 589);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 590);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 591);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 592);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 593);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 594);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 595);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 596);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 597);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 598);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 599);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 600);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 601);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 602);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 603);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 604);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 605);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 606);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 607);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 608);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 609);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 610);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 611);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 612);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 613);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 614);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 615);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 616);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 617);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 618);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 619);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 620);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 621);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 622);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 623);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 624);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 625);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 626);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 627);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 628);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 629);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 630);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 631);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 632);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 633);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 634);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 635);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 636);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 637);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 638);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 639);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 640);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 641);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 642);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 643);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 644);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 645);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 646);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 647);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 648);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 649);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 650);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 651);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 652);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 653);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 654);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 655);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 656);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 657);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 658);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 659);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 660);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 661);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 662);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 663);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 664);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 665);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 666);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 667);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 668);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 669);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 670);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 671);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 672);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 673);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 674);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 675);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 676);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 677);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 678);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 679);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 680);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 681);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 682);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 683);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 684);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 685);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 686);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 687);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 688);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 689);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 690);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 691);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 692);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 693);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 694);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 695);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 696);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 697);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 698);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 699);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 700);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 701);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 702);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 703);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 704);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 705);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 706);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 707);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 708);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 709);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 710);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 711);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 712);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 713);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 714);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 715);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 716);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 717);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 718);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 719);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 720);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 721);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 722);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 723);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 724);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 725);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 726);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 727);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 728);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 729);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 730);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 731);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 732);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 733);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 734);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 735);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 736);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 737);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 738);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 739);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 740);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 741);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 742);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 743);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 744);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 745);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 746);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 747);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 748);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 749);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 750);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 751);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 752);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 753);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 754);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 755);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 756);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 757);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 758);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 759);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 760);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 761);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 762);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 763);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 764);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 765);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 766);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 767);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 768);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 769);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 770);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 771);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 772);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 773);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 774);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 775);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 776);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 777);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 778);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 779);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 780);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 781);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 782);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 783);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 784);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 785);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 786);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 787);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 788);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 789);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 790);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 791);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 792);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 793);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 794);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 795);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 796);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 797);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 798);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 799);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 800);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 801);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 802);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 803);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 804);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 805);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 806);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 807);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 808);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 809);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 810);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 811);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 812);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 813);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 814);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 815);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 816);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 817);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 818);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 819);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 820);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 821);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 822);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 823);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 824);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 825);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 826);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 827);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 828);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 829);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 830);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 831);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 832);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 833);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 834);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 835);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 836);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 837);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 838);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 839);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 840);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 841);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 842);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 843);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 844);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 845);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 846);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 847);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 848);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 849);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 850);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 851);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 852);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 853);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 854);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 855);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 856);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 857);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 858);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 859);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 860);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 861);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 862);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 863);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 864);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 865);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 866);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 867);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 868);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 869);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 870);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 871);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 872);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 873);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 874);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 875);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 876);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 877);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 878);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 879);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 880);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 881);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 882);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 883);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 884);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 885);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 886);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 887);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 888);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 889);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 890);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 891);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 892);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 893);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 894);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 895);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 896);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 897);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 898);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 899);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 900);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 901);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 902);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 903);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 904);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 905);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 906);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 907);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 908);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 909);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 910);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 911);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 912);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 913);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 914);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 915);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 916);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 917);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 918);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 919);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 920);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 921);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 922);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 923);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 924);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 925);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 926);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 927);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 928);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 929);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 930);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 931);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 932);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 933);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 934);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 935);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 936);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 937);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 938);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 939);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 940);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 941);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 942);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 943);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 944);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 945);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 946);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 947);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 948);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 949);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 950);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 951);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 952);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 953);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 954);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 955);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 956);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 957);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 958);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 959);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 960);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 961);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 962);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 963);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 964);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 965);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 966);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 967);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 968);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 969);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 970);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 971);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 972);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 973);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 974);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 975);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 976);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 977);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 978);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 979);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 980);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 981);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 982);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 983);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 984);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 985);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 986);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 987);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 988);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 989);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 990);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 991);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 992);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 993);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 994);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 995);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 996);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 997);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 998);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 999);
-
-            migrationBuilder.DeleteData(
-                table: "Publications",
-                keyColumn: "Id",
-                keyValue: 1000);
+            migrationBuilder.DropTable(
+                name: "Publications");
         }
     }
 }

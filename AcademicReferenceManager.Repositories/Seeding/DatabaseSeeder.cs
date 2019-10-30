@@ -10,7 +10,7 @@ namespace AcademicReferenceManager.Repositories.Seeding
     {
         public List<Friend> friends;
         public List<Publication> publications;
-        private List<PublicationToFriend> borrows;
+        public List<PublicationToFriend> borrows;
 
         public DatabaseSeeder(string path = "")
         {
@@ -21,15 +21,18 @@ namespace AcademicReferenceManager.Repositories.Seeding
             
             string friendText = File.ReadAllText(path + "Friends.json");
             string publicationText = File.ReadAllText(path + "Publications.json");
+            string borrowText = File.ReadAllText(path + "borrows.json");
 
             friends = JsonConvert.DeserializeObject<List<Friend>>(friendText);
             publications = JsonConvert.DeserializeObject<List<Publication>>(publicationText);
+            borrows = JsonConvert.DeserializeObject<List<PublicationToFriend>>(borrowText);
         }
 
         public void seedDatabase(ArmDbContext dbContext)
         {
             dbContext.Friends.AddRange(friends);
             dbContext.Publications.AddRange(publications);
+            dbContext.PublicationsToFriend.AddRange(borrows);
             dbContext.SaveChanges();
         }
     }

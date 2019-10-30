@@ -115,21 +115,26 @@ namespace AcademicReferenceManager.Repositories.Implementations
             List<FriendDto> returnList = new List<FriendDto>();
             foreach(PublicationToFriend p2f in _armDbContext.PublicationsToFriend) 
             {
-                if(p2f.BorrowDate < date && p2f.ReturnDate > date)
+                if(p2f.BorrowDate != null && p2f.ReturnDate != null)
                 {
-                    var check = Math.Floor(((p2f.BorrowDate.Year - p2f.ReturnDate.Year) * 12.0)
-                         + p2f.BorrowDate.Month - p2f.ReturnDate.Month);
-                    if(check != 0)
+                    var borrowDate = (DateTime)p2f.BorrowDate;
+                    var returnDate = (DateTime)p2f.ReturnDate;
+                    if(p2f.BorrowDate < date && p2f.ReturnDate > date)
                     {
-                        var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
-                        returnList.Add( new FriendDto
+                        var check = Math.Floor(((borrowDate.Year - returnDate.Year) * 12.0)
+                            + borrowDate.Month - returnDate.Month);
+                        if(check != 0)
                         {
-                            Id = friend.Id,
-                            FirstName = friend.FirstName,
-                            LastName = friend.LastName,
-                            Email = friend.Email,
-                            Address = friend.Address
-                        });
+                            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
+                            returnList.Add( new FriendDto
+                            {
+                                Id = friend.Id,
+                                FirstName = friend.FirstName,
+                                LastName = friend.LastName,
+                                Email = friend.Email,
+                                Address = friend.Address
+                            });
+                        }
                     }
                 }
             }

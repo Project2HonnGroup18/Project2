@@ -921,11 +921,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             FirstName = "Carlos",
                             LastName = "Dericut",
                             Phone = "687 254 5284"
-                        },
-                        new
-                        {
-                            Id = 200,
-                            FirstName = "Guy fieri"
                         });
                 });
 
@@ -10800,13 +10795,13 @@ namespace AcademicReferenceManager.Repositories.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("BorrowDate");
+                    b.Property<DateTime?>("BorrowDate");
 
                     b.Property<int>("FriendId");
 
                     b.Property<int>("PublicationId");
 
-                    b.Property<DateTime>("ReturnDate");
+                    b.Property<DateTime?>("ReturnDate");
 
                     b.HasKey("Id");
 
@@ -10815,6 +10810,438 @@ namespace AcademicReferenceManager.Repositories.Migrations
                     b.HasIndex("PublicationId");
 
                     b.ToTable("PublicationsToFriend");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            BorrowDate = new DateTime(2019, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 7,
+                            PublicationId = 424
+                        },
+                        new
+                        {
+                            Id = -2,
+                            BorrowDate = new DateTime(2019, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 7,
+                            PublicationId = 949
+                        },
+                        new
+                        {
+                            Id = -3,
+                            BorrowDate = new DateTime(2016, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 7,
+                            PublicationId = 907
+                        },
+                        new
+                        {
+                            Id = -4,
+                            BorrowDate = new DateTime(2017, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 10,
+                            PublicationId = 763,
+                            ReturnDate = new DateTime(2017, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -5,
+                            BorrowDate = new DateTime(2017, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 10,
+                            PublicationId = 684
+                        },
+                        new
+                        {
+                            Id = -6,
+                            BorrowDate = new DateTime(2019, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 10,
+                            PublicationId = 693
+                        },
+                        new
+                        {
+                            Id = -7,
+                            BorrowDate = new DateTime(2015, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 23,
+                            PublicationId = 756,
+                            ReturnDate = new DateTime(2015, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -8,
+                            BorrowDate = new DateTime(2017, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 23,
+                            PublicationId = 766
+                        },
+                        new
+                        {
+                            Id = -9,
+                            BorrowDate = new DateTime(2017, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 23,
+                            PublicationId = 121,
+                            ReturnDate = new DateTime(2017, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -10,
+                            BorrowDate = new DateTime(2017, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 31,
+                            PublicationId = 3,
+                            ReturnDate = new DateTime(2017, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -11,
+                            BorrowDate = new DateTime(2017, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 31,
+                            PublicationId = 529,
+                            ReturnDate = new DateTime(2017, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -12,
+                            BorrowDate = new DateTime(2015, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 41,
+                            PublicationId = 7,
+                            ReturnDate = new DateTime(2015, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -13,
+                            BorrowDate = new DateTime(2017, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 41,
+                            PublicationId = 766
+                        },
+                        new
+                        {
+                            Id = -14,
+                            BorrowDate = new DateTime(2017, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 41,
+                            PublicationId = 121,
+                            ReturnDate = new DateTime(2017, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -15,
+                            BorrowDate = new DateTime(2015, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 44,
+                            PublicationId = 994,
+                            ReturnDate = new DateTime(2016, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -16,
+                            BorrowDate = new DateTime(2017, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 44,
+                            PublicationId = 741,
+                            ReturnDate = new DateTime(2017, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -17,
+                            BorrowDate = new DateTime(2017, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 44,
+                            PublicationId = 909,
+                            ReturnDate = new DateTime(2018, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -18,
+                            BorrowDate = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 48,
+                            PublicationId = 813,
+                            ReturnDate = new DateTime(2019, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -19,
+                            BorrowDate = new DateTime(2016, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 48,
+                            PublicationId = 845,
+                            ReturnDate = new DateTime(2016, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -20,
+                            BorrowDate = new DateTime(2016, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 48,
+                            PublicationId = 482,
+                            ReturnDate = new DateTime(2016, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -21,
+                            BorrowDate = new DateTime(2019, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 52,
+                            PublicationId = 366,
+                            ReturnDate = new DateTime(2019, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -22,
+                            BorrowDate = new DateTime(2017, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 52,
+                            PublicationId = 489,
+                            ReturnDate = new DateTime(2017, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -23,
+                            BorrowDate = new DateTime(2016, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 56,
+                            PublicationId = 508,
+                            ReturnDate = new DateTime(2017, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -24,
+                            BorrowDate = new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 56,
+                            PublicationId = 754,
+                            ReturnDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -25,
+                            BorrowDate = new DateTime(2017, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 60,
+                            PublicationId = 248
+                        },
+                        new
+                        {
+                            Id = -26,
+                            BorrowDate = new DateTime(2017, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 60,
+                            PublicationId = 544,
+                            ReturnDate = new DateTime(2017, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -27,
+                            BorrowDate = new DateTime(2017, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 60,
+                            PublicationId = 685,
+                            ReturnDate = new DateTime(2017, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -28,
+                            BorrowDate = new DateTime(2017, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 61,
+                            PublicationId = 754,
+                            ReturnDate = new DateTime(2017, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -29,
+                            BorrowDate = new DateTime(2016, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 64,
+                            PublicationId = 779,
+                            ReturnDate = new DateTime(2016, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -30,
+                            BorrowDate = new DateTime(2015, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 64,
+                            PublicationId = 790,
+                            ReturnDate = new DateTime(2015, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -31,
+                            BorrowDate = new DateTime(2017, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 66,
+                            PublicationId = 13,
+                            ReturnDate = new DateTime(2017, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -32,
+                            BorrowDate = new DateTime(2016, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 72,
+                            PublicationId = 889,
+                            ReturnDate = new DateTime(2016, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -33,
+                            BorrowDate = new DateTime(2019, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 72,
+                            PublicationId = 838,
+                            ReturnDate = new DateTime(2019, 8, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -34,
+                            BorrowDate = new DateTime(2016, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 72,
+                            PublicationId = 822,
+                            ReturnDate = new DateTime(2016, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -35,
+                            BorrowDate = new DateTime(2017, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 76,
+                            PublicationId = 312,
+                            ReturnDate = new DateTime(2017, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -36,
+                            BorrowDate = new DateTime(2017, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 81,
+                            PublicationId = 287,
+                            ReturnDate = new DateTime(2017, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -37,
+                            BorrowDate = new DateTime(2017, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 82,
+                            PublicationId = 520
+                        },
+                        new
+                        {
+                            Id = -38,
+                            BorrowDate = new DateTime(2016, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 82,
+                            PublicationId = 118
+                        },
+                        new
+                        {
+                            Id = -39,
+                            BorrowDate = new DateTime(2017, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 85,
+                            PublicationId = 606
+                        },
+                        new
+                        {
+                            Id = -40,
+                            BorrowDate = new DateTime(2016, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 85,
+                            PublicationId = 638,
+                            ReturnDate = new DateTime(2016, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -41,
+                            BorrowDate = new DateTime(2016, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 85,
+                            PublicationId = 554,
+                            ReturnDate = new DateTime(2017, 3, 29, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -42,
+                            BorrowDate = new DateTime(2019, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 86,
+                            PublicationId = 126
+                        },
+                        new
+                        {
+                            Id = -43,
+                            BorrowDate = new DateTime(2017, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 86,
+                            PublicationId = 462
+                        },
+                        new
+                        {
+                            Id = -44,
+                            BorrowDate = new DateTime(2015, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 89,
+                            PublicationId = 858
+                        },
+                        new
+                        {
+                            Id = -45,
+                            BorrowDate = new DateTime(2017, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 89,
+                            PublicationId = 187,
+                            ReturnDate = new DateTime(2017, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -46,
+                            BorrowDate = new DateTime(2017, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 90,
+                            PublicationId = 966
+                        },
+                        new
+                        {
+                            Id = -47,
+                            BorrowDate = new DateTime(2017, 7, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 90,
+                            PublicationId = 725,
+                            ReturnDate = new DateTime(2017, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -48,
+                            BorrowDate = new DateTime(2017, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 92,
+                            PublicationId = 773,
+                            ReturnDate = new DateTime(2018, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -49,
+                            BorrowDate = new DateTime(2015, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 92,
+                            PublicationId = 56
+                        },
+                        new
+                        {
+                            Id = -50,
+                            BorrowDate = new DateTime(2016, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 92,
+                            PublicationId = 53,
+                            ReturnDate = new DateTime(2016, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -51,
+                            BorrowDate = new DateTime(2019, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 93,
+                            PublicationId = 787
+                        },
+                        new
+                        {
+                            Id = -52,
+                            BorrowDate = new DateTime(2016, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 93,
+                            PublicationId = 923,
+                            ReturnDate = new DateTime(2016, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -53,
+                            BorrowDate = new DateTime(2017, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 93,
+                            PublicationId = 233,
+                            ReturnDate = new DateTime(2017, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -54,
+                            BorrowDate = new DateTime(2019, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 100,
+                            PublicationId = 883
+                        },
+                        new
+                        {
+                            Id = -55,
+                            BorrowDate = new DateTime(2019, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 100,
+                            PublicationId = 291,
+                            ReturnDate = new DateTime(2019, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = -56,
+                            BorrowDate = new DateTime(2017, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FriendId = 100,
+                            PublicationId = 64,
+                            ReturnDate = new DateTime(2017, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("AcademicReferenceManager.Models.Entities.PublicationToFriend", b =>

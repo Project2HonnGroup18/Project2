@@ -9,8 +9,9 @@ namespace AcademicReferenceManager.Repositories.Data {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Friend>().HasData(_seeder.friends);
-            modelBuilder.Entity<Friend>().HasData(new Friend{Id=200, FirstName="Guy fieri"});
             modelBuilder.Entity<Publication>().HasData(_seeder.publications);
+            modelBuilder.Entity<PublicationToFriend>().HasData(_seeder.borrows);
+        
         }
 
         public ArmDbContext(DatabaseSeeder seeder, DbContextOptions<ArmDbContext> options): base(options)
