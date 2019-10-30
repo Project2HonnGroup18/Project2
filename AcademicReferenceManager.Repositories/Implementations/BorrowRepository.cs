@@ -45,50 +45,6 @@ namespace AcademicReferenceManager.Repositories.Implementations
             };
         }
 
-        public PublicationToFriend CreateFriendBorrowsABookConnection(PublicationToFriendInputModel body) 
-        {
-            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == body.FriendId);
-            if(friend == null)
-            {
-                throw new ResourceNotFoundException($"Friend with id: {body.FriendId} was not found");
-            }
-
-            var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == body.PublicationId);
-            if(publication == null)
-            {
-                throw new ResourceNotFoundException($"Publication with id: {body.PublicationId} was not found");
-            }
-
-            bool alreadyBorrowed = _armDbContext.PublicationsToFriend.Any(p => p.FriendId == friend.Id && p.PublicationId == publication.Id);
-            if(alreadyBorrowed)
-            {
-                throw new ModelFormatException($"Friend: {friend.FirstName} has already borrowed {publication.Title}");
-            }
-
-            int nextInt = 0;
-            if(_armDbContext.PublicationsToFriend.Count() == 0)
-            {
-                nextInt = 1;
-            }
-            else 
-            {
-                nextInt = _armDbContext.PublicationsToFriend.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
-            }
-
-            var entity = new PublicationToFriend
-            {
-                Id = nextInt,
-                FriendId = body.FriendId,
-                PublicationId = body.PublicationId,
-                BorrowDate = body.BorrowDate,
-                ReturnDate = body.ReturnDate
-            };
-
-            _armDbContext.PublicationsToFriend.Add(entity);
-            _armDbContext.SaveChanges();
-            return entity;
-        }
-
         public IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date) 
         {
             var connection = _armDbContext.PublicationsToFriend;
@@ -140,7 +96,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
             return returnList;
         }
-        
+
         public IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
         {
             var borrows = _armDbContext.PublicationsToFriend.Include(p => p.Publication).Include(f => f.Friend); 
@@ -166,6 +122,106 @@ namespace AcademicReferenceManager.Repositories.Implementations
                 }
             }
             return returnList;
+        }
+
+        public IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId)
+        {
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+            }
+
+            var connections = _armDbContext.PublicationsToFriend.Where(f => f.FriendId == userId);
+            List<PublicationDto> publications = new List<PublicationDto>();
+            foreach(PublicationToFriend p2f in connections)
+            {
+                if(p2f.ReturnDate == null || p2f.ReturnDate < DateTime.Now)
+                {
+                    var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == p2f.PublicationId);
+                    publications.Add(new PublicationDto
+                    {
+                        Id = publication.Id,
+                        EditorFirstName = publication.EditorFirstName,
+                        EditorLastName = publication.EditorLastName,
+                        Title = publication.Title,
+                        Year = publication.Year,
+                        Type = publication.Type,
+                        Isbn = publication.Isbn
+                    });
+                }
+            }
+            return publications;
+        }
+        public PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 
+        {
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null)
+            {
+                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+            }
+
+            var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+            if(publication == null)
+            {
+                throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
+            }
+
+            bool alreadyBorrowed = _armDbContext.PublicationsToFriend.Any(p => p.FriendId == friend.Id && p.PublicationId == publication.Id);
+            if(alreadyBorrowed)
+            {
+                throw new ModelFormatException($"Friend: {friend.FirstName} has already borrowed {publication.Title}");
+            }
+
+            int nextInt = 0;
+            if(_armDbContext.PublicationsToFriend.Count() == 0)
+            {
+                nextInt = 1;
+            }
+            else 
+            {
+                nextInt = _armDbContext.PublicationsToFriend.OrderByDescending(a => a.Id).FirstOrDefault().Id + 1;
+            }
+
+            var entity = new PublicationToFriend
+            {
+                Id = nextInt,
+                FriendId = userId,
+                PublicationId = publicationId,
+                BorrowDate = body.BorrowDate.HasValue ? body.BorrowDate : DateTime.Now,
+                ReturnDate = body.ReturnDate
+            };
+
+            _armDbContext.PublicationsToFriend.Add(entity);
+            _armDbContext.SaveChanges();
+            return entity;
+        }
+        public PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body)
+        {
+            var connection = _armDbContext.PublicationsToFriend.FirstOrDefault(c => c.FriendId == userId && c.PublicationId == publicationId);
+            if(connection == null)
+            {
+                throw new ResourceNotFoundException($"Friend with id: {userId} has not borrowed book with id: {publicationId}");
+            }
+            
+            connection.BorrowDate = body.BorrowDate;
+            connection.ReturnDate = body.ReturnDate;
+            _armDbContext.SaveChanges();
+
+            return connection;
+        }
+        public PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId)
+        {
+            var connection = _armDbContext.PublicationsToFriend.FirstOrDefault(c => c.FriendId == userId && c.PublicationId == publicationId);
+            if(connection == null)
+            {
+                throw new ResourceNotFoundException($"Friend with id: {userId} has not borrowed book with id: {publicationId}");
+            }
+
+            _armDbContext.Remove(connection);
+            _armDbContext.SaveChanges();
+
+            return connection;
         }
     }
 }

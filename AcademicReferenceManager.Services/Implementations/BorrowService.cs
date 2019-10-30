@@ -20,13 +20,19 @@ namespace AcademicReferenceManager.Services.Implementations
                 => _borrowRepo.GetAllFriendBorrowsABookConnections();
         public PublicationToFriendDto GetBorrowConnectionById(int connectionId) 
                 => _borrowRepo.GetBorrowConnectionById(connectionId);
-        public PublicationToFriend CreateFriendBorrowsABookConnection(PublicationToFriendInputModel body)
-                 => _borrowRepo.CreateFriendBorrowsABookConnection(body);
         public IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date)
                 => _borrowRepo.GetAllFriendsThatBorrowedPublicationsByParticularDate(date);
         public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(DateTime date)
                 => _borrowRepo.GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(date);
         public IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
                 => _borrowRepo.GetAllPublicationsThatAreOnLoanByParticularDate(date);
-    }
+        public IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId)
+                => _borrowRepo.GetAllPublicationsAUserHasOnLoanById(userId);
+        public PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 
+                => _borrowRepo.CreateFriendBorrowsABookConnection(userId, publicationId, body);
+        public PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body)
+                => _borrowRepo.UpdateFriendBorrowsABookConnection(userId, publicationId, body);
+        public PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId)
+                => _borrowRepo.DeleteFriendBorrowsABookConnection(userId, publicationId);
+        }
 }

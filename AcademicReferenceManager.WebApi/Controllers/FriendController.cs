@@ -11,10 +11,16 @@ namespace AcademicReferenceManager.WebApi.Controllers
     public class FriendController : ControllerBase
     {
         private readonly IFriendService _friendService;
-        public FriendController(IFriendService friendService)
+        private readonly IBorrowService _borrowService;
+        public FriendController(IFriendService friendService, IBorrowService borrowService)
         {
             _friendService = friendService;
+            _borrowService = borrowService;
         }
+
+        // ***********************
+        // * FULL CRUD For Users *
+        // ***********************
 
         [HttpGet]
         [Route("", Name = "GetAllFriends")]
@@ -58,6 +64,43 @@ namespace AcademicReferenceManager.WebApi.Controllers
         {
             var friend = _friendService.DeleteFriendById(userId);
             return Ok(friend);
+        }
+
+        // **********************************
+        // * FULL CRUD For Loan connections *
+        // **********************************
+
+        [HttpGet]
+        [Route("{userId:int}/publications", Name = "GetAllPublicationsAUserHasOnLoanById")]
+        public IActionResult GetAllPublicationsAUserHasOnLoanById(int userId)
+        {
+            var publications = _borrowService.GetAllPublicationsAUserHasOnLoanById(userId);
+            return Ok(publications);
+        }
+
+        [HttpPost]
+        [Route("{userId:int}/publications/{publicationId:int}", Name = "CreateFriendBorrowsABookConnection")]
+        public IActionResult CreateFriendBorrowsABookConnection(int userId, int publicationId, [FromBody] PublicationToFriendInputModel body)
+        {
+            var entity = _borrowService.CreateFriendBorrowsABookConnection(userId, publicationId, body);
+            //TODO : FIXA OK
+            return Created("Ok", new { publicationId = entity.Id });
+        }
+
+        [HttpPut]
+        [Route("{userId:int}/publications/{publicationId:int}", Name = "UpdateFriendBorrowsABookConnection")]
+        public IActionResult UpdateFriendBorrowsABookConnection(int userId, int publicationId, [FromBody] PublicationToFriendInputModel body)
+        {
+            var entity = _borrowService.UpdateFriendBorrowsABookConnection(userId, publicationId, body);
+            return Ok(entity);
+        }
+
+        [HttpDelete]
+        [Route("{userId:int}/publications/{publicationId:int}", Name = "DeleteFriendBorrowsABookConnection")]
+        public IActionResult DeleteFriendBorrowsABookConnection(int userId, int publicationId)
+        {
+            var entity = _borrowService.DeleteFriendBorrowsABookConnection(userId, publicationId);
+            return Ok(entity);
         }
     }
 }

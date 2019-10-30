@@ -33,18 +33,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(connection);
         }
 
-        [HttpPost]
-        [Route("", Name = "CreateFriendBorrowsABookConnection")]
-        public IActionResult CreateFriendBorrowsABookConnection([FromBody] PublicationToFriendInputModel body)
-        {
-            if(!ModelState.IsValid)
-            {
-                throw new ModelFormatException("Model not properly formatted");
-            }
-            var entity = _borrowService.CreateFriendBorrowsABookConnection(body);
-            return CreatedAtRoute("GetBorrowConnectionById", new { connectionId = entity.Id}, null);
-        }
-
         [HttpGet]
         [Route("friend-that-borrowed-publications/{date}")]
         public IActionResult GetAllFriendsThatBorrowedPublicationsByParticularDate(string date)
