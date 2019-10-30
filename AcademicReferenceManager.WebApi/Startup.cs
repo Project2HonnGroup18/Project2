@@ -18,6 +18,7 @@ using Microsoft.Extensions.Options;
 using TechnicalRadiation.WebApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using AcademicReferenceManager.Repositories.Seeding;
 
 namespace AcademicReferenceManager.WebApi
 {
@@ -41,6 +42,7 @@ namespace AcademicReferenceManager.WebApi
             services.AddTransient<IPublicationRepository, PublicationRepository>();
             services.AddTransient<IFriendRepository, FriendRepository>();
             services.AddTransient<IBorrowRepository, BorrowRepository>();
+            services.AddSingleton<DatabaseSeeder>();
 
             
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -49,8 +51,8 @@ namespace AcademicReferenceManager.WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
-                    Description = "A simple example ASP.NET Core Web API",
+                    Title = "Academic research manager API reference",
+                    Description = "Describe me!",
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
@@ -64,14 +66,21 @@ namespace AcademicReferenceManager.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<ArmDbContext>();
+                //Create the database
+                context.Database.Migrate();
+            }
+
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Academic research manager API reference");
+                c.RoutePrefix = "/api";
             });
 
             if (env.IsDevelopment())
