@@ -19,5 +19,7 @@ namespace AcademicReferenceManager.Services.Implementations
         public IEnumerable<PublicationDto> GetAllPublications() => _publicationRepo.GetAllPublications();
         public PublicationDto GetPublicationById(int publicationId) => _publicationRepo.GetPublicationById(publicationId);
         public Publication CreatePublication(PublicationInputModel body) => _publicationRepo.CreatePublication(body);
+        public Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body) => _publicationRepo.UpdatePublicationById(publicationId, body);
+        public Publication DeletePublicationById(int publicationId) => _publicationRepo.DeletePublicationById(publicationId);
     }
 }

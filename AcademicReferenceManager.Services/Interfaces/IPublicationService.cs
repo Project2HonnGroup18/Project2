@@ -11,5 +11,7 @@ namespace AcademicReferenceManager.Services.Interfaces
         IEnumerable<PublicationDto> GetAllPublications();
         PublicationDto GetPublicationById(int publicationId);
         Publication CreatePublication(PublicationInputModel body);
+        Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body);
+        Publication DeletePublicationById(int publicationId);
     }
 }
