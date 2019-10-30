@@ -80,5 +80,39 @@ namespace AcademicReferenceManager.Repositories.Implementations
             _armDbContext.SaveChanges();
             return entity;
         }
+        public Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body)
+        {
+            Publication publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+            if(publication == null)
+            {
+                throw new ResourceNotFoundException("Publication with id:" + publicationId + " was not found!");
+            }
+            var updatedPublication = new Publication{
+                EditorFirstName = body.EditorFirstName,
+                EditorLastName = string.IsNullOrEmpty(body.EditorLastName) ? publication.EditorFirstName : body.EditorFirstName,
+                Title = string.IsNullOrEmpty(body.Title) ? publication.Title : body.Title,
+                Journal = string.IsNullOrEmpty(body.Journal) ? publication.Journal : body.Journal,
+                Isbn = string.IsNullOrEmpty(body.Isbn) ? publication.Isbn : body.Isbn,
+                Year = body.Year.HasValue ? publication.Year : body.Year,
+                Type = string.IsNullOrEmpty(body.Type) ?  publication.Type : body.Type
+            };
+            _armDbContext.Publications.Update(updatedPublication);
+            _armDbContext.SaveChanges();
+            
+            return updatedPublication;
+        }
+        
+        public Publication DeletePublicationById(int publicationId) 
+        {
+            Publication publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+            if(publication == null)
+            {
+                throw new ResourceNotFoundException("Publication with id:" + publicationId + " was not found!");
+            }
+            _armDbContext.Remove(publication);
+            _armDbContext.SaveChanges();
+
+            return publication;
+        }
     }
 }
