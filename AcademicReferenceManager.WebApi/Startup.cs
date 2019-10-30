@@ -19,10 +19,6 @@ using TechnicalRadiation.WebApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using AcademicReferenceManager.Repositories.Seeding;
-<<<<<<< HEAD
-//using AcademicReferenceManager.Repositories.Seeding;
-=======
->>>>>>> 88313f516a13d289ee19ee48a28804689ef51103
 
 namespace AcademicReferenceManager.WebApi
 {
@@ -46,11 +42,8 @@ namespace AcademicReferenceManager.WebApi
             services.AddTransient<IPublicationRepository, PublicationRepository>();
             services.AddTransient<IFriendRepository, FriendRepository>();
             services.AddTransient<IBorrowRepository, BorrowRepository>();
-<<<<<<< HEAD
             services.AddTransient<IReviewService, ReviewService>();
             services.AddTransient<IReviewRepository, ReviewRepository>();
-=======
->>>>>>> 88313f516a13d289ee19ee48a28804689ef51103
             services.AddSingleton<DatabaseSeeder>();
 
             

@@ -69,17 +69,15 @@ namespace AcademicReferenceManager.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("{friendId:int}/reviews", Name = "GetReviewsByGivenUser")]
-
-        public IActionResult GetReviewsByUser(int friendId) 
+        [Route("{userId:int}/reviews", Name = "GetReviewsByGivenUser")]
+        public IActionResult GetReviewsByUser(int userId) 
         {
-            var reviews = _reviewService.GetReviewsByUser(friendId);
+            var reviews = _reviewService.GetReviewsByUser(userId);
             return Ok(reviews);
         }
 
         [HttpPost]
         [Route("{userId:int}/reviews/{publicationId:int}", Name = "AddUserReviewForPublication")]
-
         public IActionResult AddUserReviewForPublication(int userId, int publicationId, [FromBody] ReviewInputModel body) 
         {  
             if(!ModelState.IsValid)
@@ -87,7 +85,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
                 throw new ModelFormatException("Model not properly formatted");
             }
             var entity = _reviewService.AddUserReviewForPublication(userId, publicationId, body);
-            return CreatedAtRoute("GetReviewsByGivenUser", new { userId = entity.FriendId, publicationId = entity.PublicationId }, null);
+            return CreatedAtRoute("GetReviewsByGivenUser", new { userId = entity.FriendId }, null);
         }
         // **********************************
         // * FULL CRUD For Loan connections *
