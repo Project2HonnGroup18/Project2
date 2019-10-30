@@ -11,9 +11,11 @@ namespace AcademicReferenceManager.WebApi.Controllers
     public class FriendController : ControllerBase
     {
         private readonly IFriendService _friendService;
-        public FriendController(IFriendService friendService)
+        private readonly IReviewService _reviewService;
+        public FriendController(IFriendService friendService, IReviewService reviewService)
         {
             _friendService = friendService;
+            _reviewService = reviewService;
         }
 
         [HttpGet]
@@ -58,6 +60,29 @@ namespace AcademicReferenceManager.WebApi.Controllers
         {
             var friend = _friendService.DeleteFriendById(userId);
             return Ok(friend);
+        }
+
+        [HttpGet]
+        [Route("{friendId:int}/reviews", Name = "GetReviewsByGivenUser")]
+
+        public IActionResult GetReviewsByUser(int friendId) 
+        {
+            var reviews = _reviewService.GetReviewsByUser(friendId);
+            return Ok(reviews);
+        }
+
+        [HttpPost]
+        [Route("{userId:int}/reviews/{publicationId:int}", Name = "AddUserReviewForPublication")]
+
+        public IActionResult AddUserReviewForPublication(int userId, int publicationId, [FromBody] ReviewInputModel body) 
+        {  
+            if(!ModelState.IsValid)
+            {
+                throw new ModelFormatException("Model not properly formatted");
+            }
+            var entity = _reviewService.AddUserReviewForPublication(userId, publicationId, body);
+            return CreatedAtRoute("GetReviewsByGivenUser", new { userId = entity.FriendId, publicationId = entity.PublicationId }, null);
+
         }
     }
 }

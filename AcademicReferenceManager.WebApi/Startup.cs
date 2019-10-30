@@ -18,6 +18,7 @@ using Microsoft.Extensions.Options;
 using TechnicalRadiation.WebApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using AcademicReferenceManager.Repositories.Seeding;
 //using AcademicReferenceManager.Repositories.Seeding;
 
 namespace AcademicReferenceManager.WebApi
@@ -42,7 +43,9 @@ namespace AcademicReferenceManager.WebApi
             services.AddTransient<IPublicationRepository, PublicationRepository>();
             services.AddTransient<IFriendRepository, FriendRepository>();
             services.AddTransient<IBorrowRepository, BorrowRepository>();
-            //services.AddSingleton<DatabaseSeeder>();
+            services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddSingleton<DatabaseSeeder>();
 
             
             // Register the Swagger generator, defining 1 or more Swagger documents
