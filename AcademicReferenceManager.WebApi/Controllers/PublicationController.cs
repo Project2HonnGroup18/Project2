@@ -61,7 +61,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
         }
 
         // Delete a publication
-        [HttpPut]
+        [HttpDelete]
         [Route("{publication_id:int}", Name = "DeletePublicationById")]
         public IActionResult DeletePublicationById(int publication_id)
         {

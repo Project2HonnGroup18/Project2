@@ -140,5 +140,13 @@ namespace AcademicReferenceManager.WebApi.Controllers
             var entity = _borrowService.DeleteFriendBorrowsABookConnection(userId, publicationId);
             return Ok(entity);
         }
+
+        [HttpGet]
+        [Route("{userId:int}/recommendations", Name = "GetRecommendationsForUser")]
+        public IActionResult GetRecommendationsForUser(int userId)
+        {
+            var recommendations = _friendService.GetRecommendations(userId);
+            return Ok(recommendations);
+        }
     }
 }
