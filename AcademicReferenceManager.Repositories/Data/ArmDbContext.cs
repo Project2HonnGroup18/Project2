@@ -8,9 +8,12 @@ namespace AcademicReferenceManager.Repositories.Data {
         DatabaseSeeder _seeder;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Review>().HasKey(o => new {o.FriendId, o.PublicationId});
+
             modelBuilder.Entity<Friend>().HasData(_seeder.friends);
             modelBuilder.Entity<Publication>().HasData(_seeder.publications);
             modelBuilder.Entity<PublicationToFriend>().HasData(_seeder.borrows);
+            
         
         }
 
@@ -20,6 +23,7 @@ namespace AcademicReferenceManager.Repositories.Data {
         }
         public DbSet<Friend> Friends { get; set; }
         public DbSet<Publication> Publications { get; set; }
-        public DbSet<PublicationToFriend> PublicationsToFriend { get; set;} 
+        public DbSet<PublicationToFriend> PublicationsToFriend { get; set;}
+        public DbSet<Review> Reviews { get; set; }
     }
 }

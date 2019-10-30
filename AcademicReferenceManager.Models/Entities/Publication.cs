@@ -16,5 +16,8 @@ namespace AcademicReferenceManager.Models.Entities
 
         [InverseProperty("Publication")]
         public List<PublicationToFriend> PublicationsToFriend { get; set; }
+
+        [InverseProperty("Publication")]
+        public List<Review> Reviews { get; set; }
     }
 }

@@ -10,9 +10,12 @@ namespace AcademicReferenceManager.Repositories.Interfaces
     {
         IEnumerable<PublicationToFriendDto> GetAllFriendBorrowsABookConnections();
         PublicationToFriendDto GetBorrowConnectionById(int connectionID);
-        PublicationToFriend CreateFriendBorrowsABookConnection(PublicationToFriendInputModel body);
         IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date);
         IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(DateTime date);
         IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date);
+        IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId);
+        PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
+        PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
+        PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId);
     }
 }
