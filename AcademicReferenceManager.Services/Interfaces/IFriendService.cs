@@ -13,5 +13,6 @@ namespace AcademicReferenceManager.Services.Interfaces
         Friend CreateFriend(FriendInputModel body);
         Friend UpdateFriendById(int friendId, FriendUpdateInputModel body);
         Friend DeleteFriendById(int friendId);
+        IEnumerable<Publication> GetRecommendations(int userId);
     }
 }

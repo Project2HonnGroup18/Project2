@@ -8,6 +8,7 @@ using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Models.Entities;
 using System.Collections;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace UnitTests
 {
@@ -18,14 +19,15 @@ namespace UnitTests
         public readonly FriendInputModel _inputModel;
         public FriendServiceTests()
         {
-            //Initialize the friend service, injecting a mock database.
-            FriendDbContext friendDbContext = new FriendDbContext();
-            FriendRepository friendRepository = new FriendRepository(friendDbContext);
+            var dbOptionsBuilder = new DbContextOptionsBuilder<ArmDbContext>().UseInMemoryDatabase("InMemoryDatabase");
+            ArmDbContext db = new ArmDbContext(options: dbOptionsBuilder.Options);
+ 
+            FriendRepository friendRepository = new FriendRepository(db);
             _friendService = new FriendService(friendRepository);
 
             _inputModel =  new FriendInputModel();
-            _inputModel.FirstName = "Valgarður";
-            _inputModel.LastName = "Ívarsson";
+            _inputModel.FirstName = "Dommi";
+            _inputModel.LastName = "Nostredamus";
             _inputModel.Phone = "5812345";
             _inputModel.Address = "Skeifan 17";
             _inputModel.Email = "valli@valli.is";

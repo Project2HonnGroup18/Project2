@@ -7,6 +7,7 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
@@ -102,6 +103,27 @@ namespace AcademicReferenceManager.Repositories.Implementations
             _armDbContext.SaveChanges();
 
             return friend;
+        }
+
+        public IEnumerable<Publication> GetRecommendations(int userId)
+        {
+            var userPublications = _armDbContext.PublicationsToFriend
+                                    .Where(p2f => p2f.FriendId == userId)
+                                    .Join(_armDbContext.Publications, 
+                                            p => p.PublicationId, 
+                                            pub => pub.Id,
+                                            (outer, inner) => inner);
+
+            var recommendations =  _armDbContext.Publications
+                                    .Except(userPublications)
+                                    .GroupBy(publication => publication.Reviews
+                                                                        .Select(r => r.Rating)
+                                                                        .DefaultIfEmpty(0)
+                                                                        .Average())
+                                    .OrderByDescending(publication => publication.Key)
+                                    .SelectMany(x=>x);
+
+            return recommendations;
         }
     }
 }

@@ -40,5 +40,6 @@ namespace AcademicReferenceManager.Services.Implementations
         public Friend CreateFriend(FriendInputModel body) => _friendRepo.CreateFriend(body);
         public Friend UpdateFriendById(int friendId, FriendUpdateInputModel body) => _friendRepo.UpdateFriendById(friendId, body);
         public Friend DeleteFriendById(int friendId) => _friendRepo.DeleteFriendById(friendId);
+        public IEnumerable<Publication> GetRecommendations(int userId) => _friendRepo.GetRecommendations(userId);
     }
 }
