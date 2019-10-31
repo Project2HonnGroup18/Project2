@@ -2,6 +2,7 @@ using System;
 using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Services.Interfaces;
+using AcademicReferenceManager.WebApi.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademicReferenceManager.WebApi.Controllers
@@ -24,6 +25,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
         // * FULL CRUD For Users *
         // ***********************
 
+        [AdminWithQueryAttributes]
         [HttpGet]
         [Route("", Name = "GetAllFriends")]
         public IActionResult GetAllFriends([FromQuery] DateTime? LoanDate = null, [FromQuery] int? LoanDuration = null)
@@ -40,6 +42,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(friend);
         }
 
+        [Admin]
         [HttpPost]
         [Route("", Name = "CreateFriend")]
         public IActionResult CreateFriend([FromBody] FriendInputModel body)

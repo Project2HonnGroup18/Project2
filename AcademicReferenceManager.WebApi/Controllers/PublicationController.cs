@@ -23,8 +23,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
         // * FULL CRUD For Publication *
         // *****************************
 
-        // GET /publications?LoanDate=2019-10-12
-
+        [AdminWithQueryAttributes]
         [HttpGet]
         [Route("", Name = "GetAllPublications")]
         public IActionResult GetAllPublications([FromQuery] DateTime? LoanDate)
@@ -41,6 +40,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publication);
         }
 
+        [Admin]
         [HttpPost]
         [Route("", Name = "CreatePublication")]
         public IActionResult CreatePublication([FromBody] PublicationInputModel body)
@@ -65,10 +65,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publication);
         }
 
-<<<<<<< HEAD
-=======
-        // Delete a publication
->>>>>>> e4e02bcade5ed4b456ebb6555f882a30ce03271d
         [HttpDelete]
         [Route("{publication_id:int}", Name = "DeletePublicationById")]
         public IActionResult DeletePublicationById(int publication_id)
@@ -81,7 +77,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
         // * FULL CRUD For Publication reviews *
         // *************************************
 
-        [Admin]
         [HttpGet]
         [Route("reviews", Name = "GetAllReviewsForAllPublications")]
         public IActionResult GetAllReviewsForAllPublications()
