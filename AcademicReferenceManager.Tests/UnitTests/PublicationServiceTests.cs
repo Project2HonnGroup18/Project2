@@ -8,6 +8,8 @@ using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Models.Entities;
 using System.Collections;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace UnitTests
 {
@@ -15,17 +17,29 @@ namespace UnitTests
     public class PublicationServiceTests
     {
         public readonly PublicationService _publicationService;
-        public readonly PublicationInputModel _inputModel;
+        public readonly List<PublicationInputModel> _inputModels;
         public PublicationServiceTests()
         {
-            //Initialize the publication service, injecting a mock database.
-            PublicationDbContext publicationDbContext = new PublicationDbContext();
-            PublicationRepository publicationRepository = new PublicationRepository(publicationDbContext);
+            var dbOptionsBuilder = new DbContextOptionsBuilder<ArmDbContext>().UseInMemoryDatabase("InMemoryDatabase");
+            ArmDbContext db = new ArmDbContext(options: dbOptionsBuilder.Options);
+ 
+            PublicationRepository publicationRepository = new PublicationRepository(db);
             _publicationService = new PublicationService(publicationRepository);
 
-            _inputModel =  new PublicationInputModel();
-            _inputModel.Title = "Not a real publication";
-            _inputModel.Isbn = "5812345";
+            _inputModels =  new List<PublicationInputModel>();
+            _inputModels.Add(new PublicationInputModel{
+                Title = "Not a real publication",
+                Isbn = "5812345"
+            });
+            _inputModels.Add(new PublicationInputModel{
+                Title = "asd",
+                Isbn = "strengur"
+            });
+            _inputModels.Add(new PublicationInputModel{
+                Title = "asdf",
+                Isbn = "string"
+            });
+            
         }
 
         [Fact]
@@ -39,9 +53,9 @@ namespace UnitTests
         public void TestAddingPublicationByComparison()
         {
 
-            Publication createdPublication = _publicationService.CreatePublication(_inputModel);
-            bool samePublication = createdPublication.Title == _inputModel.Title;
-            samePublication = samePublication && createdPublication.Isbn == _inputModel.Isbn;
+            Publication createdPublication = _publicationService.CreatePublication(_inputModels[0]);
+            bool samePublication = createdPublication.Title == _inputModels[0].Title;
+            samePublication = samePublication && createdPublication.Isbn == _inputModels[0].Isbn;
             Assert.True(samePublication);
         }
 
@@ -51,7 +65,7 @@ namespace UnitTests
             // Get original people list size, add publication then re-fetch the size.
             // Underlying implementation is unknown, so we cannot rely on the original list changing in size.
             int originalCount = _publicationService.GetAllPublications().ToList().Count;
-            Publication createdPublication = _publicationService.CreatePublication(_inputModel);
+            Publication createdPublication = _publicationService.CreatePublication(_inputModels[1]);
             int newCount = _publicationService.GetAllPublications().ToList().Count;
 
             Assert.Equal(originalCount + 1, newCount);
@@ -61,12 +75,12 @@ namespace UnitTests
         public void TestAddingPublicationAndUsingId()
         {
 
-            Publication createdPublication = _publicationService.CreatePublication(_inputModel);
+            Publication createdPublication = _publicationService.CreatePublication(_inputModels[2]);
             PublicationDto rePublication = _publicationService.GetPublicationById(createdPublication.Id);
 
             bool samePublication = createdPublication.Id == rePublication.Id;
-            samePublication = samePublication && createdPublication.Title == _inputModel.Title;
-            samePublication = samePublication && createdPublication.Isbn == _inputModel.Isbn;
+            samePublication = samePublication && createdPublication.Title == _inputModels[2].Title;
+            samePublication = samePublication && createdPublication.Isbn == _inputModels[2].Isbn;
             Assert.True(samePublication);
         }
     }

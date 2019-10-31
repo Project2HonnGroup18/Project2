@@ -45,80 +45,121 @@ namespace AcademicReferenceManager.Repositories.Implementations
             };
         }
 
-        public IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date) 
+        public IEnumerable<FriendDto> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime? date) 
         {
-            var connection = _armDbContext.PublicationsToFriend;
-            List<FriendThatBorrowedPublicationDto> returnList = new List<FriendThatBorrowedPublicationDto>();
-            foreach(PublicationToFriend p2f in _armDbContext.PublicationsToFriend) 
+            var connection = _armDbContext.PublicationsToFriend.ToList();
+            List<FriendDto> friends = new List<FriendDto>();
+            foreach(PublicationToFriend p2f in connection) 
             {
-                if(p2f.BorrowDate == date)
+                if(p2f.BorrowDate < date && p2f.ReturnDate > date)
                 {
                    var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
-                   var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == p2f.PublicationId);
-                   returnList.Add(new FriendThatBorrowedPublicationDto
+                   friends.Add(new FriendDto
                    {
-                       FriendFirstName = friend.FirstName,
-                       FriendLastName = friend.LastName,
-                       FriendPhone = friend.Phone,
-                       PublicationTitle = publication.Title
+                       Id = friend.Id,
+                       FirstName = friend.FirstName,
+                       LastName = friend.LastName,
+                       Email = friend.Email,
+                       Phone = friend.Phone,
+                       Address = friend.Address
                    });
                 }
             }
-            return returnList;
+            return friends;
         }
-        public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(DateTime date)
+        public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int? loanDuration)
         {
-            List<FriendDto> returnList = new List<FriendDto>();
-            foreach(PublicationToFriend p2f in _armDbContext.PublicationsToFriend) 
+            var connections = _armDbContext.PublicationsToFriend.ToList();
+            List<FriendDto> friends = new List<FriendDto>();
+            foreach(PublicationToFriend p2f in connections) 
             {
-                if(p2f.BorrowDate != null && p2f.ReturnDate != null)
+                if(p2f.BorrowDate != null && (p2f.ReturnDate == null || p2f.ReturnDate > DateTime.Now))
                 {
                     var borrowDate = (DateTime)p2f.BorrowDate;
-                    var returnDate = (DateTime)p2f.ReturnDate;
-                    if(p2f.BorrowDate < date && p2f.ReturnDate > date)
+                    TimeSpan ts = DateTime.Now.Subtract(borrowDate);
+
+                    int NumberOfDays = (int) ts.TotalDays;
+                    if(NumberOfDays >= loanDuration)
                     {
-                        var check = Math.Floor(((borrowDate.Year - returnDate.Year) * 12.0)
-                            + borrowDate.Month - returnDate.Month);
-                        if(check != 0)
+                        var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
+                        friends.Add( new FriendDto
                         {
-                            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
-                            returnList.Add( new FriendDto
-                            {
-                                Id = friend.Id,
-                                FirstName = friend.FirstName,
-                                LastName = friend.LastName,
-                                Email = friend.Email,
-                                Address = friend.Address
-                            });
-                        }
+                            Id = friend.Id,
+                            FirstName = friend.FirstName,
+                            LastName = friend.LastName,
+                            Email = friend.Email,
+                            Address = friend.Address
+                        });
                     }
                 }
             }
-            return returnList;
+            return friends;
         }
 
-        public IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
+        public IEnumerable<PublicationDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime? date)
         {
-            var borrows = _armDbContext.PublicationsToFriend.Include(p => p.Publication).Include(f => f.Friend); 
-            List<PublicationBorrowedByFriendDto> returnList = new List<PublicationBorrowedByFriendDto>();
+            var borrows = _armDbContext.PublicationsToFriend.ToList();
+            List<PublicationDto> publications = new List<PublicationDto>();
             foreach(PublicationToFriend p2f in borrows)
             {
                 if(p2f.BorrowDate < date && p2f.ReturnDate > date)
                 {
-                    var publication = p2f.Publication; 
-                    var friend = p2f.Friend;
-                    returnList.Add( new PublicationBorrowedByFriendDto
+                    var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == p2f.PublicationId);
+                    publications.Add(new PublicationDto
                     {
+                        Id = publication.Id,
                         EditorFirstName = publication.EditorFirstName,
                         EditorLastName = publication.EditorLastName,
-                        PublicationTitle = publication.Title,
-                        PublicationYear = publication.Year,
-                        PublicationType = publication.Type,
-                        PublicationIsbn = publication.Isbn,
-                        FriendFirstName = friend.FirstName,
-                        FriendLastName = friend.LastName,
-                        FriendPhone = friend.Phone
+                        Title = publication.Title,
+                        Year = publication.Year,
+                        Type = publication.Type,
+                        Isbn = publication.Isbn
                     });
+                }
+            }
+            return publications;
+        }
+
+        public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime? loanDate, int? loanDuration)
+        {
+            var connections = _armDbContext.PublicationsToFriend.ToList();
+            List<FriendDto> returnList = new List<FriendDto>();
+            foreach(PublicationToFriend p2f in connections) 
+            {
+                if(p2f.BorrowDate != null)
+                {
+                    var borrowDate = (DateTime)p2f.BorrowDate;
+                    var returnDate = (DateTime)p2f.ReturnDate;
+
+                    TimeSpan tsNow = DateTime.Now.Subtract(borrowDate);
+                    int NumberOfDaysForNow = (int) tsNow.TotalDays;
+
+                    TimeSpan tsReturnDate = returnDate.Subtract(borrowDate);
+                    int NumberOfDaysForReturnDate = (int) tsReturnDate.TotalDays;
+
+                    bool conditionsMet = false;
+
+                    if(returnDate == null || returnDate > DateTime.Now)
+                    {
+                        conditionsMet = NumberOfDaysForNow >= loanDuration ? true : false;
+                    }
+                    else
+                    {
+                        conditionsMet = NumberOfDaysForReturnDate >= loanDuration ? true : false;
+
+                    }
+                    if(conditionsMet)
+                    {
+                        var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
+                        returnList.Add( new FriendDto
+                        {
+                            Id = friend.Id,
+                            FirstName = friend.FirstName,
+                            LastName = friend.LastName,
+                            Email = friend.Email,
+                            Address = friend.Address
+                        });
+                    }
                 }
             }
             return returnList;

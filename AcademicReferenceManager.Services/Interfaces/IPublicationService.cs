@@ -8,7 +8,7 @@ namespace AcademicReferenceManager.Services.Interfaces
 {
     public interface IPublicationService
     {
-        IEnumerable<PublicationDto> GetAllPublications();
+        IEnumerable<PublicationDto> GetAllPublications(DateTime? loanDate);
         PublicationDto GetPublicationById(int publicationId);
         Publication CreatePublication(PublicationInputModel body);
         Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body);

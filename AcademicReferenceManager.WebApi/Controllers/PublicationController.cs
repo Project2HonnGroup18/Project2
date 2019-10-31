@@ -2,6 +2,7 @@ using System;
 using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Services.Interfaces;
+using AcademicReferenceManager.WebApi.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademicReferenceManager.WebApi.Controllers
@@ -11,21 +12,27 @@ namespace AcademicReferenceManager.WebApi.Controllers
     public class PublicationController : ControllerBase
     {
         private readonly IPublicationService _publicationService;
-        public PublicationController(IPublicationService publicationService)
+        private readonly IReviewService _reviewService;
+        public PublicationController(IPublicationService publicationService, IReviewService reviewService)
         {
             _publicationService = publicationService;
+            _reviewService = reviewService;
         }
 
-        // Get all publications
+        // *****************************
+        // * FULL CRUD For Publication *
+        // *****************************
+
+        // GET /publications?LoanDate=2019-10-12
+
         [HttpGet]
         [Route("", Name = "GetAllPublications")]
-        public IActionResult GetAllPublications()
+        public IActionResult GetAllPublications([FromQuery] DateTime? LoanDate)
         {
-            var publications = _publicationService.GetAllPublications();
+            var publications = _publicationService.GetAllPublications(LoanDate);
             return Ok(publications);
         }
 
-        // Get publication by ID
         [HttpGet]
         [Route("{publication_id:int}", Name = "GetPublicationById")]
         public IActionResult GetPublicationById(int publication_id)
@@ -34,7 +41,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publication);
         }
 
-        // Create new  publication
         [HttpPost]
         [Route("", Name = "CreatePublication")]
         public IActionResult CreatePublication([FromBody] PublicationInputModel body)
@@ -47,7 +53,6 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return CreatedAtRoute("GetPublicationById", new { publicationId = entity.Id }, null);
         }
 
-        // Update a publication
         [HttpPut]
         [Route("{publication_id:int}", Name = "UpdatePublicationById")]
         public IActionResult UpdatePublicationById(int publication_id, [FromBody] PublicationUpdateInputModel body)
@@ -61,12 +66,57 @@ namespace AcademicReferenceManager.WebApi.Controllers
         }
 
         // Delete a publication
-        [HttpPut]
+        [HttpDelete]
         [Route("{publication_id:int}", Name = "DeletePublicationById")]
         public IActionResult DeletePublicationById(int publication_id)
         {
             var publication = _publicationService.DeletePublicationById(publication_id);
             return Ok(publication);
+        }
+
+        // *************************************
+        // * FULL CRUD For Publication reviews *
+        // *************************************
+
+        [Admin]
+        [HttpGet]
+        [Route("reviews", Name = "GetAllReviewsForAllPublications")]
+        public IActionResult GetAllReviewsForAllPublications()
+        {
+            var reviews = _reviewService.GetAllReviewsForAllPublications();
+            return Ok(reviews);
+        }
+
+        [HttpGet]
+        [Route("{publicationId:int}/reviews", Name = "GetAllReviewsByPublicationId")]
+        public IActionResult GetAllReviewsByPublicationId(int publicationId)
+        {
+            var reviews = _reviewService.GetAllReviewsByPublicationId(publicationId);
+            return Ok(reviews);
+        }
+
+        [HttpGet]
+        [Route("{publicationId:int}/reviews/{userId:int}", Name = "GetAReviewForASpecificPublicationByUserId")]
+        public IActionResult GetAReviewForASpecificPublicationByUserId(int publicationId, int userId)
+        {
+            var review = _reviewService.GetAReviewForASpecificPublicationByUserId(publicationId, userId);
+            return Ok(review);
+        }
+
+        [HttpPut]
+        [Route("{publicationId:int}/reviews/{userId:int}", Name = "UpdateAReviewForASpecificPublicationByUserId")]
+        public IActionResult UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, [FromBody] ReviewInputModel body)
+        {
+            var review = _reviewService.UpdateAReviewForASpecificPublicationByUserId(publicationId, userId, body);
+            return Ok(review);
+        }
+
+        [HttpDelete]
+        [Route("{publicationId:int}/reviews/{userId:int}", Name = "DeleteAReviewForASpecificPublicationByUserId")]
+        public IActionResult DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId)
+        {
+            var review = _reviewService.DeleteAReviewForASpecificPublicationByUserId(publicationId, userId);
+            return Ok(review);
         }
     }
 }

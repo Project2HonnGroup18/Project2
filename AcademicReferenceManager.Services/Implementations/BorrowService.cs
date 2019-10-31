@@ -20,12 +20,14 @@ namespace AcademicReferenceManager.Services.Implementations
                 => _borrowRepo.GetAllFriendBorrowsABookConnections();
         public PublicationToFriendDto GetBorrowConnectionById(int connectionId) 
                 => _borrowRepo.GetBorrowConnectionById(connectionId);
-        public IEnumerable<FriendThatBorrowedPublicationDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime date)
-                => _borrowRepo.GetAllFriendsThatBorrowedPublicationsByParticularDate(date);
-        public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(DateTime date)
-                => _borrowRepo.GetAllFriendsThatBorrowedForLongerThanMonthByParticularDate(date);
-        public IEnumerable<PublicationBorrowedByFriendDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
+        public IEnumerable<FriendDto> GetAllFriendsThatBorrowedPublicationsByParticularDate(DateTime? loanDate)
+                => _borrowRepo.GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(loanDate);
+        public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int? loanDuration)
+                => _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDuration(loanDuration);
+        public IEnumerable<PublicationDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime? date)
                 => _borrowRepo.GetAllPublicationsThatAreOnLoanByParticularDate(date);
+        public IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime? loanDate, int? loanDuration)
+                => _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(loanDate, loanDuration);
         public IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId)
                 => _borrowRepo.GetAllPublicationsAUserHasOnLoanById(userId);
         public PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 

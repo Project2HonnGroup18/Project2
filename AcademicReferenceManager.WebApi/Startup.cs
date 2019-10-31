@@ -82,7 +82,7 @@ namespace AcademicReferenceManager.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Academic research manager API reference");
-                c.RoutePrefix = "/api";
+                c.RoutePrefix = String.Empty;
             });
 
             if (env.IsDevelopment())

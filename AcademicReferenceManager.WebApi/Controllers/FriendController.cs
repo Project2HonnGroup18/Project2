@@ -26,9 +26,9 @@ namespace AcademicReferenceManager.WebApi.Controllers
 
         [HttpGet]
         [Route("", Name = "GetAllFriends")]
-        public IActionResult GetAllFriends()
+        public IActionResult GetAllFriends([FromQuery] DateTime? LoanDate = null, [FromQuery] int? LoanDuration = null)
         {
-            var friends = _friendService.GetAllFriends();
+            var friends = _friendService.GetAllFriends(LoanDate, LoanDuration);
             return Ok(friends);
         }
 
@@ -146,6 +146,14 @@ namespace AcademicReferenceManager.WebApi.Controllers
         {
             var entity = _borrowService.DeleteFriendBorrowsABookConnection(userId, publicationId);
             return Ok(entity);
+        }
+
+        [HttpGet]
+        [Route("{userId:int}/recommendations", Name = "GetRecommendationsForUser")]
+        public IActionResult GetRecommendationsForUser(int userId)
+        {
+            var recommendations = _friendService.GetRecommendations(userId);
+            return Ok(recommendations);
         }
     }
 }

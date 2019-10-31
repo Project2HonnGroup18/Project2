@@ -18,8 +18,19 @@ namespace AcademicReferenceManager.Services.Implementations
 
         public IEnumerable<ReviewDto> GetReviewsByUser(int userId) => _reviewRepo.GetReviewsByUser(userId);
         public ReviewDto GetUserReviewForPublication(int userId, int publicationId) => _reviewRepo.GetUserReviewForPublication(userId, publicationId);
-        public Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body) => _reviewRepo.AddUserReviewForPublication(userId, publicationId, body);
+        public IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications() 
+            => _reviewRepo.GetAllReviewsForAllPublications();
+        public Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body) 
+            => _reviewRepo.AddUserReviewForPublication(userId, publicationId, body);
         public Review DeleteReview(int userId, int publicationId) => _reviewRepo.DeleteReview(userId, publicationId);
         public Review UpdateReview(int userId, int publicationId, ReviewInputModel body) => _reviewRepo.UpdateReview(userId, publicationId, body);
+        public PublicationReviewsDto GetAllReviewsByPublicationId(int publicationId)
+            => _reviewRepo.GetAllReviewsByPublicationId(publicationId);
+        public ReviewDto GetAReviewForASpecificPublicationByUserId(int publicationId, int userId)
+            => _reviewRepo.GetAReviewForASpecificPublicationByUserId(publicationId, userId);
+        public ReviewDto UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body)
+            => _reviewRepo.UpdateAReviewForASpecificPublicationByUserId(publicationId, userId, body);
+        public ReviewDto DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId) 
+            => _reviewRepo.DeleteAReviewForASpecificPublicationByUserId(publicationId, userId);
     }
 }
