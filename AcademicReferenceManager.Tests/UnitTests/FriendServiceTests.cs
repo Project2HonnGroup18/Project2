@@ -23,7 +23,8 @@ namespace UnitTests
             ArmDbContext db = new ArmDbContext(options: dbOptionsBuilder.Options);
  
             FriendRepository friendRepository = new FriendRepository(db);
-            _friendService = new FriendService(friendRepository);
+            BorrowRepository borrowRepository = new BorrowRepository(db);
+            _friendService = new FriendService(friendRepository, borrowRepository);
 
             _inputModel =  new FriendInputModel();
             _inputModel.FirstName = "Dommi";
@@ -36,7 +37,8 @@ namespace UnitTests
         [Fact]
         public void TestGettingAllFriends()
         {
-            var friends = _friendService.GetAllFriends();
+            //DateTime loanDate = new DateTime(2019, 1, 1);
+            var friends = _friendService.GetAllFriends(null, null);
             Assert.NotNull(friends);
         }
 
@@ -56,11 +58,12 @@ namespace UnitTests
         [Fact]
         public void TestAddingFriendByCounting()
         {
+            //DateTime loanDate = new DateTime(2019, 1, 1);
             // Get original people list size, add friend then re-fetch the size.
             // Underlying implementation is unknown, so we cannot rely on the original list changing in size.
-            int originalCount = _friendService.GetAllFriends().ToList().Count;
+            int originalCount = _friendService.GetAllFriends(null, null).ToList().Count;
             Friend createdFriend = _friendService.CreateFriend(_inputModel);
-            int newCount = _friendService.GetAllFriends().ToList().Count;
+            int newCount = _friendService.GetAllFriends(null, null).ToList().Count;
 
             Assert.Equal(originalCount + 1, newCount);
         }
