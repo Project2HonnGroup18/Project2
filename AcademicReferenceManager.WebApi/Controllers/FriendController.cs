@@ -107,6 +107,13 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(entity);
         }
 
+        [HttpPut]
+        [Route("{userId:int}/reviews/{publicationId:int}", Name = "UpdateReview")]
+        public IActionResult UpdateReview(int userId, int publicationId, [FromBody] ReviewInputModel body)
+        {
+            var entity = _reviewService.UpdateReview(userId, publicationId, body);
+            return Ok(entity);
+        }
         // **********************************
         // * FULL CRUD For Loan connections *
         // **********************************

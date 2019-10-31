@@ -88,7 +88,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public Review DeleteReview(int userId, int publicationId) 
         {
-            var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && publicationId == f.PublicationId);
+            var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
             if(review == null) 
             {
                 throw new ResourceNotFoundException($"User with id: {userId} was not found");
@@ -99,6 +99,20 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
             return review;
         }
+        public Review UpdateReview(int userId, int publicationId, ReviewInputModel body) 
+        {
+            var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
+            if(review == null) 
+            {
+                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+            }
+            
+            review.Rating = body.Rating;
+            _armDbContext.SaveChanges();
+
+            return review;
+        }
+        
         public PublicationReviewsDto GetAllReviewsByPublicationId(int publicationId)
         {
             // Validate that given publication exists

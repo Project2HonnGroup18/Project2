@@ -65,6 +65,10 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publication);
         }
 
+<<<<<<< HEAD
+=======
+        // Delete a publication
+>>>>>>> 625f27b9991526082b647cfe3bd7dc16442199c9
         [HttpDelete]
         [Route("{publication_id:int}", Name = "DeletePublicationById")]
         public IActionResult DeletePublicationById(int publication_id)
