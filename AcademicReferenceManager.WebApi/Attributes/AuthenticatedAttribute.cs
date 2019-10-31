@@ -11,10 +11,10 @@ namespace AcademicReferenceManager.WebApi.Attributes
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if(context.HttpContext.Request.Headers["Authorization"] != authorizationToken 
-                    || context.HttpContext.Request.Headers["Authorization"] != authorizationMaster)
+            if(context.HttpContext.Request.Headers["Role"] != authorizationToken 
+                    && context.HttpContext.Request.Headers["Role"] != authorizationMaster)
             {
-                throw new AuthorizationException("You are currently unauthorized");
+                throw new AuthorizationException("You are not authorized as user");
             }
         }
     }

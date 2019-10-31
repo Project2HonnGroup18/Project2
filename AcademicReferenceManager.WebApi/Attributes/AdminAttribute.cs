@@ -11,9 +11,9 @@ namespace AcademicReferenceManager.WebApi.Attributes
         {
             if(context.HttpContext.Request.Query.Count > 0) 
             {
-                if(context.HttpContext.Request.Headers["Authorization"] != authorizationToken) 
+                if(context.HttpContext.Request.Headers["Role"] != authorizationToken) 
                 {
-                    throw new AuthorizationException("You are currently unauthorized");
+                    throw new AuthorizationException("Not authorized as admin");
                 }
             }
         }

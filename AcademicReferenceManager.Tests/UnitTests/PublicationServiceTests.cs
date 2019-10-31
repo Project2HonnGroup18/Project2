@@ -45,7 +45,7 @@ namespace UnitTests
         [Fact]
         public void TestGettingAllPublications()
         {
-            var publications = _publicationService.GetAllPublications();
+            var publications = _publicationService.GetAllPublications(null);
             Assert.NotNull(publications);
         }
 
@@ -64,9 +64,9 @@ namespace UnitTests
         {
             // Get original people list size, add publication then re-fetch the size.
             // Underlying implementation is unknown, so we cannot rely on the original list changing in size.
-            int originalCount = _publicationService.GetAllPublications().ToList().Count;
+            int originalCount = _publicationService.GetAllPublications(null).ToList().Count;
             Publication createdPublication = _publicationService.CreatePublication(_inputModels[1]);
-            int newCount = _publicationService.GetAllPublications().ToList().Count;
+            int newCount = _publicationService.GetAllPublications(null).ToList().Count;
 
             Assert.Equal(originalCount + 1, newCount);
         }

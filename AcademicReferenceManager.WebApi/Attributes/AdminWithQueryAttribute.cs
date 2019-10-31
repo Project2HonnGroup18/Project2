@@ -9,7 +9,7 @@ namespace AcademicReferenceManager.WebApi.Attributes
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if(context.HttpContext.Request.Query.Count > 0 
-                && context.HttpContext.Request.Headers["Authorization"] != authorizationToken) 
+                && context.HttpContext.Request.Headers["Role"] != authorizationToken) 
             {
                 throw new AuthorizationException("You are currently unauthorized");
             }
