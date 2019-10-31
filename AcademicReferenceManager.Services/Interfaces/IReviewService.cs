@@ -7,9 +7,14 @@ namespace AcademicReferenceManager.Services.Interfaces
 {
     public interface IReviewService
     {
-         IEnumerable<ReviewDto> GetReviewsByUser(int friendId);
-
-         Review AddUserReviewForPublication(int friendId, int publicationId, ReviewInputModel body);
-         IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications();
+        IEnumerable<ReviewDto> GetReviewsByUser(int userId);
+        ReviewDto GetUserReviewForPublication(int userId, int publicationId);
+        IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications();
+        Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body);
+        Review DeleteReview(int userId, int publicationId);
+        PublicationReviewsDto GetAllReviewsByPublicationId(int publicationId);
+        ReviewDto GetAReviewForASpecificPublicationByUserId(int publicationId, int userId);
+        ReviewDto UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body);
+        ReviewDto DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId);
     }
 }

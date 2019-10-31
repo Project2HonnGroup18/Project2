@@ -26,6 +26,10 @@ namespace TechnicalRadiation.WebApi.Extensions
                     {
                         statusCode = (int) HttpStatusCode.PreconditionFailed;
                     }
+                    else if(exception is AuthorizationException)
+                    {
+                        statusCode = (int) HttpStatusCode.Unauthorized;
+                    }
 
                     context.Response.ContentType = "application/json";
                     context.Response.StatusCode = statusCode;
