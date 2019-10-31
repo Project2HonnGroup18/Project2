@@ -8,11 +8,11 @@ namespace AcademicReferenceManager.Repositories.Interfaces
 {
     public interface IBorrowRepository
     {
-        IEnumerable<FriendDto> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime? date);
-        IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int? loanDuration);
-        IEnumerable<PublicationDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime? date);
-        IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime? loanDate, int? loanDuration);
-        IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId);
+        IEnumerable<Friend> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime? date);
+        IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int? loanDuration);
+        IEnumerable<Publication> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime? date);
+        IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime? loanDate, int? loanDuration);
+        IEnumerable<Publication> GetAllPublicationsAUserHasOnLoanById(int userId);
         PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
         PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
         PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId);

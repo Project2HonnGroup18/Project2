@@ -10,9 +10,9 @@ namespace AcademicReferenceManager.Services.Interfaces
         IEnumerable<ReviewDto> GetReviewsByUser(int userId);
         ReviewDto GetUserReviewForPublication(int userId, int publicationId);
         IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications();
-        Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body);
-        Review DeleteReview(int userId, int publicationId);
-        Review UpdateReview(int userId, int publicationId, ReviewInputModel body);
+        ReviewDto AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body);
+        ReviewDto DeleteReview(int userId, int publicationId);
+        ReviewDto UpdateReview(int userId, int publicationId, ReviewInputModel body);
         PublicationReviewsDto GetAllReviewsByPublicationId(int publicationId);
         ReviewDto GetAReviewForASpecificPublicationByUserId(int publicationId, int userId);
         ReviewDto UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body);

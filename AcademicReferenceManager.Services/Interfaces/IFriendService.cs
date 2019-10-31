@@ -10,9 +10,9 @@ namespace AcademicReferenceManager.Services.Interfaces
     {
         IEnumerable<FriendDto> GetAllFriends(DateTime? loanDate, int? loanDuration);
         FriendDto GetFriendById(int friendId);
-        Friend CreateFriend(FriendInputModel body);
-        Friend UpdateFriendById(int friendId, FriendUpdateInputModel body);
-        Friend DeleteFriendById(int friendId);
-        IEnumerable<Publication> GetRecommendations(int userId);
+        FriendDto CreateFriend(FriendInputModel body);
+        FriendDto UpdateFriendById(int friendId, FriendUpdateInputModel body);
+        FriendDto DeleteFriendById(int friendId);
+        IEnumerable<PublicationDto> GetRecommendations(int userId);
     }
 }
