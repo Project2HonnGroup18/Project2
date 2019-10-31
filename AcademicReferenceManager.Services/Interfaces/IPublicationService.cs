@@ -10,8 +10,8 @@ namespace AcademicReferenceManager.Services.Interfaces
     {
         IEnumerable<PublicationDto> GetAllPublications(DateTime? loanDate);
         PublicationDto GetPublicationById(int publicationId);
-        Publication CreatePublication(PublicationInputModel body);
-        Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body);
-        Publication DeletePublicationById(int publicationId);
+        PublicationDto CreatePublication(PublicationInputModel body);
+        PublicationDto UpdatePublicationById(int publicationId, PublicationUpdateInputModel body);
+        PublicationDto DeletePublicationById(int publicationId);
     }
 }

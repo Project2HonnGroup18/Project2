@@ -46,8 +46,7 @@ namespace UnitTests
         [Fact]
         public void TestGettingAllPublications()
         {
-            DateTime loanDate = new DateTime(2019, 1, 1);
-            var publications = _publicationService.GetAllPublications(loanDate);
+            var publications = _publicationService.GetAllPublications(null);
             Assert.NotNull(publications);
         }
 

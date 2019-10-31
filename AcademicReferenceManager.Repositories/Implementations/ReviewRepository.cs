@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using AcademicReferenceManager.Models.Dtos;
 using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
@@ -18,7 +18,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             _armDbContext = armDbContext;
         }
         
-        public IEnumerable<ReviewDto> GetReviewsByUser(int userId) 
+        public IEnumerable<Review> GetReviewsByUser(int userId) 
         {
             // Validate that given user exists
             var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
@@ -28,7 +28,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
             var reviewSet = _armDbContext.Reviews;
             var filtered = reviewSet.Where(f => userId == f.FriendId);
-            var remapped = filtered.Select(r => new ReviewDto
+            var remapped = filtered.Select(r => new Review
             {
                 Rating = r.Rating,
                 PublicationId = r.PublicationId,
@@ -38,7 +38,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             return remapped;
         } 
 
-        public ReviewDto GetUserReviewForPublication(int userId, int publicationId)
+        public Review GetUserReviewForPublication(int userId, int publicationId)
         {
             // Validate that a review from given user on given publication exists
             var review = _armDbContext.Reviews
@@ -48,13 +48,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
                 throw new ResourceNotFoundException($"User with id: {userId} has not reviewd publication with id: {publicationId}");
             }
 
-            var reviewDto = new ReviewDto {
-                    Rating = review.Rating,
-                    PublicationId = review.PublicationId,
-                    FriendId = review.FriendId
-            };
-
-            return reviewDto;
+            return review;
         }
 
         public Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body)
@@ -96,31 +90,11 @@ namespace AcademicReferenceManager.Repositories.Implementations
             return newReview;
         }
 
-        public IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications() 
+        public IEnumerable<Publication> GetAllReviewsForAllPublications() 
         {
-            var publications = _armDbContext.Publications.ToList();
-            List<PublicationReviewsDto> publicationReviews = new List<PublicationReviewsDto>();
+            var publications = _armDbContext.Publications.Include(p => p.Reviews).ToList();
 
-            // For each publication in db find their reviews and add them to list as a view model
-            foreach(Publication p in publications)
-            {
-                var reviews = _armDbContext.Reviews.Where(r => r.PublicationId == p.Id).Select(rdto => new ReviewDto 
-                {
-                    FriendId = rdto.FriendId,
-                    PublicationId = rdto.PublicationId,
-                    Rating = rdto.Rating
-                });
-                publicationReviews.Add(new PublicationReviewsDto 
-                {
-                    Id = p.Id,
-                    EditorFirstName = p.EditorFirstName,
-                    EditorLastName = p.EditorLastName,
-                    Title = p.Title,
-                    Reviews = reviews
-                });
-            }
-
-            return publicationReviews;
+            return publications;
         }
 
         public Review DeleteReview(int userId, int publicationId) 
@@ -152,71 +126,37 @@ namespace AcademicReferenceManager.Repositories.Implementations
             return review;
         }
         
-        public PublicationReviewsDto GetAllReviewsByPublicationId(int publicationId)
+        public Publication GetAllReviewsByPublicationId(int publicationId)
         {
             // Validate that given publication exists
-            var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
-            if(publication == null)
-            {
-                throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
-            }
-
-            // Find all reviews for given publication
-            var reviews = _armDbContext.Reviews.Where(r => r.PublicationId == publicationId).Select(rdto => new ReviewDto 
-                {
-                    FriendId = rdto.FriendId,
-                    PublicationId = rdto.PublicationId,
-                    Rating = rdto.Rating
-                });
-
-            return new PublicationReviewsDto {
-                Id = publicationId,
-                EditorFirstName = publication.EditorFirstName,
-                EditorLastName = publication.EditorLastName,
-                Title = publication.Title,
-                Reviews = reviews
-            };
+            var publication = _armDbContext.Publications.Include(p => p.Reviews).FirstOrDefault(p => p.Id == publicationId);
+            return publication;
 
         }
-        public ReviewDto GetAReviewForASpecificPublicationByUserId(int publicationId, int userId)
+        public Review GetAReviewForASpecificPublicationByUserId(int publicationId, int userId)
         {
             // Validate input - Return and return the review
             var review = ValidateInputsForAReviewForASpecificPublicationByUserId(publicationId, userId);
 
-            return new ReviewDto
-            {
-                FriendId = review.FriendId,
-                PublicationId = review.PublicationId,
-                Rating = review.Rating
-            };
+            return review;
         }
-        public ReviewDto UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body)
+        public Review UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body)
         {
             // Validate input and update review
             var review = ValidateInputsForAReviewForASpecificPublicationByUserId(publicationId, userId);
             review.Rating = body.Rating;
             _armDbContext.SaveChanges();
 
-            return new ReviewDto
-            {
-                FriendId = review.FriendId,
-                PublicationId = review.PublicationId,
-                Rating = review.Rating
-            };
+            return review;
         }
-        public ReviewDto DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId)
+        public Review DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId)
         {
             // Validate input and remove review
             var review = ValidateInputsForAReviewForASpecificPublicationByUserId(publicationId, userId);
             _armDbContext.Remove(review);
             _armDbContext.SaveChanges();
 
-            return new ReviewDto
-            {
-                FriendId = review.FriendId,
-                PublicationId = review.PublicationId,
-                Rating = review.Rating
-            };
+            return review;
         }
 
         //********************

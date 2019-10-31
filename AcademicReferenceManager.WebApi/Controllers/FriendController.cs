@@ -151,7 +151,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
         {
             var entity = _borrowService.CreateFriendBorrowsABookConnection(userId, publicationId, body);
             //TODO : FIXA OK
-            return Created("Ok", new { publicationId = entity.Id });
+            return Created("Ok", new { publicationId = entity.PublicationId, userId = entity.FriendId });
         }
         
         [Authenticated]

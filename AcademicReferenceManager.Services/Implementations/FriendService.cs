@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AcademicReferenceManager.Models.Dtos;
 using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.InputModels;
@@ -19,27 +20,30 @@ namespace AcademicReferenceManager.Services.Implementations
         }
         public IEnumerable<FriendDto> GetAllFriends(DateTime? loanDate, int? loanDuration) 
         {
+            IEnumerable<Friend> friendList;
             if(loanDate.HasValue && loanDuration.HasValue)
             {
-                return _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(loanDate, loanDuration);
+                friendList = _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(loanDate, loanDuration);
             }
             else if(loanDuration.HasValue)
             {
-                return _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDuration(loanDuration);
+                friendList = _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDuration(loanDuration);
             }
             else if(loanDate.HasValue)
             {
-                return _borrowRepo.GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(loanDate);
+                friendList = _borrowRepo.GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(loanDate);
             }
             else 
             {
-                return _friendRepo.GetAllFriends();
+                friendList = _friendRepo.GetAllFriends();
             }
+            return friendList.Select(f => new FriendDto(f));
         }
-        public FriendDto GetFriendById(int friendId) => _friendRepo.GetFriendById(friendId);
-        public Friend CreateFriend(FriendInputModel body) => _friendRepo.CreateFriend(body);
-        public Friend UpdateFriendById(int friendId, FriendUpdateInputModel body) => _friendRepo.UpdateFriendById(friendId, body);
-        public Friend DeleteFriendById(int friendId) => _friendRepo.DeleteFriendById(friendId);
-        public IEnumerable<Publication> GetRecommendations(int userId) => _friendRepo.GetRecommendations(userId);
+
+        public FriendDto GetFriendById(int friendId) => new FriendDto(_friendRepo.GetFriendById(friendId));
+        public FriendDto CreateFriend(FriendInputModel body) => new FriendDto(_friendRepo.CreateFriend(body));
+        public FriendDto UpdateFriendById(int friendId, FriendUpdateInputModel body) => new FriendDto(_friendRepo.UpdateFriendById(friendId, body));
+        public FriendDto DeleteFriendById(int friendId) => new FriendDto(_friendRepo.DeleteFriendById(friendId));
+        public IEnumerable<PublicationDto> GetRecommendations(int userId) => _friendRepo.GetRecommendations(userId).Select(pub => new PublicationDto(pub));
     }
 }

@@ -72,9 +72,12 @@ namespace AcademicReferenceManager.WebApi
             {
                 var context = serviceScope.ServiceProvider.GetService<ArmDbContext>();
                 //Create the database
-                context.Database.Migrate();
+                if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+                {
+                    context.Database.Migrate();
+                }
             }
-
+            
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),

@@ -8,8 +8,8 @@ namespace AcademicReferenceManager.Repositories.Interfaces
 {
     public interface IPublicationRepository
     {
-        IEnumerable<PublicationDto> GetAllPublications();
-        PublicationDto GetPublicationById(int publicationId);
+        IEnumerable<Publication> GetAllPublications();
+        Publication GetPublicationById(int publicationId);
         Publication CreatePublication(PublicationInputModel body);
         Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body);
         Publication DeletePublicationById(int publicationId);

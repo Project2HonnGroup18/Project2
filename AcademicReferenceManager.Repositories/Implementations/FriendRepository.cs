@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using AcademicReferenceManager.Models.Dtos;
 using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
@@ -18,7 +17,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             _armDbContext = armDbContext;
         }
 
-        public IEnumerable<FriendDto> GetAllFriends() => _armDbContext.Friends.Select(f => new FriendDto
+        public IEnumerable<Friend> GetAllFriends() => _armDbContext.Friends.Select(f => new Friend
         {
             Id = f.Id,
             FirstName = f.FirstName,
@@ -28,7 +27,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             Address = f.Address
         });
 
-        public FriendDto GetFriendById(int userId)
+        public Friend GetFriendById(int userId)
         {
             // Check if given user exists
             var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
@@ -36,7 +35,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             {
                 throw new ResourceNotFoundException($"User with id: {userId} was not found");
             }
-            return new FriendDto
+            return new Friend
             {
                 Id = friend.Id,
                 FirstName = friend.FirstName,

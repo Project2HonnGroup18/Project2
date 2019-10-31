@@ -6,6 +6,7 @@ using Xunit;
 using AcademicReferenceManager.WebApi;
 using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.InputModels;
+using AcademicReferenceManager.Models.Dtos;
 
 public class FriendControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
 {
@@ -20,15 +21,14 @@ public class FriendControllerTests : IClassFixture<CustomWebApplicationFactory<S
     public async Task CanGetFriend()
     {
         // The endpoint or route of the controller action.
-        var httpResponse = await _client.GetAsync("/api/friend/1");
+        var httpResponse = await _client.GetAsync("/api/users/1");
 
         // Must be successful.
         httpResponse.EnsureSuccessStatusCode();
 
         // Deserialize and examine results.
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var friend = JsonConvert.DeserializeObject<Friend>(stringResponse);
-        System.Console.WriteLine(friend.LastName);
+        var friend = JsonConvert.DeserializeObject<FriendDto>(stringResponse);
         Assert.True(friend.FirstName == "Con");
     }
 
@@ -40,7 +40,7 @@ public class FriendControllerTests : IClassFixture<CustomWebApplicationFactory<S
         newFriend.Email = "arius@bland.is";
         
         // The endpoint or route of the controller action.
-        var httpResponse = await _client.PostAsJsonAsync("/api/friend", newFriend);
+        var httpResponse = await _client.PostAsJsonAsync("/api/users", newFriend);
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
         
