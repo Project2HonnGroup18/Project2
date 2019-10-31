@@ -11,6 +11,8 @@ namespace AcademicReferenceManager.Services.Interfaces
         ReviewDto GetUserReviewForPublication(int userId, int publicationId);
         Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body);
         Review DeleteReview(int userId, int publicationId);
+
+        Review UpdateReview(int userId, int publicationId, ReviewInputModel body);
         
     }
 }

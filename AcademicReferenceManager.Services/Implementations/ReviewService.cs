@@ -20,5 +20,6 @@ namespace AcademicReferenceManager.Services.Implementations
         public ReviewDto GetUserReviewForPublication(int userId, int publicationId) => _reviewRepo.GetUserReviewForPublication(userId, publicationId);
         public Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body) => _reviewRepo.AddUserReviewForPublication(userId, publicationId, body);
         public Review DeleteReview(int userId, int publicationId) => _reviewRepo.DeleteReview(userId, publicationId);
+        public Review UpdateReview(int userId, int publicationId, ReviewInputModel body) => _reviewRepo.UpdateReview(userId, publicationId, body);
     }
 }

@@ -62,13 +62,26 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public Review DeleteReview(int userId, int publicationId) 
         {
-            var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && publicationId == f.PublicationId);
+            var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
             if(review == null) 
             {
                 throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
             }
 
             _armDbContext.Remove(review);
+            _armDbContext.SaveChanges();
+
+            return review;
+        }
+        public Review UpdateReview(int userId, int publicationId, ReviewInputModel body) 
+        {
+            var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
+            if(review == null) 
+            {
+                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+            }
+            
+            review.Rating = body.Rating;
             _armDbContext.SaveChanges();
 
             return review;
