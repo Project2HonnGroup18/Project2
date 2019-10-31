@@ -55,6 +55,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return CreatedAtRoute("GetFriendById", new { userId = entity.Id }, null);
         }
 
+        [Admin]
         [HttpPut]
         [Route("{userId:int}", Name = "UpdateFriendById")]
         public IActionResult UpdateFriendById(int userId, [FromBody] FriendUpdateInputModel body) 
@@ -63,6 +64,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(friend);
         }
 
+        [Admin]
         [HttpDelete]
         [Route("{userId:int}", Name = "DeleteFriendById")]
         public IActionResult DeleteFriendById(int userId) 
@@ -70,6 +72,10 @@ namespace AcademicReferenceManager.WebApi.Controllers
             var friend = _friendService.DeleteFriendById(userId);
             return Ok(friend);
         }
+
+        // *************************
+        // * FULL CRUD For reviews *
+        // *************************
 
         [HttpGet]
         [Route("{userId:int}/reviews", Name = "GetReviewsByGivenUser")]
@@ -87,6 +93,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(review);
         }
 
+        [Authenticated]
         [HttpPost]
         [Route("{userId:int}/reviews/{publicationId:int}", Name = "AddUserReviewForPublication")]
         public IActionResult AddUserReviewForPublication(int userId, int publicationId, [FromBody] ReviewInputModel body) 
@@ -99,6 +106,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return CreatedAtRoute("GetReviewsByGivenUser", new { userId = entity.FriendId }, null);
         }
 
+        [Authenticated]
         [HttpDelete]
         [Route("{userId:int}/reviews/{publicationId:int}", Name = "DeleteReview")]
         public IActionResult DeleteReview(int userId, int publicationId) 
@@ -107,6 +115,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(entity);
         }
 
+        [Authenticated]
         [HttpPut]
         [Route("{userId:int}/reviews/{publicationId:int}", Name = "UpdateReview")]
         public IActionResult UpdateReview(int userId, int publicationId, [FromBody] ReviewInputModel body)
@@ -114,6 +123,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             var entity = _reviewService.UpdateReview(userId, publicationId, body);
             return Ok(entity);
         }
+
         // **********************************
         // * FULL CRUD For Loan connections *
         // **********************************
@@ -126,6 +136,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publications);
         }
 
+        [Authenticated]
         [HttpPost]
         [Route("{userId:int}/publications/{publicationId:int}", Name = "CreateFriendBorrowsABookConnection")]
         public IActionResult CreateFriendBorrowsABookConnection(int userId, int publicationId, [FromBody] PublicationToFriendInputModel body)
@@ -134,7 +145,8 @@ namespace AcademicReferenceManager.WebApi.Controllers
             //TODO : FIXA OK
             return Created("Ok", new { publicationId = entity.Id });
         }
-
+        
+        [Authenticated]
         [HttpPut]
         [Route("{userId:int}/publications/{publicationId:int}", Name = "UpdateFriendBorrowsABookConnection")]
         public IActionResult UpdateFriendBorrowsABookConnection(int userId, int publicationId, [FromBody] PublicationToFriendInputModel body)
@@ -143,6 +155,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(entity);
         }
 
+        [Authenticated]
         [HttpDelete]
         [Route("{userId:int}/publications/{publicationId:int}", Name = "DeleteFriendBorrowsABookConnection")]
         public IActionResult DeleteFriendBorrowsABookConnection(int userId, int publicationId)
@@ -151,6 +164,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(entity);
         }
 
+        [Authenticated]
         [HttpGet]
         [Route("{userId:int}/recommendations", Name = "GetRecommendationsForUser")]
         public IActionResult GetRecommendationsForUser(int userId)

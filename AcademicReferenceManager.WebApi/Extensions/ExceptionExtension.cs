@@ -30,6 +30,10 @@ namespace TechnicalRadiation.WebApi.Extensions
                     {
                         statusCode = (int) HttpStatusCode.Unauthorized;
                     }
+                    else if(exception is UserHasNotBorrowedBookException)
+                    {
+                        statusCode = (int) HttpStatusCode.Conflict;
+                    }
 
                     context.Response.ContentType = "application/json";
                     context.Response.StatusCode = statusCode;

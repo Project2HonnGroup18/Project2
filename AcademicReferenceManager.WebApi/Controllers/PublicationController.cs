@@ -53,6 +53,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return CreatedAtRoute("GetPublicationById", new { publicationId = entity.Id }, null);
         }
 
+        [Admin]
         [HttpPut]
         [Route("{publication_id:int}", Name = "UpdatePublicationById")]
         public IActionResult UpdatePublicationById(int publication_id, [FromBody] PublicationUpdateInputModel body)
@@ -65,10 +66,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(publication);
         }
 
-<<<<<<< HEAD
-=======
-        // Delete a publication
->>>>>>> 625f27b9991526082b647cfe3bd7dc16442199c9
+        [Admin]
         [HttpDelete]
         [Route("{publication_id:int}", Name = "DeletePublicationById")]
         public IActionResult DeletePublicationById(int publication_id)
@@ -105,6 +103,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(review);
         }
 
+        [Authenticated]
         [HttpPut]
         [Route("{publicationId:int}/reviews/{userId:int}", Name = "UpdateAReviewForASpecificPublicationByUserId")]
         public IActionResult UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, [FromBody] ReviewInputModel body)
@@ -113,6 +112,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(review);
         }
 
+        [Authenticated]
         [HttpDelete]
         [Route("{publicationId:int}/reviews/{userId:int}", Name = "DeleteAReviewForASpecificPublicationByUserId")]
         public IActionResult DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId)

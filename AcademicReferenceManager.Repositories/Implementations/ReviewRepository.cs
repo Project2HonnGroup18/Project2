@@ -6,7 +6,6 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
@@ -21,8 +20,13 @@ namespace AcademicReferenceManager.Repositories.Implementations
         
         public IEnumerable<ReviewDto> GetReviewsByUser(int userId) 
         {
-            System.Console.WriteLine("\n\nTEST!\n\n " + userId);
-            var reviewSet =  _armDbContext.Reviews;
+            // Validate that given user exists
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
+            }
+            var reviewSet = _armDbContext.Reviews;
             var filtered = reviewSet.Where(f => userId == f.FriendId);
             var remapped = filtered.Select(r => new ReviewDto
             {
@@ -36,8 +40,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public ReviewDto GetUserReviewForPublication(int userId, int publicationId)
         {
+            // Validate that a review from given user on given publication exists
             var review = _armDbContext.Reviews
                 .FirstOrDefault(f => userId == f.FriendId && publicationId == f.PublicationId);
+            if(review == null)
+            {
+                throw new ResourceNotFoundException($"User with id: {userId} has not reviewd publication with id: {publicationId}");
+            }
+
             var reviewDto = new ReviewDto {
                     Rating = review.Rating,
                     PublicationId = review.PublicationId,
@@ -49,15 +59,41 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body)
         {
-            var review = new Review {
+            // Validate that given user exists
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
+            }
+            // Validate that given publication exists
+            var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+            if(publication == null)
+            {
+                throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
+            }
+            // Validate that given user has borrowed given publication
+            var connection = _armDbContext.PublicationsToFriend.FirstOrDefault(c => 
+                                c.FriendId == userId && c.PublicationId == publicationId);
+            if(connection == null) 
+            {
+                throw new UserHasNotBorrowedBookException($"User with id: {userId} has not borrowed publication with id: {publicationId} and therefor cannot review it");
+            }
+            // Validate that given user has not review given publication before
+            var review = _armDbContext.Reviews.FirstOrDefault(r => r.FriendId == userId && r.PublicationId == publicationId);
+            if(review != null) 
+            {
+                throw new ModelFormatException($"User with id: {userId} has already reviewd publication with id: {publicationId}");
+            }
+            
+            var newReview = new Review {
                 Rating = body.Rating,
                 FriendId = userId,
                 PublicationId = publicationId
             };
 
-            _armDbContext.Reviews.Add(review);
+            _armDbContext.Reviews.Add(newReview);
             _armDbContext.SaveChanges();
-            return review;
+            return newReview;
         }
 
         public IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications() 
@@ -65,6 +101,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             var publications = _armDbContext.Publications.ToList();
             List<PublicationReviewsDto> publicationReviews = new List<PublicationReviewsDto>();
 
+            // For each publication in db find their reviews and add them to list as a view model
             foreach(Publication p in publications)
             {
                 var reviews = _armDbContext.Reviews.Where(r => r.PublicationId == p.Id).Select(rdto => new ReviewDto 
@@ -88,10 +125,11 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public Review DeleteReview(int userId, int publicationId) 
         {
+            // Validate that given user has reviewed given publication
             var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
             if(review == null) 
             {
-                throw new ResourceNotFoundException($"User with id: {userId} was not found");
+                throw new ResourceNotFoundException($"Review from user with id: {userId} on publication with id: {publicationId} was not found");
             }
 
             _armDbContext.Remove(review);
@@ -101,10 +139,11 @@ namespace AcademicReferenceManager.Repositories.Implementations
         }
         public Review UpdateReview(int userId, int publicationId, ReviewInputModel body) 
         {
+            // Validate that given user has reviewed given publication
             var review = _armDbContext.Reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
             if(review == null) 
             {
-                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+                throw new ResourceNotFoundException($"Review from user with id: {userId} on publication with id: {publicationId} was not found");
             }
             
             review.Rating = body.Rating;

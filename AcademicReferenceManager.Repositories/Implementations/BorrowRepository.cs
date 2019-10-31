@@ -7,7 +7,6 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
@@ -19,39 +18,15 @@ namespace AcademicReferenceManager.Repositories.Implementations
         {
             _armDbContext = armDbContext;
         }
-        public IEnumerable<PublicationToFriendDto> GetAllFriendBorrowsABookConnections() => 
-                    _armDbContext.PublicationsToFriend.Select(p => new PublicationToFriendDto
-                    {
-                        Id = p.Id,
-                        FriendId = p.FriendId,
-                        PublicationId = p.PublicationId,
-                        BorrowDate = p.BorrowDate,
-                        ReturnDate = p.ReturnDate
-                    });
-        public PublicationToFriendDto GetBorrowConnectionById(int connectionID)
-        {
-            var connection = _armDbContext.PublicationsToFriend.FirstOrDefault(p => p.Id == connectionID);
-            if(connection == null)
-            {
-                throw new ResourceNotFoundException($"Borrow connection with id: {connection.Id} was not found");
-            }
-            return new PublicationToFriendDto
-            {
-                Id = connection.Id,
-                FriendId = connection.FriendId,
-                PublicationId = connection.PublicationId,
-                BorrowDate = connection.BorrowDate,
-                ReturnDate = connection.ReturnDate
-            };
-        }
-
         public IEnumerable<FriendDto> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime? date) 
         {
             var connection = _armDbContext.PublicationsToFriend.ToList();
             List<FriendDto> friends = new List<FriendDto>();
+
+            // for each loan connection see if it was on loan on a given date - return those who are as a friend view model
             foreach(PublicationToFriend p2f in connection) 
             {
-                if(p2f.BorrowDate < date && p2f.ReturnDate > date)
+                if(p2f.BorrowDate <= date && p2f.ReturnDate > date)
                 {
                    var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
                    friends.Add(new FriendDto
@@ -71,6 +46,10 @@ namespace AcademicReferenceManager.Repositories.Implementations
         {
             var connections = _armDbContext.PublicationsToFriend.ToList();
             List<FriendDto> friends = new List<FriendDto>();
+
+            // foreach connection check if return is null or larger then date time now = still on loan.
+            // Create timespan and subtract date time now to see the time between borrow date and now.
+            // Then check if number of days on that timespan is larger or equal to given loanduration - return those who are.
             foreach(PublicationToFriend p2f in connections) 
             {
                 if(p2f.BorrowDate != null && (p2f.ReturnDate == null || p2f.ReturnDate > DateTime.Now))
@@ -100,6 +79,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
         {
             var borrows = _armDbContext.PublicationsToFriend.ToList();
             List<PublicationDto> publications = new List<PublicationDto>();
+            // for each loan connection see if it was on loan on a given date - return those who are as a publication view model
             foreach(PublicationToFriend p2f in borrows)
             {
                 if(p2f.BorrowDate < date && p2f.ReturnDate > date)
@@ -124,6 +104,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
         {
             var connections = _armDbContext.PublicationsToFriend.ToList();
             List<FriendDto> returnList = new List<FriendDto>();
+
+            // foreach connection check if return is null or larger then date time now = still on loan.
+            // Create timespan and subtract date time now to see the time between borrow date and now.
+            // Then check if number of days on that timespan is larger or equal to given loanduration.
+            // Covering those who are already on loan
+            // For those who have been returned
+            // create another timespan subtract the return date from the borrow date and check same condition with that time span
+            // Then check if number of days on that timespan is larger or equal to given loanduration. - return those who are
             foreach(PublicationToFriend p2f in connections) 
             {
                 if(p2f.BorrowDate != null)
@@ -167,14 +155,17 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId)
         {
+            // Validate that given user exists
             var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
             if(friend == null) 
             {
-                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
             }
 
             var connections = _armDbContext.PublicationsToFriend.Where(f => f.FriendId == userId);
             List<PublicationDto> publications = new List<PublicationDto>();
+            // Foreach connection check if the publication has been returned 
+            // - Return those who have not been returned as a publication view model
             foreach(PublicationToFriend p2f in connections)
             {
                 if(p2f.ReturnDate == null || p2f.ReturnDate < DateTime.Now)
@@ -196,24 +187,26 @@ namespace AcademicReferenceManager.Repositories.Implementations
         }
         public PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 
         {
+            // Check if given user exists
             var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
             if(friend == null)
             {
-                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
             }
-
+            // Check if given publication exists
             var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
             if(publication == null)
             {
                 throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
             }
-
+            // check if given user has allready borrowed given publication
             bool alreadyBorrowed = _armDbContext.PublicationsToFriend.Any(p => p.FriendId == friend.Id && p.PublicationId == publication.Id);
             if(alreadyBorrowed)
             {
                 throw new ModelFormatException($"Friend: {friend.FirstName} has already borrowed {publication.Title}");
             }
 
+            // check if we have connection in db if not set Id to 1 else find the highest Id and add 1 to it
             int nextInt = 0;
             if(_armDbContext.PublicationsToFriend.Count() == 0)
             {
@@ -239,6 +232,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
         }
         public PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body)
         {
+            // Check if given user has allready borrowed given publication
             var connection = _armDbContext.PublicationsToFriend.FirstOrDefault(c => c.FriendId == userId && c.PublicationId == publicationId);
             if(connection == null)
             {
@@ -253,6 +247,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
         }
         public PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId)
         {
+            // Check if given user has allready borrowed given publication
             var connection = _armDbContext.PublicationsToFriend.FirstOrDefault(c => c.FriendId == userId && c.PublicationId == publicationId);
             if(connection == null)
             {

@@ -8,8 +8,6 @@ namespace AcademicReferenceManager.Repositories.Interfaces
 {
     public interface IBorrowRepository
     {
-        IEnumerable<PublicationToFriendDto> GetAllFriendBorrowsABookConnections();
-        PublicationToFriendDto GetBorrowConnectionById(int connectionID);
         IEnumerable<FriendDto> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime? date);
         IEnumerable<FriendDto> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int? loanDuration);
         IEnumerable<PublicationDto> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime? date);

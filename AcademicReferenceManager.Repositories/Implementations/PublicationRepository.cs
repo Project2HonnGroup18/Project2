@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using AcademicReferenceManager.Models.Dtos;
@@ -32,6 +31,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public PublicationDto GetPublicationById(int publicationId)
         {
+            // Validate that given publication exists
              var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
              if(publication == null)
              {
@@ -51,11 +51,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public Publication CreatePublication(PublicationInputModel body)
         {
+            // Validate that given publication does not exists in database
             bool publicationsExists = _armDbContext.Publications.Any(p => p.Isbn == body.Isbn);
             if(publicationsExists)
             {
                 throw new ModelFormatException("This publication already Exists");
             }
+
+            // check if we have publications in db if not set Id to 1 else find the highest Id and add 1 to it
             int nextInt = 0;
             if(_armDbContext.Publications.Count() == 0)
             {
@@ -82,11 +85,15 @@ namespace AcademicReferenceManager.Repositories.Implementations
         }
         public Publication UpdatePublicationById(int publicationId, PublicationUpdateInputModel body)
         {
+            // Validate that given publication exists
             var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
             if(publication == null)
             {
-                throw new ResourceNotFoundException("Publication with id:" + publicationId + " was not found!");
+                throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
             }
+
+            // Check if given publication has values if it has values change the old value to the new value
+            // if it doesn't we keep the old value so that all other values do not become null
             publication.EditorFirstName = string.IsNullOrEmpty(body.EditorFirstName) ? publication.EditorFirstName : body.EditorFirstName;
             publication.EditorLastName = string.IsNullOrEmpty(body.EditorLastName) ? publication.EditorLastName : body.EditorLastName;
             publication.Title = string.IsNullOrEmpty(body.Title) ? publication.Title : body.Title;
@@ -101,10 +108,11 @@ namespace AcademicReferenceManager.Repositories.Implementations
         
         public Publication DeletePublicationById(int publicationId) 
         {
-            Publication publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+            // Validate that given publication exists
+            var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
             if(publication == null)
             {
-                throw new ResourceNotFoundException("Publication with id:" + publicationId + " was not found!");
+                throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
             }
             _armDbContext.Remove(publication);
             _armDbContext.SaveChanges();

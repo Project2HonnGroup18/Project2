@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using AcademicReferenceManager.Models.Dtos;
@@ -7,7 +6,6 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
@@ -30,26 +28,28 @@ namespace AcademicReferenceManager.Repositories.Implementations
             Address = f.Address
         });
 
-        public FriendDto GetFriendById(int friendId)
+        public FriendDto GetFriendById(int userId)
         {
-             var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == friendId);
-             if(friend == null)
-             {
-                 throw new ResourceNotFoundException($"Friend with id: {friendId} was not found");
-             }
-             return new FriendDto
-             {
-                 Id = friend.Id,
-                 FirstName = friend.FirstName,
-                 LastName = friend.LastName,
-                 Email = friend.Email,
-                 Phone = friend.Phone,
-                 Address = friend.Address
-             };
+            // Check if given user exists
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
+            }
+            return new FriendDto
+            {
+                Id = friend.Id,
+                FirstName = friend.FirstName,
+                LastName = friend.LastName,
+                Email = friend.Email,
+                Phone = friend.Phone,
+                Address = friend.Address
+            };
         }
 
         public Friend CreateFriend(FriendInputModel body)
         {
+            // check if we have connection in db if not set Id to 1 else find the highest Id and add 1 to it
             int nextInt = 0;
             if(_armDbContext.Friends.Count() == 0)
             {
@@ -74,12 +74,13 @@ namespace AcademicReferenceManager.Repositories.Implementations
             
             return entity;
         }
-        public Friend UpdateFriendById(int friendId, FriendUpdateInputModel body)
+        public Friend UpdateFriendById(int userId, FriendUpdateInputModel body)
         {
-            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == friendId);
+            // Validate that given user exists
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
             if(friend == null) 
             {
-                throw new ResourceNotFoundException($"Friend with id: {friendId} was not found");
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
             }
             
             friend.FirstName = string.IsNullOrEmpty(body.FirstName) ? friend.FirstName : body.FirstName;
@@ -91,12 +92,13 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
             return friend;
         }
-        public Friend DeleteFriendById(int friendId)
+        public Friend DeleteFriendById(int userId)
         {
-            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == friendId);
+            // Validate that given user exists
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
             if(friend == null) 
             {
-                throw new ResourceNotFoundException($"Friend with id: {friendId} was not found");
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
             }
 
             _armDbContext.Remove(friend);
@@ -107,6 +109,13 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
         public IEnumerable<Publication> GetRecommendations(int userId)
         {
+            // Validate that given user exists
+            // VALGARÐUR ENDILEGA COMMENTA HER
+            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+            }
             var userPublications = _armDbContext.PublicationsToFriend
                                     .Where(p2f => p2f.FriendId == userId)
                                     .Join(_armDbContext.Publications, 
