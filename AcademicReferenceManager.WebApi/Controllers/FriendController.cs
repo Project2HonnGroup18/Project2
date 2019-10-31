@@ -120,6 +120,10 @@ namespace AcademicReferenceManager.WebApi.Controllers
         [Route("{userId:int}/reviews/{publicationId:int}", Name = "UpdateReview")]
         public IActionResult UpdateReview(int userId, int publicationId, [FromBody] ReviewInputModel body)
         {
+            if(!ModelState.IsValid)
+            {
+                throw new ModelFormatException("Model not properly formatted");
+            }
             var entity = _reviewService.UpdateReview(userId, publicationId, body);
             return Ok(entity);
         }
