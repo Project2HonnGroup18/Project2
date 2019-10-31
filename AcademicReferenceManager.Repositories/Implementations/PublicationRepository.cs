@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using AcademicReferenceManager.Models.Dtos;
 using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
@@ -18,7 +17,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             _armDbContext = armDbContext;
         }
 
-        public IEnumerable<PublicationDto> GetAllPublications() => _armDbContext.Publications.Select(p => new PublicationDto
+        public IEnumerable<Publication> GetAllPublications() => _armDbContext.Publications.Select(p => new Publication
         {
             Id = p.Id,
             EditorFirstName = p.EditorFirstName,
@@ -29,7 +28,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             Isbn = p.Isbn
         });
 
-        public PublicationDto GetPublicationById(int publicationId)
+        public Publication GetPublicationById(int publicationId)
         {
             // Validate that given publication exists
              var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
@@ -37,7 +36,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
              {
                  throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
              }
-             return new PublicationDto
+             return new Publication
              {
                 Id = publication.Id,
                 EditorFirstName = publication.EditorFirstName,

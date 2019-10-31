@@ -7,16 +7,18 @@ namespace AcademicReferenceManager.Repositories.Interfaces
 {
     public interface IReviewRepository
     {
-        IEnumerable<ReviewDto> GetReviewsByUser(int userId);
-        ReviewDto GetUserReviewForPublication(int userId, int publicationId);
+        IEnumerable<Review> GetReviewsByUser(int userId);
+        Review GetUserReviewForPublication(int userId, int publicationId);
         Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body);
         Review DeleteReview(int userId, int publicationId);
         Review UpdateReview(int userId, int publicationId, ReviewInputModel body);
-        IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications();
-        PublicationReviewsDto GetAllReviewsByPublicationId(int publicationId);
-        ReviewDto GetAReviewForASpecificPublicationByUserId(int publicationId, int userId);
-        ReviewDto UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body);
-        ReviewDto DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId);
+        //Returns list of publications, all with reviews populated
+        IEnumerable<Publication> GetAllReviewsForAllPublications();
+        //Returns publication with reviews list populated
+        Publication GetAllReviewsByPublicationId(int publicationId);
+        Review GetAReviewForASpecificPublicationByUserId(int publicationId, int userId);
+        Review UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body);
+        Review DeleteAReviewForASpecificPublicationByUserId(int publicationId, int userId);
 
     }
 }

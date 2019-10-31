@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AcademicReferenceManager.Models.Dtos;
 using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.InputModels;
@@ -17,12 +18,13 @@ namespace AcademicReferenceManager.Services.Implementations
             _borrowRepo = borrowRepo;
         }
         public IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId)
-                => _borrowRepo.GetAllPublicationsAUserHasOnLoanById(userId);
-        public PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 
-                => _borrowRepo.CreateFriendBorrowsABookConnection(userId, publicationId, body);
-        public PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body)
-                => _borrowRepo.UpdateFriendBorrowsABookConnection(userId, publicationId, body);
-        public PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId)
-                => _borrowRepo.DeleteFriendBorrowsABookConnection(userId, publicationId);
+                => _borrowRepo.GetAllPublicationsAUserHasOnLoanById(userId).Select(pub => new PublicationDto(pub));
+        
+        public PublicationToFriendDto CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 
+                => new PublicationToFriendDto(_borrowRepo.CreateFriendBorrowsABookConnection(userId, publicationId, body));
+        public PublicationToFriendDto UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body)
+                => new PublicationToFriendDto(_borrowRepo.UpdateFriendBorrowsABookConnection(userId, publicationId, body));
+        public PublicationToFriendDto DeleteFriendBorrowsABookConnection(int userId, int publicationId)
+                => new PublicationToFriendDto(_borrowRepo.DeleteFriendBorrowsABookConnection(userId, publicationId));
         }
 }

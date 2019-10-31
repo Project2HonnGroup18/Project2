@@ -9,8 +9,8 @@ namespace AcademicReferenceManager.Services.Interfaces
     public interface IBorrowService
     {
         IEnumerable<PublicationDto> GetAllPublicationsAUserHasOnLoanById(int userId);
-        PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
-        PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
-        PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId);
+        PublicationToFriendDto CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
+        PublicationToFriendDto UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
+        PublicationToFriendDto DeleteFriendBorrowsABookConnection(int userId, int publicationId);
     }
 }
