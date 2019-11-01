@@ -24,7 +24,8 @@ namespace UnitTests
             ArmDbContext db = new ArmDbContext(options: dbOptionsBuilder.Options);
  
             PublicationRepository publicationRepository = new PublicationRepository(db);
-            _publicationService = new PublicationService(publicationRepository);
+            BorrowRepository borrowRepository = new BorrowRepository(db);
+            _publicationService = new PublicationService(publicationRepository, borrowRepository);
 
             _inputModels =  new List<PublicationInputModel>();
             _inputModels.Add(new PublicationInputModel{
@@ -62,6 +63,7 @@ namespace UnitTests
         [Fact]
         public void TestAddingPublicationByCounting()
         {
+            //DateTime loanDate = new DateTime(2019, 1, 1);
             // Get original people list size, add publication then re-fetch the size.
             // Underlying implementation is unknown, so we cannot rely on the original list changing in size.
             int originalCount = _publicationService.GetAllPublications(null).ToList().Count;

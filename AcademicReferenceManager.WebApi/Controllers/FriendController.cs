@@ -39,6 +39,10 @@ namespace AcademicReferenceManager.WebApi.Controllers
         public IActionResult GetFriendByID(int userId)
         {
             var friend = _friendService.GetFriendById(userId);
+            if(friend == null)
+            {
+                return NotFound();
+            }
             return Ok(friend);
         }
 
