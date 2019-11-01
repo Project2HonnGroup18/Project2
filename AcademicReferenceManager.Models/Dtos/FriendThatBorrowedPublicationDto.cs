@@ -4,6 +4,7 @@ namespace AcademicReferenceManager.Models.Dtos
 {
     public class FriendThatBorrowedPublicationDto
     {
+        public FriendThatBorrowedPublicationDto(){}
         public FriendThatBorrowedPublicationDto(Entities.Friend friend, Entities.Publication publication)
         {
             FriendFirstName = friend.FirstName;

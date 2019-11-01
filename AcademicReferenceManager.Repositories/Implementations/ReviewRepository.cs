@@ -86,6 +86,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             };
 
             _armDbContext.Reviews.Add(newReview);
+            _armDbContext.UpdateRatingForPublication(publicationId);
             _armDbContext.SaveChanges();
             return newReview;
         }
@@ -107,6 +108,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
 
             _armDbContext.Remove(review);
+            _armDbContext.UpdateRatingForPublication(publicationId);
             _armDbContext.SaveChanges();
 
             return review;
@@ -121,6 +123,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
             
             review.Rating = body.Rating;
+            _armDbContext.UpdateRatingForPublication(publicationId);
             _armDbContext.SaveChanges();
 
             return review;
@@ -137,7 +140,6 @@ namespace AcademicReferenceManager.Repositories.Implementations
         {
             // Validate input - Return and return the review
             var review = ValidateInputsForAReviewForASpecificPublicationByUserId(publicationId, userId);
-
             return review;
         }
         public Review UpdateAReviewForASpecificPublicationByUserId(int publicationId, int userId, ReviewInputModel body)
@@ -145,6 +147,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             // Validate input and update review
             var review = ValidateInputsForAReviewForASpecificPublicationByUserId(publicationId, userId);
             review.Rating = body.Rating;
+            _armDbContext.UpdateRatingForPublication(publicationId);
             _armDbContext.SaveChanges();
 
             return review;
@@ -154,6 +157,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             // Validate input and remove review
             var review = ValidateInputsForAReviewForASpecificPublicationByUserId(publicationId, userId);
             _armDbContext.Remove(review);
+            _armDbContext.UpdateRatingForPublication(publicationId);
             _armDbContext.SaveChanges();
 
             return review;

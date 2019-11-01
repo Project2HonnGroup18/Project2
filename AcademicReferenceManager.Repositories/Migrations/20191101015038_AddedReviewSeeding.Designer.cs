@@ -3,14 +3,16 @@ using System;
 using AcademicReferenceManager.Repositories.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AcademicReferenceManager.Repositories.Migrations
 {
     [DbContext(typeof(ArmDbContext))]
-    partial class ArmDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191101015038_AddedReviewSeeding")]
+    partial class AddedReviewSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -937,8 +939,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
 
                     b.Property<string>("Journal");
 
-                    b.Property<double>("Rating");
-
                     b.Property<string>("Title");
 
                     b.Property<string>("Type");
@@ -957,8 +957,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Yegorkov",
                             Isbn = "078401297-0",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Phascogale tapoatafa",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -969,8 +967,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sayle",
                             Isbn = "746521865-9",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Crocuta crocuta",
                             Type = "printed",
                             Year = 2005
                         },
@@ -978,16 +974,14 @@ namespace AcademicReferenceManager.Repositories.Migrations
                         {
                             Id = 3,
                             EditorFirstName = "Aurélie",
-                            Isbn = "886359859-2",
-                            Rating = 0.0
+                            Isbn = "886359859-2"
                         },
                         new
                         {
                             Id = 4,
                             EditorFirstName = "Hélène",
                             EditorLastName = "Close",
-                            Isbn = "765720245-9",
-                            Rating = 0.0
+                            Isbn = "765720245-9"
                         },
                         new
                         {
@@ -996,8 +990,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tuckwood",
                             Isbn = "986672075-6",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Cacatua tenuirostris",
                             Type = "printed",
                             Year = 2007
                         },
@@ -1008,8 +1000,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Townsend",
                             Isbn = "910381336-3",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Odocoileus hemionus",
                             Type = "printed",
                             Year = 2011
                         },
@@ -1020,8 +1010,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hinchon",
                             Isbn = "507003031-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2000
                         },
@@ -1032,8 +1020,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nind",
                             Isbn = "149537426-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Hymenolaimus malacorhynchus",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -1042,8 +1028,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 9,
                             EditorFirstName = "André",
                             EditorLastName = "Majury",
-                            Isbn = "238214929-9",
-                            Rating = 0.0
+                            Isbn = "238214929-9"
                         },
                         new
                         {
@@ -1052,8 +1037,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hancox",
                             Isbn = "609067213-0",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Anastomus oscitans",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -1064,8 +1047,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hathaway",
                             Isbn = "475059795-3",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Uraeginthus granatina",
                             Type = "printed",
                             Year = 1997
                         },
@@ -1076,8 +1057,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Glide",
                             Isbn = "750091697-3",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Equus hemionus",
                             Type = "printed",
                             Year = 1995
                         },
@@ -1088,8 +1067,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kupper",
                             Isbn = "826091320-8",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Limnocorax flavirostra",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -1099,8 +1076,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mélodie",
                             Isbn = "334836836-7",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Eubalaena australis",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -1111,8 +1086,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Canfer",
                             Isbn = "037078876-1",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Heloderma horridum",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -1123,8 +1096,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dorkins",
                             Isbn = "483542182-5",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Hystrix cristata",
                             Type = "printed",
                             Year = 2012
                         },
@@ -1135,8 +1106,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Leghorn",
                             Isbn = "925914206-7",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Tamandua tetradactyla",
                             Type = "printed",
                             Year = 1993
                         },
@@ -1147,8 +1116,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Argue",
                             Isbn = "843589787-7",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Castor fiber",
                             Type = "printed",
                             Year = 2009
                         },
@@ -1159,8 +1126,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Edess",
                             Isbn = "121573250-3",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Equus burchelli",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -1171,8 +1136,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kaplin",
                             Isbn = "100118429-7",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Bubalornis niger",
                             Type = "printed",
                             Year = 1999
                         },
@@ -1183,8 +1146,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Crake",
                             Isbn = "901635842-0",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Capreolus capreolus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -1195,8 +1156,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Feckey",
                             Isbn = "104546813-4",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Dromaeus novaehollandiae",
                             Type = "printed",
                             Year = 2012
                         },
@@ -1207,8 +1166,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beaford",
                             Isbn = "031518654-2",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Speothos vanaticus",
                             Type = "printed",
                             Year = 1998
                         },
@@ -1217,8 +1174,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 24,
                             EditorFirstName = "Angèle",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Hyaena brunnea",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -1229,8 +1184,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sysland",
                             Isbn = "895871991-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Varanus sp.",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -1241,8 +1194,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Poacher",
                             Isbn = "120500828-4",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Coendou prehensilis",
                             Type = "printed",
                             Year = 2012
                         },
@@ -1253,8 +1204,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dionisii",
                             Isbn = "964020583-4",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Varanus salvator",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -1265,8 +1214,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Schouthede",
                             Isbn = "091095688-X",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Phoenicopterus ruber",
                             Type = "printed",
                             Year = 1969
                         },
@@ -1277,8 +1224,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Reglar",
                             Isbn = "223815700-X",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Zalophus californicus",
                             Type = "printed",
                             Year = 2007
                         },
@@ -1289,8 +1234,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Biss",
                             Isbn = "347667305-7",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Vombatus ursinus",
                             Type = "printed",
                             Year = 2005
                         },
@@ -1301,8 +1244,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Conechie",
                             Isbn = "642885042-7",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "printed",
                             Year = 1997
                         },
@@ -1313,8 +1254,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Oxborrow",
                             Isbn = "076555829-7",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Colobus guerza",
                             Type = "printed",
                             Year = 1985
                         },
@@ -1325,8 +1264,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lindmark",
                             Isbn = "804505490-5",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Buteo regalis",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -1337,8 +1274,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Remirez",
                             Isbn = "799140647-4",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Anas platyrhynchos",
                             Type = "electronic",
                             Year = 1989
                         },
@@ -1349,8 +1284,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rillatt",
                             Isbn = "754663706-6",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Theropithecus gelada",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -1361,8 +1294,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Francello",
                             Isbn = "924653588-X",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Colobus guerza",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -1373,8 +1304,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Degenhardt",
                             Isbn = "552841930-1",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Mephitis mephitis",
                             Type = "printed",
                             Year = 2011
                         },
@@ -1384,8 +1313,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Lài",
                             EditorLastName = "Langran",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Genetta genetta",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -1396,8 +1323,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sevier",
                             Isbn = "158008618-7",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2002
                         },
@@ -1408,8 +1333,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Raffon",
                             Isbn = "739113993-9",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Meles meles",
                             Type = "printed",
                             Year = 2004
                         },
@@ -1420,8 +1343,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Olligan",
                             Isbn = "116413878-2",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax carbo",
                             Type = "printed",
                             Year = 2006
                         },
@@ -1432,8 +1353,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Loalday",
                             Isbn = "692113840-2",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Axis axis",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -1443,8 +1362,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Léonore",
                             Isbn = "919422082-4",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Ramphastos tucanus",
                             Type = "printed",
                             Year = 1992
                         },
@@ -1455,8 +1372,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Veare",
                             Isbn = "301258634-2",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Macropus eugenii",
                             Type = "printed",
                             Year = 1998
                         },
@@ -1467,8 +1382,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Deddum",
                             Isbn = "175832077-X",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Haematopus ater",
                             Type = "printed",
                             Year = 2005
                         },
@@ -1479,8 +1392,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gostage",
                             Isbn = "533746866-9",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Vulpes chama",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -1491,8 +1402,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rollin",
                             Isbn = "161028154-3",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Aonyx cinerea",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -1502,8 +1411,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Bérénice",
                             EditorLastName = "Giorgi",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Ardea golieth",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -1513,8 +1420,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Åsa",
                             Isbn = "603811634-6",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Gyps fulvus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -1525,8 +1430,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tesh",
                             Isbn = "334244385-5",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Deroptyus accipitrinus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -1537,8 +1440,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Helstrom",
                             Isbn = "920119408-0",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Crotalus adamanteus",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -1549,8 +1450,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Whiscard",
                             Isbn = "804889279-0",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Gymnorhina tibicen",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -1560,8 +1459,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Gérald",
                             EditorLastName = "Moralee",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Heloderma horridum",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -1572,8 +1469,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haye",
                             Isbn = "003299178-9",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Cyrtodactylus louisiadensis",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -1584,8 +1479,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stobart",
                             Isbn = "335467088-6",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Priodontes maximus",
                             Type = "printed",
                             Year = 2009
                         },
@@ -1596,8 +1489,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Grattage",
                             Isbn = "811413633-2",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Ciconia episcopus",
                             Type = "printed",
                             Year = 2001
                         },
@@ -1608,8 +1499,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Towner",
                             Isbn = "021090022-9",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Pelecans onocratalus",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -1620,8 +1509,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Filipov",
                             Isbn = "641857946-1",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Alopochen aegyptiacus",
                             Type = "printed",
                             Year = 2001
                         },
@@ -1632,8 +1519,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tran",
                             Isbn = "605531518-1",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Irania gutteralis",
                             Type = "printed",
                             Year = 2009
                         },
@@ -1644,8 +1529,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haggett",
                             Isbn = "616697593-7",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Cyrtodactylus louisiadensis",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -1656,8 +1539,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Blabber",
                             Isbn = "610601782-4",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Erinaceus frontalis",
                             Type = "printed",
                             Year = 2009
                         },
@@ -1668,8 +1549,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fairman",
                             Isbn = "262487311-2",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Neotis denhami",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -1680,8 +1559,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Steljes",
                             Isbn = "887924327-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Columba palumbus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -1692,8 +1569,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Coleiro",
                             Isbn = "805377925-5",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -1704,8 +1579,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Baughan",
                             Isbn = "340343309-9",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Antidorcas marsupialis",
                             Type = "printed",
                             Year = 2003
                         },
@@ -1716,8 +1589,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Huglin",
                             Isbn = "267963131-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Dendrohyrax brucel",
                             Type = "printed",
                             Year = 2009
                         },
@@ -1727,8 +1598,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Pénélope",
                             EditorLastName = "O'Glessane",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Bettongia penicillata",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -1739,8 +1608,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Butchers",
                             Isbn = "015470132-7",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Thalasseus maximus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -1751,8 +1618,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wootton",
                             Isbn = "408850782-7",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Naja haje",
                             Type = "printed",
                             Year = 2004
                         },
@@ -1763,8 +1628,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cabel",
                             Isbn = "179713311-X",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Ictalurus furcatus",
                             Type = "printed",
                             Year = 1987
                         },
@@ -1775,8 +1638,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kaspar",
                             Isbn = "616168858-1",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Balearica pavonina",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -1787,8 +1648,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Clendening",
                             Isbn = "734473633-0",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Connochaetus taurinus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -1799,8 +1658,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Catterell",
                             Isbn = "389680682-3",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -1811,8 +1668,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacLennan",
                             Isbn = "751361327-3",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Bucorvus leadbeateri",
                             Type = "printed",
                             Year = 2008
                         },
@@ -1823,8 +1678,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Betteridge",
                             Isbn = "982683851-9",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax carbo",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -1834,8 +1687,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Séréna",
                             EditorLastName = "Godmer",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Tringa glareola",
                             Type = "printed",
                             Year = 2009
                         },
@@ -1846,8 +1697,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Whyman",
                             Isbn = "836297433-8",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Alouatta seniculus",
                             Type = "printed",
                             Year = 1986
                         },
@@ -1858,8 +1707,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Chittem",
                             Isbn = "824573037-8",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Limosa haemastica",
                             Type = "printed",
                             Year = 2007
                         },
@@ -1870,8 +1717,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Delouch",
                             Isbn = "402663512-0",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Papio ursinus",
                             Type = "electronic",
                             Year = 1984
                         },
@@ -1881,8 +1726,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Annotés",
                             EditorLastName = "Scotts",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax varius",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -1893,8 +1736,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wadie",
                             Isbn = "492212150-1",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Agama sp.",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -1905,8 +1746,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lujan",
                             Isbn = "249209762-5",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Deroptyus accipitrinus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -1917,8 +1756,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cersey",
                             Isbn = "590668805-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Chlidonias leucopterus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -1929,8 +1766,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Broadbent",
                             Isbn = "066856028-2",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Graspus graspus",
                             Type = "printed",
                             Year = 2007
                         },
@@ -1941,8 +1776,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bellee",
                             Isbn = "117775440-1",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Bubalornis niger",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -1953,8 +1786,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Payton",
                             Isbn = "067635801-2",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Phalaropus lobatus",
                             Type = "printed",
                             Year = 1995
                         },
@@ -1965,8 +1796,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gillham",
                             Isbn = "342274409-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Varanus salvator",
                             Type = "printed",
                             Year = 1987
                         },
@@ -1977,8 +1806,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Semple",
                             Isbn = "563573461-8",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Tachyglossus aculeatus",
                             Type = "printed",
                             Year = 1990
                         },
@@ -1989,8 +1816,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Chiswell",
                             Isbn = "026662111-2",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Libellula quadrimaculata",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -2001,8 +1826,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Broadfield",
                             Isbn = "763243219-1",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Cracticus nigroagularis",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -2013,8 +1836,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Adamolli",
                             Isbn = "800669362-5",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Mazama americana",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -2025,8 +1846,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Habben",
                             Isbn = "572746125-1",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Sterna paradisaea",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -2037,8 +1856,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tutton",
                             Isbn = "221817027-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Acridotheres tristis",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -2049,8 +1866,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dudenie",
                             Isbn = "724868190-3",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Psophia viridis",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -2061,8 +1876,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gilding",
                             Isbn = "150035838-X",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Lepus arcticus",
                             Type = "printed",
                             Year = 1996
                         },
@@ -2073,8 +1886,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haddrell",
                             Isbn = "712006939-X",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Alouatta seniculus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -2085,8 +1896,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haill",
                             Isbn = "382794914-9",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Nyctea scandiaca",
                             Type = "printed",
                             Year = 1995
                         },
@@ -2097,8 +1906,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ondrus",
                             Isbn = "149849015-8",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Tiliqua scincoides",
                             Type = "printed",
                             Year = 1992
                         },
@@ -2109,8 +1916,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gaule",
                             Isbn = "625299370-0",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Castor canadensis",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -2121,8 +1926,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Benda",
                             Isbn = "719882000-X",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Gorilla gorilla",
                             Type = "printed",
                             Year = 2003
                         },
@@ -2133,8 +1936,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Grunbaum",
                             Isbn = "134308717-1",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Neophron percnopterus",
                             Type = "printed",
                             Year = 2012
                         },
@@ -2143,8 +1944,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 102,
                             EditorFirstName = "Audréanne",
                             EditorLastName = "Tytcomb",
-                            Isbn = "478331398-9",
-                            Rating = 0.0
+                            Isbn = "478331398-9"
                         },
                         new
                         {
@@ -2153,8 +1953,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "De Ambrosi",
                             Isbn = "830320950-7",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Panthera pardus",
                             Type = "printed",
                             Year = 2009
                         },
@@ -2165,8 +1963,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Guerrin",
                             Isbn = "064016944-9",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Cacatua galerita",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -2177,8 +1973,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Reoch",
                             Isbn = "274444924-5",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Felis wiedi or Leopardus weidi",
                             Type = "electronic",
                             Year = 1988
                         },
@@ -2188,8 +1982,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Léone",
                             Isbn = "767805138-7",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Hymenolaimus malacorhynchus",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -2200,8 +1992,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Vereker",
                             Isbn = "213526868-2",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Tockus flavirostris",
                             Type = "printed",
                             Year = 2004
                         },
@@ -2212,8 +2002,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Robilliard",
                             Isbn = "716132069-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Lybius torquatus",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -2224,8 +2012,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Maynell",
                             Isbn = "533376822-6",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Aonyx cinerea",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -2235,8 +2021,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Yénora",
                             Isbn = "726159681-7",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Dicrostonyx groenlandicus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -2247,8 +2031,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Greetham",
                             Isbn = "837962718-0",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Bos mutus",
                             Type = "printed",
                             Year = 1999
                         },
@@ -2259,8 +2041,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Brecher",
                             Isbn = "729253156-3",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Phalaropus fulicarius",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -2270,8 +2050,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Sélène",
                             EditorLastName = "Isaaksohn",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2004
                         },
@@ -2282,8 +2060,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dobrowolski",
                             Isbn = "695808032-7",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Chlidonias leucopterus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -2294,8 +2070,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pride",
                             Isbn = "029269160-2",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Gazella granti",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -2306,8 +2080,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Birkwood",
                             Isbn = "246664734-6",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Cathartes aura",
                             Type = "printed",
                             Year = 2007
                         },
@@ -2318,8 +2090,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gooderham",
                             Isbn = "384290154-2",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Zonotrichia capensis",
                             Type = "printed",
                             Year = 1985
                         },
@@ -2330,8 +2100,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cargo",
                             Isbn = "524419103-9",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Sarcorhamphus papa",
                             Type = "printed",
                             Year = 1994
                         },
@@ -2342,8 +2110,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Standbridge",
                             Isbn = "439156263-4",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Spheniscus mendiculus",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -2354,8 +2120,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Scougal",
                             Isbn = "297335436-6",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Aegypius occipitalis",
                             Type = "printed",
                             Year = 2003
                         },
@@ -2366,8 +2130,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bastie",
                             Isbn = "757875882-9",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Phoca vitulina",
                             Type = "printed",
                             Year = 2005
                         },
@@ -2378,8 +2140,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jahnke",
                             Isbn = "317465737-7",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Crocuta crocuta",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -2390,8 +2150,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Orteau",
                             Isbn = "993358084-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Macropus robustus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -2402,8 +2160,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bortoluzzi",
                             Isbn = "775825902-2",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Motacilla aguimp",
                             Type = "printed",
                             Year = 2011
                         },
@@ -2414,8 +2170,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Radenhurst",
                             Isbn = "384845582-X",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Uraeginthus granatina",
                             Type = "printed",
                             Year = 2007
                         },
@@ -2426,8 +2180,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Annandale",
                             Isbn = "064591924-1",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Loxodonta africana",
                             Type = "printed",
                             Year = 2008
                         },
@@ -2438,8 +2190,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Aggis",
                             Isbn = "263734099-1",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Castor canadensis",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -2450,8 +2200,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacGovern",
                             Isbn = "326278989-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Macropus eugenii",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -2462,8 +2210,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Taye",
                             Isbn = "514519141-3",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Pseudalopex gymnocercus",
                             Type = "printed",
                             Year = 2006
                         },
@@ -2474,8 +2220,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Judron",
                             Isbn = "753010206-0",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Geococcyx californianus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -2484,8 +2228,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 131,
                             EditorFirstName = "Laïla",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Pituophis melanaleucus",
                             Type = "printed",
                             Year = 2009
                         },
@@ -2496,8 +2238,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Le Bosse",
                             Isbn = "989159903-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Colobus guerza",
                             Type = "printed",
                             Year = 1995
                         },
@@ -2508,8 +2248,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Filippov",
                             Isbn = "861708204-6",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Mazama gouazoubira",
                             Type = "printed",
                             Year = 2000
                         },
@@ -2520,8 +2258,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Treasure",
                             Isbn = "554509863-1",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Procyon cancrivorus",
                             Type = "printed",
                             Year = 2003
                         },
@@ -2531,8 +2267,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mélanie",
                             EditorLastName = "Beams",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Kobus defassa",
                             Type = "printed",
                             Year = 2006
                         },
@@ -2543,8 +2277,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Badsworth",
                             Isbn = "457005988-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Agelaius phoeniceus",
                             Type = "electronic",
                             Year = 1989
                         },
@@ -2555,8 +2287,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sedcole",
                             Isbn = "371632552-X",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Phacochoerus aethiopus",
                             Type = "electronic",
                             Year = 1990
                         },
@@ -2567,8 +2297,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Diggles",
                             Isbn = "735144764-0",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Diceros bicornis",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -2579,8 +2307,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pollak",
                             Isbn = "299155866-0",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Eudyptula minor",
                             Type = "printed",
                             Year = 2009
                         },
@@ -2590,8 +2316,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mårten",
                             Isbn = "754518996-5",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Neotoma sp.",
                             Type = "printed",
                             Year = 2013
                         },
@@ -2602,8 +2326,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mioni",
                             Isbn = "452574294-1",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Chauna torquata",
                             Type = "electronic",
                             Year = 1964
                         },
@@ -2614,8 +2336,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Elsay",
                             Isbn = "292204795-4",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Melursus ursinus",
                             Type = "printed",
                             Year = 2005
                         },
@@ -2626,8 +2346,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Leneve",
                             Isbn = "435539650-9",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Plegadis falcinellus",
                             Type = "printed",
                             Year = 2006
                         },
@@ -2638,8 +2356,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Purry",
                             Isbn = "036735614-7",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Sagittarius serpentarius",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -2650,8 +2366,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Belding",
                             Isbn = "909963144-8",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Phalaropus lobatus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -2662,8 +2376,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Keyte",
                             Isbn = "298436320-5",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Mazama gouazoubira",
                             Type = "printed",
                             Year = 1999
                         },
@@ -2674,8 +2386,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beazley",
                             Isbn = "361252812-2",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Streptopelia decipiens",
                             Type = "printed",
                             Year = 2011
                         },
@@ -2686,8 +2396,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Buy",
                             Isbn = "644162868-6",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Phascogale tapoatafa",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -2698,8 +2406,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sissland",
                             Isbn = "507614003-7",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Acridotheres tristis",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -2710,8 +2416,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Arderne",
                             Isbn = "275543142-3",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Naja haje",
                             Type = "printed",
                             Year = 1966
                         },
@@ -2720,8 +2424,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 151,
                             EditorFirstName = "Bérangère",
                             EditorLastName = "Foulsham",
-                            Isbn = "544478387-8",
-                            Rating = 0.0
+                            Isbn = "544478387-8"
                         },
                         new
                         {
@@ -2730,8 +2433,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Helm",
                             Isbn = "510522184-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Phascogale calura",
                             Type = "printed",
                             Year = 2009
                         },
@@ -2740,8 +2441,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 153,
                             EditorFirstName = "Amélie",
                             EditorLastName = "Batting",
-                            Isbn = "831539167-4",
-                            Rating = 0.0
+                            Isbn = "831539167-4"
                         },
                         new
                         {
@@ -2750,8 +2450,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Witling",
                             Isbn = "849852540-3",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Laniaurius atrococcineus",
                             Type = "printed",
                             Year = 2001
                         },
@@ -2762,8 +2460,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Craker",
                             Isbn = "716054615-6",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Macropus robustus",
                             Type = "electronic",
                             Year = 1985
                         },
@@ -2774,8 +2470,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fennessy",
                             Isbn = "160357385-2",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Speothos vanaticus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -2786,8 +2480,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beddow",
                             Isbn = "426323743-9",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Canis aureus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -2798,8 +2490,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Croxton",
                             Isbn = "287188366-1",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Petaurus breviceps",
                             Type = "printed",
                             Year = 1995
                         },
@@ -2810,8 +2500,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Vasilic",
                             Isbn = "503333197-3",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Dasyurus viverrinus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -2822,8 +2510,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pettiford",
                             Isbn = "928184925-9",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Ictalurus furcatus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -2834,8 +2520,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hedaux",
                             Isbn = "809074847-3",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Ceratotherium simum",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -2846,8 +2530,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McGenn",
                             Isbn = "678941099-6",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Melursus ursinus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -2858,8 +2540,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McKomb",
                             Isbn = "783297995-X",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -2870,8 +2550,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hrishchenko",
                             Isbn = "827125066-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Larus fuliginosus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -2882,8 +2560,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Elintune",
                             Isbn = "703354780-3",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Nyctereutes procyonoides",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -2893,8 +2569,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mélissandre",
                             EditorLastName = "Fateley",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -2905,8 +2579,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Duval",
                             Isbn = "207047047-4",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Pycnonotus nigricans",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -2917,8 +2589,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lindblom",
                             Isbn = "967084646-3",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Merops nubicus",
                             Type = "printed",
                             Year = 2005
                         },
@@ -2928,8 +2598,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Tú",
                             Isbn = "905212444-2",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Mustela nigripes",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -2940,8 +2608,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lathwood",
                             Isbn = "920392372-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Echimys chrysurus",
                             Type = "printed",
                             Year = 2006
                         },
@@ -2952,8 +2618,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Arnaez",
                             Isbn = "700649476-1",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Acrobates pygmaeus",
                             Type = "printed",
                             Year = 2011
                         },
@@ -2964,8 +2628,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Huffey",
                             Isbn = "583690104-X",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Mazama gouazoubira",
                             Type = "printed",
                             Year = 1986
                         },
@@ -2976,8 +2638,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sicily",
                             Isbn = "068332583-3",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Erinaceus frontalis",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -2988,8 +2648,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sawer",
                             Isbn = "779927285-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Parus atricapillus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -3000,8 +2658,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bigmore",
                             Isbn = "725792866-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Erethizon dorsatum",
                             Type = "printed",
                             Year = 2000
                         },
@@ -3012,8 +2668,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sturgis",
                             Isbn = "281577669-3",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Macaca mulatta",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -3024,8 +2678,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rominov",
                             Isbn = "176482683-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Pseudocheirus peregrinus",
                             Type = "printed",
                             Year = 1987
                         },
@@ -3036,8 +2688,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rocks",
                             Isbn = "390699172-5",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Mirounga leonina",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -3048,8 +2698,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wehner",
                             Isbn = "991508964-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Zalophus californicus",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -3060,8 +2708,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pratton",
                             Isbn = "590994816-4",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Neotis denhami",
                             Type = "printed",
                             Year = 1994
                         },
@@ -3072,8 +2718,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tinner",
                             Isbn = "323845885-X",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Orcinus orca",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -3084,8 +2728,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McLanaghan",
                             Isbn = "507963681-5",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Bradypus tridactylus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -3096,8 +2738,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cluatt",
                             Isbn = "242307213-9",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Mycteria leucocephala",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -3108,8 +2748,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Schustl",
                             Isbn = "019739501-5",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Paraxerus cepapi",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -3120,8 +2758,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Emanuele",
                             Isbn = "388554238-2",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Otaria flavescens",
                             Type = "electronic",
                             Year = 1963
                         },
@@ -3132,8 +2768,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nuttey",
                             Isbn = "218623650-8",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Bubalornis niger",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -3144,8 +2778,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pourveer",
                             Isbn = "579676426-8",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Leptoptilus dubius",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -3156,8 +2788,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Geockle",
                             Isbn = "957834173-3",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Alopochen aegyptiacus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -3168,8 +2798,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gritskov",
                             Isbn = "025032980-8",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Boa caninus",
                             Type = "electronic",
                             Year = 1987
                         },
@@ -3180,8 +2808,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cardello",
                             Isbn = "604494120-5",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Felis chaus",
                             Type = "printed",
                             Year = 1986
                         },
@@ -3192,8 +2818,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Twigger",
                             Isbn = "647226380-9",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Aegypius tracheliotus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -3204,8 +2828,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wann",
                             Isbn = "447016334-1",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Macropus rufus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -3216,8 +2838,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mitham",
                             Isbn = "668123117-9",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Sciurus niger",
                             Type = "printed",
                             Year = 2012
                         },
@@ -3228,8 +2848,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pappi",
                             Isbn = "831616307-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Rana sp.",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -3240,8 +2858,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stolle",
                             Isbn = "114703773-6",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Spermophilus armatus",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -3252,8 +2868,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sewell",
                             Isbn = "633376325-X",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Nannopterum harrisi",
                             Type = "printed",
                             Year = 2003
                         },
@@ -3264,8 +2878,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tyrone",
                             Isbn = "208760693-5",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Pelecanus occidentalis",
                             Type = "printed",
                             Year = 1986
                         },
@@ -3276,8 +2888,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ginni",
                             Isbn = "831368332-5",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Geochelone elegans",
                             Type = "printed",
                             Year = 1992
                         },
@@ -3288,8 +2898,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Patesel",
                             Isbn = "580465160-9",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Paroaria gularis",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -3300,8 +2908,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Konneke",
                             Isbn = "244387227-0",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Toxostoma curvirostre",
                             Type = "printed",
                             Year = 1993
                         },
@@ -3312,8 +2918,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tattersall",
                             Isbn = "095691995-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Larus dominicanus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -3324,8 +2928,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Battram",
                             Isbn = "694510188-6",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Mustela nigripes",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -3336,8 +2938,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Halliberton",
                             Isbn = "308994906-7",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Pycnonotus nigricans",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -3348,8 +2948,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacAllester",
                             Isbn = "794152536-4",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Callorhinus ursinus",
                             Type = "electronic",
                             Year = 1985
                         },
@@ -3360,8 +2958,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Laverenz",
                             Isbn = "124886953-2",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Paradoxurus hermaphroditus",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -3372,8 +2968,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Renault",
                             Isbn = "970488013-8",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Francolinus coqui",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -3384,8 +2978,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jerisch",
                             Isbn = "790856672-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Cordylus giganteus",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -3396,8 +2988,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Adamczyk",
                             Isbn = "593923033-4",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Physignathus cocincinus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -3407,8 +2997,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Loïc",
                             Isbn = "247271773-3",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Balearica pavonina",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -3418,8 +3006,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Lucrèce",
                             EditorLastName = "Colhoun",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Mycteria leucocephala",
                             Type = "printed",
                             Year = 2001
                         },
@@ -3430,8 +3016,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Suddock",
                             Isbn = "230331810-6",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Pelecanus occidentalis",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -3442,8 +3026,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McSporon",
                             Isbn = "535531222-5",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Ornithorhynchus anatinus",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -3454,8 +3036,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beardsley",
                             Isbn = "393917851-9",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Antidorcas marsupialis",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -3466,8 +3046,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fairleigh",
                             Isbn = "269768080-2",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Rana sp.",
                             Type = "printed",
                             Year = 1996
                         },
@@ -3478,8 +3056,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McClenaghan",
                             Isbn = "690822260-8",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Felis libyca",
                             Type = "printed",
                             Year = 2006
                         },
@@ -3490,8 +3066,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Leakner",
                             Isbn = "806684856-0",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Vulpes vulpes",
                             Type = "printed",
                             Year = 2011
                         },
@@ -3502,8 +3076,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Loos",
                             Isbn = "775085889-X",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Fulica cristata",
                             Type = "printed",
                             Year = 1986
                         },
@@ -3514,8 +3086,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Spurett",
                             Isbn = "629120981-0",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Terrapene carolina",
                             Type = "printed",
                             Year = 1992
                         },
@@ -3526,8 +3096,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Allardyce",
                             Isbn = "991683590-X",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Butorides striatus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -3538,8 +3106,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Drees",
                             Isbn = "510670112-0",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Anthropoides paradisea",
                             Type = "printed",
                             Year = 1990
                         },
@@ -3550,8 +3116,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Griffin",
                             Isbn = "982291722-8",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Psittacula krameri",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -3562,8 +3126,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dessaur",
                             Isbn = "830863412-5",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Lamprotornis nitens",
                             Type = "printed",
                             Year = 2006
                         },
@@ -3574,8 +3136,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lebel",
                             Isbn = "671362381-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Lamprotornis chalybaeus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -3586,8 +3146,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Petronis",
                             Isbn = "182719094-9",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Chlidonias leucopterus",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -3598,8 +3156,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pulster",
                             Isbn = "328456253-2",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Larus fuliginosus",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -3609,8 +3165,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Yè",
                             Isbn = "531636720-0",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Nesomimus trifasciatus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -3621,8 +3175,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Marrington",
                             Isbn = "955858831-8",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Haematopus ater",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -3633,8 +3185,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fincher",
                             Isbn = "578479203-2",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Prionace glauca",
                             Type = "printed",
                             Year = 1996
                         },
@@ -3645,8 +3195,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Albarez",
                             Isbn = "995942272-0",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Sciurus vulgaris",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -3657,8 +3205,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "D'Adamo",
                             Isbn = "949445853-2",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Halcyon smyrnesis",
                             Type = "printed",
                             Year = 2001
                         },
@@ -3669,8 +3215,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Whillock",
                             Isbn = "498834278-6",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Phoca vitulina",
                             Type = "printed",
                             Year = 1991
                         },
@@ -3681,8 +3225,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Keyme",
                             Isbn = "165145990-8",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Semnopithecus entellus",
                             Type = "printed",
                             Year = 2005
                         },
@@ -3692,8 +3234,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Bérengère",
                             EditorLastName = "McQuilty",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Canis lupus",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -3704,8 +3244,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Close",
                             Isbn = "551457152-1",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2009
                         },
@@ -3716,8 +3254,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Briddock",
                             Isbn = "572757198-7",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Mephitis mephitis",
                             Type = "printed",
                             Year = 2006
                         },
@@ -3728,8 +3264,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Saltman",
                             Isbn = "251068620-8",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Didelphis virginiana",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -3740,8 +3274,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Callaghan",
                             Isbn = "282755523-9",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Tringa glareola",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -3752,8 +3284,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mc Giffin",
                             Isbn = "614205886-1",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Spizaetus coronatus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -3764,8 +3294,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cookley",
                             Isbn = "274332465-1",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Odocoileus hemionus",
                             Type = "printed",
                             Year = 1992
                         },
@@ -3776,8 +3304,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Milmith",
                             Isbn = "662182269-3",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Colaptes campestroides",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -3788,8 +3314,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Corrie",
                             Isbn = "928903958-2",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Terrapene carolina",
                             Type = "printed",
                             Year = 1991
                         },
@@ -3800,8 +3324,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Buckland",
                             Isbn = "308883151-8",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Lutra canadensis",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -3810,8 +3332,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 243,
                             EditorFirstName = "Océane",
                             EditorLastName = "Morphey",
-                            Isbn = "866168476-5",
-                            Rating = 0.0
+                            Isbn = "866168476-5"
                         },
                         new
                         {
@@ -3820,8 +3341,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Perkins",
                             Isbn = "424008155-6",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Diomedea irrorata",
                             Type = "printed",
                             Year = 2008
                         },
@@ -3830,8 +3349,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 245,
                             EditorFirstName = "Sòng",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Hymenolaimus malacorhynchus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -3842,8 +3359,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Capper",
                             Isbn = "716336707-4",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Phascolarctos cinereus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -3854,8 +3369,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Valens-Smith",
                             Isbn = "859600189-1",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Pelecans onocratalus",
                             Type = "printed",
                             Year = 1999
                         },
@@ -3866,8 +3379,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ferreira",
                             Isbn = "360129443-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Lorythaixoides concolor",
                             Type = "printed",
                             Year = 2005
                         },
@@ -3878,8 +3389,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Baskeyfied",
                             Isbn = "067580788-3",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Haematopus ater",
                             Type = "printed",
                             Year = 2011
                         },
@@ -3890,8 +3399,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Glanders",
                             Isbn = "707239892-9",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Coluber constrictor foxii",
                             Type = "printed",
                             Year = 2008
                         },
@@ -3902,8 +3409,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Yankeev",
                             Isbn = "890107013-8",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Paroaria gularis",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -3914,8 +3419,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Veelers",
                             Isbn = "874308727-2",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Aegypius occipitalis",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -3926,8 +3429,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Venturoli",
                             Isbn = "193933077-7",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Charadrius tricollaris",
                             Type = "printed",
                             Year = 2001
                         },
@@ -3938,8 +3439,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Columbine",
                             Isbn = "523331086-4",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "printed",
                             Year = 1990
                         },
@@ -3950,8 +3449,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pavier",
                             Isbn = "059750480-6",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Nyctea scandiaca",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -3962,8 +3459,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Melby",
                             Isbn = "009720089-1",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Paradoxurus hermaphroditus",
                             Type = "printed",
                             Year = 2005
                         },
@@ -3973,8 +3468,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Vérane",
                             Isbn = "312807114-4",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Scolopax minor",
                             Type = "printed",
                             Year = 2004
                         },
@@ -3985,8 +3478,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Carwithim",
                             Isbn = "917805427-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Cynictis penicillata",
                             Type = "printed",
                             Year = 2004
                         },
@@ -3997,8 +3488,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hickisson",
                             Isbn = "887051210-X",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Ictalurus furcatus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -4009,8 +3498,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wickliffe",
                             Isbn = "288273465-4",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Larus fuliginosus",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -4021,8 +3508,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Robecon",
                             Isbn = "665278752-0",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Chlidonias leucopterus",
                             Type = "printed",
                             Year = 2002
                         },
@@ -4033,8 +3518,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Egalton",
                             Isbn = "949247142-6",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Macaca mulatta",
                             Type = "printed",
                             Year = 2012
                         },
@@ -4045,8 +3528,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nand",
                             Isbn = "149054054-7",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Pelecans onocratalus",
                             Type = "electronic",
                             Year = 1984
                         },
@@ -4057,8 +3538,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lille",
                             Isbn = "127755803-5",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Macropus rufogriseus",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -4069,8 +3548,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lovering",
                             Isbn = "434329360-2",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Paroaria gularis",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -4081,8 +3558,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kellie",
                             Isbn = "598334402-1",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Chlamydosaurus kingii",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -4092,8 +3567,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Åslög",
                             Isbn = "344104644-7",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Pteronura brasiliensis",
                             Type = "printed",
                             Year = 1992
                         },
@@ -4104,8 +3577,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cussen",
                             Isbn = "676578299-0",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Crotalus cerastes",
                             Type = "printed",
                             Year = 2011
                         },
@@ -4116,8 +3587,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kleinbaum",
                             Isbn = "554318810-2",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Acrobates pygmaeus",
                             Type = "printed",
                             Year = 1995
                         },
@@ -4128,8 +3597,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Avery",
                             Isbn = "719882840-X",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Canis mesomelas",
                             Type = "printed",
                             Year = 1998
                         },
@@ -4140,8 +3607,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Watling",
                             Isbn = "900956256-5",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Anas punctata",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -4152,8 +3617,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacTerrelly",
                             Isbn = "817318468-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Trichoglossus haematodus moluccanus",
                             Type = "printed",
                             Year = 1989
                         },
@@ -4163,8 +3626,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Alizée",
                             Isbn = "566279060-4",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Canis aureus",
                             Type = "printed",
                             Year = 2002
                         },
@@ -4174,8 +3635,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Michèle",
                             EditorLastName = "Borth",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Trichoglossus chlorolepidotus",
                             Type = "printed",
                             Year = 1989
                         },
@@ -4186,8 +3645,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fevier",
                             Isbn = "213110370-0",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Butorides striatus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -4198,8 +3655,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Trunkfield",
                             Isbn = "698806518-0",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Eunectes sp.",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -4210,8 +3665,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McSporrin",
                             Isbn = "775510235-1",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Redunca redunca",
                             Type = "printed",
                             Year = 2004
                         },
@@ -4222,8 +3675,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Janusik",
                             Isbn = "806548970-2",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Chauna torquata",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -4233,8 +3684,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "André",
                             Isbn = "114529794-3",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Ictonyx striatus",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -4245,8 +3694,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bretelle",
                             Isbn = "977331229-1",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Phoca vitulina",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -4257,8 +3704,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Thew",
                             Isbn = "900244758-2",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Ammospermophilus nelsoni",
                             Type = "printed",
                             Year = 1992
                         },
@@ -4269,8 +3714,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Carney",
                             Isbn = "966530273-6",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Meles meles",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -4281,8 +3724,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Strotton",
                             Isbn = "138655381-6",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Melophus lathami",
                             Type = "printed",
                             Year = 2000
                         },
@@ -4293,8 +3734,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Caddies",
                             Isbn = "249525060-2",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Trichosurus vulpecula",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -4305,8 +3744,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rosendall",
                             Isbn = "802131918-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Acrantophis madagascariensis",
                             Type = "printed",
                             Year = 2005
                         },
@@ -4317,8 +3754,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gethins",
                             Isbn = "860200967-4",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Cervus duvauceli",
                             Type = "printed",
                             Year = 1999
                         },
@@ -4329,8 +3764,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dottridge",
                             Isbn = "457970473-8",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Tamiasciurus hudsonicus",
                             Type = "electronic",
                             Year = 1989
                         },
@@ -4341,8 +3774,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mulcaster",
                             Isbn = "192589875-X",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Pseudalopex gymnocercus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -4352,8 +3783,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Dù",
                             Isbn = "449464880-9",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Ardea cinerea",
                             Type = "printed",
                             Year = 1991
                         },
@@ -4364,8 +3793,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McCue",
                             Isbn = "027550844-7",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Aegypius occipitalis",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -4375,8 +3802,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Lài",
                             Isbn = "639361579-6",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Cervus canadensis",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -4387,8 +3812,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kalderon",
                             Isbn = "062007958-4",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 1996
                         },
@@ -4399,8 +3822,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Matteris",
                             Isbn = "724045217-4",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Ceratotherium simum",
                             Type = "printed",
                             Year = 1993
                         },
@@ -4411,8 +3832,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kilian",
                             Isbn = "703003031-1",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Pituophis melanaleucus",
                             Type = "printed",
                             Year = 1988
                         },
@@ -4423,8 +3842,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bail",
                             Isbn = "875618383-6",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Certotrichas paena",
                             Type = "printed",
                             Year = 2011
                         },
@@ -4435,8 +3852,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dumberell",
                             Isbn = "768284807-3",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Mirounga leonina",
                             Type = "printed",
                             Year = 1997
                         },
@@ -4447,8 +3862,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Castard",
                             Isbn = "841205443-1",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Sarcorhamphus papa",
                             Type = "printed",
                             Year = 1986
                         },
@@ -4459,8 +3872,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Boss",
                             Isbn = "758175238-0",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Cercopithecus aethiops",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -4471,8 +3882,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Norval",
                             Isbn = "463157773-8",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Colaptes campestroides",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -4483,8 +3892,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Boss",
                             Isbn = "959163095-6",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Macropus robustus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -4495,8 +3902,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sacaze",
                             Isbn = "746668702-4",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Creagrus furcatus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -4507,8 +3912,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cranston",
                             Isbn = "471682614-7",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Herpestes javanicus",
                             Type = "printed",
                             Year = 2011
                         },
@@ -4519,8 +3922,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mulryan",
                             Isbn = "009629198-2",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Nyctereutes procyonoides",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -4531,8 +3932,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cacacie",
                             Isbn = "828324822-7",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Aonyx capensis",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -4543,8 +3942,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gatlin",
                             Isbn = "629562289-5",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Macropus agilis",
                             Type = "printed",
                             Year = 2008
                         },
@@ -4555,8 +3952,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sleep",
                             Isbn = "524230469-3",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Himantopus himantopus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -4567,8 +3962,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jablonski",
                             Isbn = "017766787-7",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Trichoglossus haematodus moluccanus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -4579,8 +3972,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ionnidis",
                             Isbn = "681300940-0",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Paroaria gularis",
                             Type = "printed",
                             Year = 2007
                         },
@@ -4591,8 +3982,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Semens",
                             Isbn = "190634151-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Eunectes sp.",
                             Type = "printed",
                             Year = 1988
                         },
@@ -4603,8 +3992,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Redish",
                             Isbn = "851347391-X",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Giraffe camelopardalis",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -4615,8 +4002,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cornier",
                             Isbn = "284173080-8",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Madoqua kirkii",
                             Type = "printed",
                             Year = 2004
                         },
@@ -4627,8 +4012,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sivill",
                             Isbn = "998001546-2",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Naja haje",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -4639,8 +4022,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cordrey",
                             Isbn = "022738192-0",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Nesomimus trifasciatus",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -4651,8 +4032,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Welsh",
                             Isbn = "552804956-3",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Stercorarius longicausus",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -4663,8 +4042,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ring",
                             Isbn = "117053507-0",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Ara macao",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -4675,8 +4052,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hastwall",
                             Isbn = "012592393-7",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Trachyphonus vaillantii",
                             Type = "printed",
                             Year = 2006
                         },
@@ -4687,8 +4062,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Kennavain",
                             Isbn = "940280765-9",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Columba palumbus",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -4699,8 +4072,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lock",
                             Isbn = "551093286-4",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -4711,8 +4082,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Campey",
                             Isbn = "030088249-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Spermophilus armatus",
                             Type = "printed",
                             Year = 1997
                         },
@@ -4723,8 +4092,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Verna",
                             Isbn = "328048026-4",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Antechinus flavipes",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -4734,8 +4101,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Jú",
                             EditorLastName = "Shank",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Rangifer tarandus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -4746,8 +4111,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mariot",
                             Isbn = "243870457-8",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Geochelone elegans",
                             Type = "printed",
                             Year = 1988
                         },
@@ -4758,8 +4121,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Filimore",
                             Isbn = "655065475-0",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Eubalaena australis",
                             Type = "printed",
                             Year = 1993
                         },
@@ -4770,8 +4131,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Leahy",
                             Isbn = "512506362-2",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Spilogale gracilis",
                             Type = "printed",
                             Year = 1996
                         },
@@ -4782,8 +4141,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Birtwisle",
                             Isbn = "235232487-4",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Paraxerus cepapi",
                             Type = "printed",
                             Year = 2008
                         },
@@ -4794,8 +4151,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ozintsev",
                             Isbn = "343811505-0",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Choloepus hoffmani",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -4806,8 +4161,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tither",
                             Isbn = "167312918-8",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Ctenophorus ornatus",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -4817,8 +4170,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Lorène",
                             Isbn = "640417235-6",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Eutamias minimus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -4829,8 +4180,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Denge",
                             Isbn = "687792171-2",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Ephipplorhynchus senegalensis",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -4841,8 +4190,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ingold",
                             Isbn = "485046783-0",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Cynictis penicillata",
                             Type = "printed",
                             Year = 2011
                         },
@@ -4853,8 +4200,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mohammed",
                             Isbn = "664045202-2",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Pseudalopex gymnocercus",
                             Type = "printed",
                             Year = 2002
                         },
@@ -4865,8 +4210,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pauncefoot",
                             Isbn = "459327165-7",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Galago crassicaudataus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -4877,8 +4220,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pinkie",
                             Isbn = "113602538-3",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Bassariscus astutus",
                             Type = "printed",
                             Year = 2003
                         },
@@ -4888,8 +4229,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Aloïs",
                             Isbn = "477230955-1",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Ursus arctos",
                             Type = "printed",
                             Year = 1994
                         },
@@ -4900,8 +4239,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lowdiane",
                             Isbn = "085456571-X",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Cynictis penicillata",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -4912,8 +4249,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Edgington",
                             Isbn = "398812283-1",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Chauna torquata",
                             Type = "printed",
                             Year = 2003
                         },
@@ -4924,8 +4259,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Blackwell",
                             Isbn = "575215480-4",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Ursus americanus",
                             Type = "electronic",
                             Year = 1990
                         },
@@ -4936,8 +4269,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stigell",
                             Isbn = "332239425-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Cebus apella",
                             Type = "printed",
                             Year = 2011
                         },
@@ -4948,8 +4279,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cade",
                             Isbn = "396815461-4",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Cereopsis novaehollandiae",
                             Type = "printed",
                             Year = 1996
                         },
@@ -4960,8 +4289,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Readman",
                             Isbn = "291659131-1",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax niger",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -4972,8 +4299,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pasque",
                             Isbn = "576935777-0",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Laniarius ferrugineus",
                             Type = "printed",
                             Year = 2004
                         },
@@ -4984,8 +4309,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hayter",
                             Isbn = "061462494-0",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Chauna torquata",
                             Type = "electronic",
                             Year = 1967
                         },
@@ -4995,8 +4318,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Valérie",
                             Isbn = "651570367-8",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2008
                         },
@@ -5007,8 +4328,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Chesters",
                             Isbn = "754488733-2",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax carbo",
                             Type = "printed",
                             Year = 1986
                         },
@@ -5019,8 +4338,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Candlin",
                             Isbn = "626536736-6",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Pelecanus occidentalis",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -5030,8 +4347,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Marie-noël",
                             Isbn = "377387729-3",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Cervus duvauceli",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -5042,8 +4357,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Esch",
                             Isbn = "811499531-9",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Centrocercus urophasianus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -5054,8 +4367,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McWhin",
                             Isbn = "780943841-7",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Physignathus cocincinus",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -5066,8 +4377,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Baudasso",
                             Isbn = "999483305-7",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Psittacula krameri",
                             Type = "electronic",
                             Year = 1987
                         },
@@ -5078,8 +4387,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Errichi",
                             Isbn = "956916933-8",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Anastomus oscitans",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -5090,8 +4397,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kidsley",
                             Isbn = "613715076-3",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Bison bison",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -5102,8 +4407,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Greatbank",
                             Isbn = "192509670-X",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Antidorcas marsupialis",
                             Type = "printed",
                             Year = 2012
                         },
@@ -5114,8 +4417,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fermoy",
                             Isbn = "046502959-0",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Branta canadensis",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -5126,8 +4427,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mc Dermid",
                             Isbn = "487986009-3",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Oxybelis sp.",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -5138,8 +4437,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hargroves",
                             Isbn = "668908677-1",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Aquila chrysaetos",
                             Type = "printed",
                             Year = 2009
                         },
@@ -5150,8 +4447,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Morden",
                             Isbn = "535315136-4",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Sarkidornis melanotos",
                             Type = "printed",
                             Year = 2001
                         },
@@ -5162,8 +4457,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Glasper",
                             Isbn = "729088389-6",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Cebus apella",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -5174,8 +4467,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Monan",
                             Isbn = "348456982-4",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax carbo",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -5185,8 +4476,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Gérald",
                             EditorLastName = "Alejandro",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Ciconia ciconia",
                             Type = "printed",
                             Year = 1996
                         },
@@ -5196,8 +4485,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Cléa",
                             Isbn = "452170794-7",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Diomedea irrorata",
                             Type = "printed",
                             Year = 2012
                         },
@@ -5206,8 +4493,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 361,
                             EditorFirstName = "Clémentine",
                             EditorLastName = "Fieller",
-                            Isbn = "117639861-X",
-                            Rating = 0.0
+                            Isbn = "117639861-X"
                         },
                         new
                         {
@@ -5216,8 +4502,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gregory",
                             Isbn = "832559317-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Columba livia",
                             Type = "printed",
                             Year = 2002
                         },
@@ -5228,8 +4512,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Futter",
                             Isbn = "520763789-4",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Chauna torquata",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -5240,8 +4522,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jeremaes",
                             Isbn = "998707230-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 2013
                         },
@@ -5252,8 +4532,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wasbrough",
                             Isbn = "052864298-7",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Haliaetus leucogaster",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -5264,8 +4542,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gelder",
                             Isbn = "662479973-0",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Dendrocitta vagabunda",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -5276,8 +4552,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bragger",
                             Isbn = "442930160-3",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Cacatua tenuirostris",
                             Type = "printed",
                             Year = 2008
                         },
@@ -5288,8 +4562,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cunnow",
                             Isbn = "702306214-9",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Ovis ammon",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -5300,8 +4572,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bootton",
                             Isbn = "980157320-1",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Pandon haliaetus",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -5312,8 +4582,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Preene",
                             Isbn = "002787480-X",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Phalaropus lobatus",
                             Type = "printed",
                             Year = 2004
                         },
@@ -5324,8 +4592,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Aspel",
                             Isbn = "554303268-4",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Ovis ammon",
                             Type = "printed",
                             Year = 2009
                         },
@@ -5336,8 +4602,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Corsan",
                             Isbn = "326770094-9",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Platalea leucordia",
                             Type = "printed",
                             Year = 1996
                         },
@@ -5348,8 +4612,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Elner",
                             Isbn = "691068847-3",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Ctenophorus ornatus",
                             Type = "printed",
                             Year = 1987
                         },
@@ -5360,8 +4622,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gofforth",
                             Isbn = "803805044-4",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Canis aureus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -5372,8 +4632,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haslen",
                             Isbn = "129799374-8",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Haliaetus vocifer",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -5384,8 +4642,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Petriello",
                             Isbn = "977737112-8",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Dicrostonyx groenlandicus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -5396,8 +4652,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rawlison",
                             Isbn = "300182517-0",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Echimys chrysurus",
                             Type = "printed",
                             Year = 1968
                         },
@@ -5408,8 +4662,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hamblen",
                             Isbn = "349354109-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Platalea leucordia",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -5420,8 +4672,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Metham",
                             Isbn = "439823678-3",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Tursiops truncatus",
                             Type = "printed",
                             Year = 1986
                         },
@@ -5432,8 +4682,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Vettore",
                             Isbn = "459651115-2",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Psophia viridis",
                             Type = "printed",
                             Year = 2002
                         },
@@ -5444,8 +4692,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mayer",
                             Isbn = "381700501-6",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Larus fuliginosus",
                             Type = "printed",
                             Year = 1986
                         },
@@ -5456,8 +4702,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kyles",
                             Isbn = "680984298-5",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Canis mesomelas",
                             Type = "printed",
                             Year = 1994
                         },
@@ -5468,8 +4712,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haswall",
                             Isbn = "938581686-1",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Buteo galapagoensis",
                             Type = "printed",
                             Year = 1995
                         },
@@ -5480,8 +4722,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mitie",
                             Isbn = "480407781-2",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Sterna paradisaea",
                             Type = "printed",
                             Year = 1994
                         },
@@ -5492,8 +4732,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Aulsford",
                             Isbn = "058630956-X",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Vulpes chama",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -5504,8 +4742,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lakeman",
                             Isbn = "115333570-0",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Cordylus giganteus",
                             Type = "printed",
                             Year = 1989
                         },
@@ -5516,8 +4752,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mounsey",
                             Isbn = "731416059-7",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Phylurus milli",
                             Type = "electronic",
                             Year = 1988
                         },
@@ -5528,8 +4762,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Londing",
                             Isbn = "610083968-7",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Cervus duvauceli",
                             Type = "printed",
                             Year = 2011
                         },
@@ -5540,8 +4772,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Roe",
                             Isbn = "780925367-0",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Chordeiles minor",
                             Type = "printed",
                             Year = 2008
                         },
@@ -5552,8 +4782,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Randlesome",
                             Isbn = "683917071-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax varius",
                             Type = "printed",
                             Year = 2005
                         },
@@ -5564,8 +4792,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jaquest",
                             Isbn = "096410335-4",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Marmota caligata",
                             Type = "printed",
                             Year = 2001
                         },
@@ -5576,8 +4802,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Perett",
                             Isbn = "379233763-0",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Grus antigone",
                             Type = "printed",
                             Year = 2005
                         },
@@ -5588,8 +4812,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Landeaux",
                             Isbn = "893720889-X",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Loxodonta africana",
                             Type = "printed",
                             Year = 2009
                         },
@@ -5600,8 +4822,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Surgen",
                             Isbn = "430920022-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Manouria emys",
                             Type = "printed",
                             Year = 2007
                         },
@@ -5612,8 +4832,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Truce",
                             Isbn = "965363253-1",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Dendrocitta vagabunda",
                             Type = "electronic",
                             Year = 1965
                         },
@@ -5624,8 +4842,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beedle",
                             Isbn = "044878396-7",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Rhea americana",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -5636,8 +4852,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jorg",
                             Isbn = "516803261-3",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Estrilda erythronotos",
                             Type = "printed",
                             Year = 2007
                         },
@@ -5648,8 +4862,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Reany",
                             Isbn = "734140232-6",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Manouria emys",
                             Type = "printed",
                             Year = 2010
                         },
@@ -5660,8 +4872,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Zollner",
                             Isbn = "163056747-7",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Pelecanus conspicillatus",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -5672,8 +4882,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Zorn",
                             Isbn = "556166715-7",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Felis wiedi or Leopardus weidi",
                             Type = "printed",
                             Year = 1992
                         },
@@ -5684,8 +4892,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wabersich",
                             Isbn = "831187347-X",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Merops bullockoides",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -5696,8 +4902,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cathery",
                             Isbn = "584771869-1",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Coendou prehensilis",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -5707,8 +4911,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Rachèle",
                             Isbn = "291234996-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Oreamnos americanus",
                             Type = "printed",
                             Year = 2012
                         },
@@ -5719,8 +4921,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Harbottle",
                             Isbn = "060305517-6",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Megaderma spasma",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -5731,8 +4931,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Heaselgrave",
                             Isbn = "268480639-X",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Phoca vitulina",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -5743,8 +4941,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Trendle",
                             Isbn = "023818206-1",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Anser anser",
                             Type = "electronic",
                             Year = 1981
                         },
@@ -5755,8 +4951,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shillinglaw",
                             Isbn = "483910939-7",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Bradypus tridactylus",
                             Type = "printed",
                             Year = 2007
                         },
@@ -5767,8 +4961,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gosswell",
                             Isbn = "300829021-3",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Macaca fuscata",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -5779,8 +4971,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ison",
                             Isbn = "742592874-4",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Felis chaus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -5791,8 +4981,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McGarel",
                             Isbn = "593720507-3",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Laniaurius atrococcineus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -5803,8 +4991,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stancer",
                             Isbn = "842496086-6",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Zosterops pallidus",
                             Type = "printed",
                             Year = 1998
                         },
@@ -5815,8 +5001,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Look",
                             Isbn = "570032804-6",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Sylvilagus floridanus",
                             Type = "printed",
                             Year = 1999
                         },
@@ -5827,8 +5011,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Spenceley",
                             Isbn = "493875557-2",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Madoqua kirkii",
                             Type = "printed",
                             Year = 1989
                         },
@@ -5839,8 +5021,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rainger",
                             Isbn = "211983114-9",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Cochlearius cochlearius",
                             Type = "printed",
                             Year = 1989
                         },
@@ -5851,8 +5031,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Strodder",
                             Isbn = "663179880-9",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Tockus erythrorhyncus",
                             Type = "printed",
                             Year = 1990
                         },
@@ -5863,8 +5041,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Verny",
                             Isbn = "011393234-0",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Corvus albicollis",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -5875,8 +5051,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Swine",
                             Isbn = "063465400-4",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Pteropus rufus",
                             Type = "printed",
                             Year = 2004
                         },
@@ -5886,8 +5060,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Fèi",
                             Isbn = "666113393-7",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Otocyon megalotis",
                             Type = "printed",
                             Year = 1998
                         },
@@ -5897,8 +5069,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Åsa",
                             EditorLastName = "Dumbleton",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Spheniscus magellanicus",
                             Type = "printed",
                             Year = 1997
                         },
@@ -5908,8 +5078,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Gaétane",
                             Isbn = "928159258-4",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Microcebus murinus",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -5920,8 +5088,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Drejer",
                             Isbn = "300972047-5",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Coluber constrictor",
                             Type = "printed",
                             Year = 1965
                         },
@@ -5932,8 +5098,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Collaton",
                             Isbn = "312315603-6",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Tyto novaehollandiae",
                             Type = "printed",
                             Year = 1986
                         },
@@ -5944,8 +5108,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Busen",
                             Isbn = "022047472-9",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Larus dominicanus",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -5956,8 +5118,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Worthington",
                             Isbn = "799588559-8",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Alopex lagopus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -5968,8 +5128,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mattussevich",
                             Isbn = "443588227-2",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Aegypius tracheliotus",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -5980,8 +5138,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Saunderson",
                             Isbn = "255013439-7",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Gabianus pacificus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -5992,8 +5148,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nudds",
                             Isbn = "816484896-4",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Varanus albigularis",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -6004,8 +5158,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Radish",
                             Isbn = "261652143-1",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Felis libyca",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -6016,8 +5168,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Braun",
                             Isbn = "876745529-8",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Acrantophis madagascariensis",
                             Type = "printed",
                             Year = 2011
                         },
@@ -6027,8 +5177,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Tú",
                             EditorLastName = "Pee",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Dendrocygna viduata",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -6039,8 +5187,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Feldberg",
                             Isbn = "205669163-9",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Hippotragus equinus",
                             Type = "printed",
                             Year = 1996
                         },
@@ -6051,8 +5197,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fibben",
                             Isbn = "866603129-8",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Isoodon obesulus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -6063,8 +5207,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Banister",
                             Isbn = "799103489-5",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Chlidonias leucopterus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -6075,8 +5217,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Searson",
                             Isbn = "556507679-X",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Lamprotornis superbus",
                             Type = "printed",
                             Year = 2001
                         },
@@ -6087,8 +5227,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacKnight",
                             Isbn = "755521395-8",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Cygnus atratus",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -6099,8 +5237,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Marielle",
                             Isbn = "829064010-2",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -6111,8 +5247,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Froude",
                             Isbn = "700250564-5",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Sylvicapra grimma",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -6123,8 +5257,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ulyet",
                             Isbn = "559412285-0",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Gazella granti",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -6135,8 +5267,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rennicks",
                             Isbn = "066028479-0",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Sula dactylatra",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -6147,8 +5277,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Couling",
                             Isbn = "584819147-6",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Carduelis pinus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -6159,8 +5287,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McLinden",
                             Isbn = "733180806-0",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Phalaropus lobatus",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -6171,8 +5297,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fabry",
                             Isbn = "054728703-8",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Varanus sp.",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -6183,8 +5307,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Town",
                             Isbn = "235685759-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2007
                         },
@@ -6195,8 +5317,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Avramovsky",
                             Isbn = "332683642-2",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Lutra canadensis",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -6207,8 +5327,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Choake",
                             Isbn = "524527171-0",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Terrapene carolina",
                             Type = "printed",
                             Year = 1988
                         },
@@ -6219,8 +5337,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mccaull",
                             Isbn = "834208253-9",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Cordylus giganteus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -6231,8 +5347,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Everwin",
                             Isbn = "565482093-1",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Toxostoma curvirostre",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -6243,8 +5357,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hansard",
                             Isbn = "203820683-X",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Ramphastos tucanus",
                             Type = "printed",
                             Year = 2002
                         },
@@ -6255,8 +5367,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shuttleworth",
                             Isbn = "910523041-1",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Colobus guerza",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -6267,8 +5377,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stoddard",
                             Isbn = "111171923-3",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Ictalurus furcatus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -6279,8 +5387,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Trenear",
                             Isbn = "796289537-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Ictonyx striatus",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -6290,8 +5396,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Aurélie",
                             Isbn = "836558364-X",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Macropus agilis",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -6302,8 +5406,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bartell",
                             Isbn = "963815249-4",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Oreamnos americanus",
                             Type = "printed",
                             Year = 1998
                         },
@@ -6314,8 +5416,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nutt",
                             Isbn = "196751232-9",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Phasianus colchicus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -6326,8 +5426,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kmiec",
                             Isbn = "383522172-8",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Lemur catta",
                             Type = "printed",
                             Year = 1994
                         },
@@ -6338,8 +5436,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Satterfitt",
                             Isbn = "835392386-6",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Chlamydosaurus kingii",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -6350,8 +5446,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Leer",
                             Isbn = "179534379-6",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Bettongia penicillata",
                             Type = "printed",
                             Year = 1990
                         },
@@ -6362,8 +5456,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Habergham",
                             Isbn = "999940301-8",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Melophus lathami",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -6374,8 +5466,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stranks",
                             Isbn = "529788060-2",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Lutra canadensis",
                             Type = "electronic",
                             Year = 1989
                         },
@@ -6383,8 +5473,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                         {
                             Id = 460,
                             EditorFirstName = "Médiamass",
-                            Isbn = "558456844-9",
-                            Rating = 0.0
+                            Isbn = "558456844-9"
                         },
                         new
                         {
@@ -6393,8 +5482,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Andreacci",
                             Isbn = "791456857-0",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Nyctereutes procyonoides",
                             Type = "printed",
                             Year = 2004
                         },
@@ -6405,8 +5492,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lanigan",
                             Isbn = "739468263-3",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Butorides striatus",
                             Type = "printed",
                             Year = 2012
                         },
@@ -6417,8 +5502,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ledur",
                             Isbn = "406585008-8",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Cracticus nigroagularis",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -6429,8 +5512,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Skirling",
                             Isbn = "746844903-1",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Acrantophis madagascariensis",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -6441,8 +5522,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Aikman",
                             Isbn = "165416703-7",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Thamnolaea cinnmomeiventris",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -6453,8 +5532,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Biggerstaff",
                             Isbn = "217169030-5",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Macropus parryi",
                             Type = "printed",
                             Year = 2004
                         },
@@ -6465,8 +5542,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kleine",
                             Isbn = "467652553-2",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Kobus leche robertsi",
                             Type = "printed",
                             Year = 1985
                         },
@@ -6477,8 +5552,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Disley",
                             Isbn = "463167984-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Cynomys ludovicianus",
                             Type = "printed",
                             Year = 1996
                         },
@@ -6489,8 +5562,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cumo",
                             Isbn = "951475893-5",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Macropus robustus",
                             Type = "printed",
                             Year = 2003
                         },
@@ -6501,8 +5572,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tribe",
                             Isbn = "795271808-8",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Terathopius ecaudatus",
                             Type = "printed",
                             Year = 1986
                         },
@@ -6513,8 +5582,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Benbrick",
                             Isbn = "498909755-6",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -6525,8 +5592,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Matteoli",
                             Isbn = "654345758-9",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 1987
                         },
@@ -6537,8 +5602,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rablan",
                             Isbn = "871120480-X",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Haliaetus vocifer",
                             Type = "printed",
                             Year = 1998
                         },
@@ -6549,8 +5612,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jemmison",
                             Isbn = "222789283-8",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Ciconia ciconia",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -6561,8 +5622,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Arboin",
                             Isbn = "806437615-7",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Gekko gecko",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -6573,8 +5632,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Abrahams",
                             Isbn = "735515764-7",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Spermophilus richardsonii",
                             Type = "printed",
                             Year = 2007
                         },
@@ -6585,8 +5642,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacLure",
                             Isbn = "120949078-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Uraeginthus granatina",
                             Type = "printed",
                             Year = 1999
                         },
@@ -6597,8 +5652,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McKerrow",
                             Isbn = "477564366-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Ursus americanus",
                             Type = "printed",
                             Year = 1987
                         },
@@ -6608,8 +5661,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Desirée",
                             Isbn = "973996452-4",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Ardea golieth",
                             Type = "printed",
                             Year = 1985
                         },
@@ -6620,8 +5671,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ruddell",
                             Isbn = "050577826-2",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Pseudocheirus peregrinus",
                             Type = "electronic",
                             Year = 1954
                         },
@@ -6632,8 +5681,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haskew",
                             Isbn = "490060540-9",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Potorous tridactylus",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -6644,8 +5691,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Reddington",
                             Isbn = "513775682-2",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Psophia viridis",
                             Type = "printed",
                             Year = 1988
                         },
@@ -6654,8 +5699,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 483,
                             EditorFirstName = "Pò",
                             EditorLastName = "Kitchingman",
-                            Isbn = "233221881-5",
-                            Rating = 0.0
+                            Isbn = "233221881-5"
                         },
                         new
                         {
@@ -6664,8 +5708,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Magenny",
                             Isbn = "266278723-6",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Graspus graspus",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -6676,8 +5718,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Whistlecroft",
                             Isbn = "661320926-0",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Gymnorhina tibicen",
                             Type = "printed",
                             Year = 1994
                         },
@@ -6688,8 +5728,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gamage",
                             Isbn = "348705391-8",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Colaptes campestroides",
                             Type = "printed",
                             Year = 2003
                         },
@@ -6700,8 +5738,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Fearguise",
                             Isbn = "773099988-9",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Larus fuliginosus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -6712,8 +5748,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Saunder",
                             Isbn = "458504484-1",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Meleagris gallopavo",
                             Type = "printed",
                             Year = 2006
                         },
@@ -6724,8 +5758,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Munehay",
                             Isbn = "387005705-X",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Spizaetus coronatus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -6736,8 +5768,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ramiro",
                             Isbn = "418612400-0",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Porphyrio porphyrio",
                             Type = "printed",
                             Year = 2000
                         },
@@ -6748,8 +5778,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Strathman",
                             Isbn = "636587426-X",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Picoides pubescens",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -6760,8 +5788,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beausang",
                             Isbn = "045736728-8",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Ovis orientalis",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -6771,8 +5797,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Séverine",
                             Isbn = "943740343-0",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Gyps fulvus",
                             Type = "printed",
                             Year = 2011
                         },
@@ -6783,8 +5807,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Everill",
                             Isbn = "559539312-2",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Fratercula corniculata",
                             Type = "electronic",
                             Year = 1990
                         },
@@ -6795,8 +5817,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cordelette",
                             Isbn = "757361096-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Ciconia episcopus",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -6807,8 +5827,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gazzard",
                             Isbn = "565895019-8",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Cereopsis novaehollandiae",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -6819,8 +5837,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "de Aguirre",
                             Isbn = "553952936-7",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Felis chaus",
                             Type = "printed",
                             Year = 1986
                         },
@@ -6831,8 +5847,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Morshead",
                             Isbn = "687761379-1",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Coluber constrictor foxii",
                             Type = "electronic",
                             Year = 1985
                         },
@@ -6843,8 +5857,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tames",
                             Isbn = "882411601-9",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Speotyte cuniculata",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -6855,8 +5867,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hannah",
                             Isbn = "190702593-6",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Sceloporus magister",
                             Type = "printed",
                             Year = 1999
                         },
@@ -6867,8 +5877,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Barff",
                             Isbn = "726328542-8",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Vanellus chilensis",
                             Type = "electronic",
                             Year = 1990
                         },
@@ -6879,8 +5887,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ducaen",
                             Isbn = "363751645-4",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Pteronura brasiliensis",
                             Type = "printed",
                             Year = 1998
                         },
@@ -6891,8 +5897,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stinton",
                             Isbn = "699565539-7",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Myiarchus tuberculifer",
                             Type = "printed",
                             Year = 2011
                         },
@@ -6903,8 +5907,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cerman",
                             Isbn = "313852111-8",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Cathartes aura",
                             Type = "printed",
                             Year = 1989
                         },
@@ -6915,8 +5917,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Boots",
                             Isbn = "582105577-6",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Heloderma horridum",
                             Type = "printed",
                             Year = 2011
                         },
@@ -6927,8 +5927,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rikard",
                             Isbn = "284790113-2",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Conolophus subcristatus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -6939,8 +5937,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Laurenson",
                             Isbn = "899795592-6",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Ctenophorus ornatus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -6950,8 +5946,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Åslög",
                             EditorLastName = "Halpin",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Ursus arctos",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -6960,8 +5954,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 509,
                             EditorFirstName = "Céline",
                             EditorLastName = "Mattholie",
-                            Isbn = "098658756-7",
-                            Rating = 0.0
+                            Isbn = "098658756-7"
                         },
                         new
                         {
@@ -6970,8 +5963,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tink",
                             Isbn = "865258992-5",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Ateles paniscus",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -6982,8 +5973,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rendall",
                             Isbn = "323891235-6",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Uraeginthus granatina",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -6993,8 +5982,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Inès",
                             Isbn = "626336674-5",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Myrmecophaga tridactyla",
                             Type = "printed",
                             Year = 1995
                         },
@@ -7004,8 +5991,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Rébecca",
                             EditorLastName = "Warboy",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Coluber constrictor",
                             Type = "printed",
                             Year = 1995
                         },
@@ -7016,8 +6001,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rubinsky",
                             Isbn = "902848150-8",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Columba palumbus",
                             Type = "printed",
                             Year = 1988
                         },
@@ -7028,8 +6011,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ovill",
                             Isbn = "905404082-3",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Ara ararauna",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -7039,8 +6020,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mårten",
                             Isbn = "251084621-3",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Genetta genetta",
                             Type = "printed",
                             Year = 1994
                         },
@@ -7050,8 +6029,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Táng",
                             Isbn = "738566701-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Speotyte cuniculata",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -7062,8 +6039,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tearle",
                             Isbn = "132764587-4",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Buteo regalis",
                             Type = "printed",
                             Year = 2012
                         },
@@ -7074,8 +6049,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sizeland",
                             Isbn = "228863713-7",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Butorides striatus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -7086,8 +6059,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Challoner",
                             Isbn = "194482776-5",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Lycaon pictus",
                             Type = "printed",
                             Year = 2006
                         },
@@ -7098,8 +6069,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Milson",
                             Isbn = "948029121-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Raphicerus campestris",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -7110,8 +6079,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Grisewood",
                             Isbn = "741789343-0",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Bubalus arnee",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -7122,8 +6089,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wetwood",
                             Isbn = "229975205-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Zosterops pallidus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -7134,8 +6099,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shackel",
                             Isbn = "547816320-1",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Mephitis mephitis",
                             Type = "printed",
                             Year = 1996
                         },
@@ -7146,8 +6109,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rosingdall",
                             Isbn = "481599905-8",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "electronic",
                             Year = 1988
                         },
@@ -7158,8 +6119,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bunclark",
                             Isbn = "629729546-8",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Perameles nasuta",
                             Type = "printed",
                             Year = 2002
                         },
@@ -7170,8 +6129,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "de Voiels",
                             Isbn = "474153186-4",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Lamprotornis nitens",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -7181,8 +6138,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Simplifiés",
                             EditorLastName = "Dermott",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Columba palumbus",
                             Type = "printed",
                             Year = 2011
                         },
@@ -7193,8 +6148,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gremain",
                             Isbn = "313862392-1",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Bucorvus leadbeateri",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -7205,8 +6158,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Teggart",
                             Isbn = "873753509-9",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Hystrix indica",
                             Type = "printed",
                             Year = 2002
                         },
@@ -7217,8 +6168,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hardman",
                             Isbn = "693550018-4",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Nasua nasua",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -7229,8 +6178,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Capeloff",
                             Isbn = "463191744-X",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Alopochen aegyptiacus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -7241,8 +6188,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Upsale",
                             Isbn = "626576212-5",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Oncorhynchus nerka",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -7252,8 +6197,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Maëlle",
                             EditorLastName = "Nuttey",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Sceloporus magister",
                             Type = "printed",
                             Year = 2011
                         },
@@ -7264,8 +6207,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Illingsworth",
                             Isbn = "617242047-X",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Caiman crocodilus",
                             Type = "printed",
                             Year = 2003
                         },
@@ -7276,8 +6217,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Reilingen",
                             Isbn = "829655625-1",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Lasiodora parahybana",
                             Type = "printed",
                             Year = 2008
                         },
@@ -7288,8 +6227,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gallehawk",
                             Isbn = "963775291-9",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Varanus salvator",
                             Type = "printed",
                             Year = 2002
                         },
@@ -7300,8 +6237,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Brawn",
                             Isbn = "468367104-2",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Branta canadensis",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -7312,8 +6247,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Possek",
                             Isbn = "800927949-8",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "printed",
                             Year = 1998
                         },
@@ -7324,8 +6257,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Moxsom",
                             Isbn = "844661596-7",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Cracticus nigroagularis",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -7336,8 +6267,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dmitrichenko",
                             Isbn = "810627358-X",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Varanus sp.",
                             Type = "printed",
                             Year = 2013
                         },
@@ -7348,8 +6277,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fownes",
                             Isbn = "357730051-5",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Heloderma horridum",
                             Type = "printed",
                             Year = 1997
                         },
@@ -7360,8 +6287,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Erricker",
                             Isbn = "184023625-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Boa constrictor mexicana",
                             Type = "printed",
                             Year = 1994
                         },
@@ -7371,8 +6296,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Réjane",
                             EditorLastName = "Chapelhow",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Carduelis pinus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -7383,8 +6306,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Allenson",
                             Isbn = "964260859-6",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Stenella coeruleoalba",
                             Type = "electronic",
                             Year = 1988
                         },
@@ -7395,8 +6316,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Salmoni",
                             Isbn = "227138559-8",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Anastomus oscitans",
                             Type = "printed",
                             Year = 1992
                         },
@@ -7407,8 +6326,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Amthor",
                             Isbn = "415595365-X",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Callorhinus ursinus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -7419,8 +6336,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Overbury",
                             Isbn = "584853817-4",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Eutamias minimus",
                             Type = "electronic",
                             Year = 1950
                         },
@@ -7431,8 +6346,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Canham",
                             Isbn = "964764747-6",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Chelodina longicollis",
                             Type = "printed",
                             Year = 2008
                         },
@@ -7443,8 +6356,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Laimable",
                             Isbn = "016030408-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Tetracerus quadricornis",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -7455,8 +6366,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Silver",
                             Isbn = "093163258-7",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Microcavia australis",
                             Type = "printed",
                             Year = 1998
                         },
@@ -7467,8 +6376,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Partleton",
                             Isbn = "540205780-X",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Marmota flaviventris",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -7479,8 +6386,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Whiston",
                             Isbn = "937384681-7",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Neotoma sp.",
                             Type = "printed",
                             Year = 2007
                         },
@@ -7491,8 +6396,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Blamey",
                             Isbn = "858211150-9",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Phoenicopterus chilensis",
                             Type = "printed",
                             Year = 1994
                         },
@@ -7503,8 +6406,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Priddey",
                             Isbn = "235397167-9",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Galictis vittata",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -7515,8 +6416,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Danilin",
                             Isbn = "836562515-6",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Crocodylus niloticus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -7527,8 +6426,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bigham",
                             Isbn = "003579199-3",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Tapirus terrestris",
                             Type = "printed",
                             Year = 2000
                         },
@@ -7539,8 +6436,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jean",
                             Isbn = "025476166-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Mellivora capensis",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -7551,8 +6446,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mollnar",
                             Isbn = "106259377-4",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Alcelaphus buselaphus caama",
                             Type = "printed",
                             Year = 2007
                         },
@@ -7563,8 +6456,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hindsberg",
                             Isbn = "338828327-3",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Neotis denhami",
                             Type = "printed",
                             Year = 1993
                         },
@@ -7575,8 +6466,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Midgely",
                             Isbn = "420403149-8",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Mazama gouazoubira",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -7587,8 +6476,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pickston",
                             Isbn = "350375652-3",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Geochelone elegans",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -7599,8 +6486,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Birmingham",
                             Isbn = "497156678-3",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Procyon lotor",
                             Type = "printed",
                             Year = 1992
                         },
@@ -7611,8 +6496,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pinkie",
                             Isbn = "757899341-0",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Propithecus verreauxi",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -7623,8 +6506,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sandey",
                             Isbn = "904998069-4",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Loxodonta africana",
                             Type = "printed",
                             Year = 1990
                         },
@@ -7635,8 +6516,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Roscam",
                             Isbn = "444603005-1",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Cebus apella",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -7647,8 +6526,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Allbon",
                             Isbn = "314415903-4",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Dasypus novemcinctus",
                             Type = "printed",
                             Year = 2012
                         },
@@ -7659,8 +6536,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Messam",
                             Isbn = "770824292-4",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Grus rubicundus",
                             Type = "printed",
                             Year = 2002
                         },
@@ -7671,8 +6546,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Filippyev",
                             Isbn = "166220044-7",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Bettongia penicillata",
                             Type = "printed",
                             Year = 1992
                         },
@@ -7683,8 +6556,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Studde",
                             Isbn = "644530206-8",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Plegadis ridgwayi",
                             Type = "printed",
                             Year = 1999
                         },
@@ -7695,8 +6566,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sandy",
                             Isbn = "668120644-1",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Canis aureus",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -7707,8 +6576,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Poschel",
                             Isbn = "407636740-5",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Crotalus adamanteus",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -7719,8 +6586,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Waeland",
                             Isbn = "189296811-8",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Trichosurus vulpecula",
                             Type = "printed",
                             Year = 1994
                         },
@@ -7731,8 +6596,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Putten",
                             Isbn = "529816018-2",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Lutra canadensis",
                             Type = "printed",
                             Year = 1989
                         },
@@ -7743,8 +6606,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rudyard",
                             Isbn = "402903834-4",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Cebus apella",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -7755,8 +6616,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Michallat",
                             Isbn = "566741089-3",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Trichosurus vulpecula",
                             Type = "printed",
                             Year = 2001
                         },
@@ -7767,8 +6626,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fealty",
                             Isbn = "507836587-7",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -7779,8 +6636,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McBride",
                             Isbn = "532696788-X",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Castor canadensis",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -7791,8 +6646,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shemilt",
                             Isbn = "016755674-6",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Gorilla gorilla",
                             Type = "printed",
                             Year = 1990
                         },
@@ -7803,8 +6656,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Todman",
                             Isbn = "368591068-X",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Neophron percnopterus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -7815,8 +6666,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Howat",
                             Isbn = "216238428-0",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Cereopsis novaehollandiae",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -7827,8 +6676,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Thackray",
                             Isbn = "514360416-8",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Junonia genoveua",
                             Type = "printed",
                             Year = 1993
                         },
@@ -7839,8 +6686,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Zanettini",
                             Isbn = "138339167-X",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Toxostoma curvirostre",
                             Type = "electronic",
                             Year = 1990
                         },
@@ -7851,8 +6696,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McLean",
                             Isbn = "535935735-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Chlidonias leucopterus",
                             Type = "printed",
                             Year = 2012
                         },
@@ -7863,8 +6706,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Noah",
                             Isbn = "416184710-6",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Merops sp.",
                             Type = "printed",
                             Year = 2003
                         },
@@ -7875,8 +6716,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Richt",
                             Isbn = "914467168-7",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Leprocaulinus vipera",
                             Type = "printed",
                             Year = 1996
                         },
@@ -7887,8 +6726,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hairsnape",
                             Isbn = "691904650-4",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Amphibolurus barbatus",
                             Type = "printed",
                             Year = 1999
                         },
@@ -7899,8 +6736,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bubbear",
                             Isbn = "839039096-5",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Scolopax minor",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -7911,8 +6746,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bittleson",
                             Isbn = "698897538-1",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Macropus robustus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -7923,8 +6756,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McElvogue",
                             Isbn = "557546229-3",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Rana sp.",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -7934,8 +6765,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Cécile",
                             Isbn = "157152983-7",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Chelodina longicollis",
                             Type = "printed",
                             Year = 2004
                         },
@@ -7946,8 +6775,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Carthy",
                             Isbn = "236602512-2",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Choloepus hoffmani",
                             Type = "electronic",
                             Year = 1973
                         },
@@ -7958,8 +6785,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Simonini",
                             Isbn = "403146701-X",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Gazella thompsonii",
                             Type = "printed",
                             Year = 2006
                         },
@@ -7970,8 +6795,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Chyuerton",
                             Isbn = "513873450-4",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Gazella granti",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -7982,8 +6805,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Benneyworth",
                             Isbn = "766885642-0",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Limosa haemastica",
                             Type = "printed",
                             Year = 2008
                         },
@@ -7994,8 +6815,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Salkild",
                             Isbn = "102590546-6",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Terrapene carolina",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -8006,8 +6825,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McElrea",
                             Isbn = "385803934-9",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Trichechus inunguis",
                             Type = "printed",
                             Year = 1992
                         },
@@ -8018,8 +6835,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Williamson",
                             Isbn = "175477457-1",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Sarcophilus harrisii",
                             Type = "printed",
                             Year = 2012
                         },
@@ -8030,8 +6845,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Grimsdith",
                             Isbn = "116753551-0",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Sarkidornis melanotos",
                             Type = "printed",
                             Year = 2005
                         },
@@ -8042,8 +6855,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Trappe",
                             Isbn = "652093422-4",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Ceratotherium simum",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -8054,8 +6865,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McMichell",
                             Isbn = "354312091-3",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Castor canadensis",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -8066,8 +6875,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Proppers",
                             Isbn = "310932701-5",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Laniarius ferrugineus",
                             Type = "printed",
                             Year = 2009
                         },
@@ -8078,8 +6885,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Glisenan",
                             Isbn = "368475839-6",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Pycnonotus nigricans",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -8090,8 +6895,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gueny",
                             Isbn = "900238551-X",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Lycaon pictus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -8102,8 +6905,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gonsalvo",
                             Isbn = "400303319-1",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Drymarchon corias couperi",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -8114,8 +6915,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Thorogood",
                             Isbn = "838965175-0",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Cacatua tenuirostris",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -8125,8 +6924,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Faîtes",
                             Isbn = "416742281-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Redunca redunca",
                             Type = "printed",
                             Year = 1994
                         },
@@ -8136,8 +6933,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Erwéi",
                             EditorLastName = "Pues",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Nannopterum harrisi",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -8148,8 +6943,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Humble",
                             Isbn = "456169627-X",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Estrilda erythronotos",
                             Type = "printed",
                             Year = 2003
                         },
@@ -8160,8 +6953,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Grassick",
                             Isbn = "737880859-8",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax niger",
                             Type = "printed",
                             Year = 1994
                         },
@@ -8172,8 +6963,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Scane",
                             Isbn = "660687119-0",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Catharacta skua",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -8184,8 +6973,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Goude",
                             Isbn = "193942949-8",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Dendrocitta vagabunda",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -8196,8 +6983,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ranstead",
                             Isbn = "363735969-3",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Aonyx cinerea",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -8208,8 +6993,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Louch",
                             Isbn = "140159102-7",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Lepus arcticus",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -8218,8 +7001,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 615,
                             EditorFirstName = "Lorène",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -8230,8 +7011,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pierro",
                             Isbn = "138320955-3",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Pitangus sulphuratus",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -8242,8 +7021,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ridder",
                             Isbn = "114666631-4",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Hymenolaimus malacorhynchus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -8254,8 +7031,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Yuranovev",
                             Isbn = "453785392-1",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Varanus salvator",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -8265,8 +7040,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Geneviève",
                             EditorLastName = "Gilchrest",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Sus scrofa",
                             Type = "printed",
                             Year = 2011
                         },
@@ -8277,8 +7050,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Koubu",
                             Isbn = "354552535-X",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Streptopelia decipiens",
                             Type = "printed",
                             Year = 2004
                         },
@@ -8289,8 +7060,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hardware",
                             Isbn = "878107397-6",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Limosa haemastica",
                             Type = "printed",
                             Year = 2007
                         },
@@ -8301,8 +7070,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fortescue",
                             Isbn = "296561986-0",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Uraeginthus angolensis",
                             Type = "printed",
                             Year = 2005
                         },
@@ -8313,8 +7080,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Van der Velde",
                             Isbn = "685583926-6",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Macaca nemestrina",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -8325,8 +7090,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kaindl",
                             Isbn = "653007854-1",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Otaria flavescens",
                             Type = "printed",
                             Year = 1991
                         },
@@ -8337,8 +7100,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Winfrey",
                             Isbn = "208085135-7",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Procyon cancrivorus",
                             Type = "printed",
                             Year = 1994
                         },
@@ -8349,8 +7110,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Manuel",
                             Isbn = "910535172-3",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Gorilla gorilla",
                             Type = "printed",
                             Year = 2002
                         },
@@ -8359,8 +7118,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 627,
                             EditorFirstName = "Stévina",
                             EditorLastName = "Langshaw",
-                            Isbn = "133097448-4",
-                            Rating = 0.0
+                            Isbn = "133097448-4"
                         },
                         new
                         {
@@ -8369,8 +7127,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ewer",
                             Isbn = "950486490-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Deroptyus accipitrinus",
                             Type = "printed",
                             Year = 2006
                         },
@@ -8381,8 +7137,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tomankiewicz",
                             Isbn = "295649713-8",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Isoodon obesulus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -8393,8 +7147,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wagge",
                             Isbn = "816595234-X",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Ciconia ciconia",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -8405,8 +7157,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Frayling",
                             Isbn = "279973540-1",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Otaria flavescens",
                             Type = "printed",
                             Year = 2009
                         },
@@ -8417,8 +7167,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Willerstone",
                             Isbn = "457577163-5",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Dipodomys deserti",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -8428,8 +7176,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Loïc",
                             EditorLastName = "Dan",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Lemur fulvus",
                             Type = "printed",
                             Year = 1994
                         },
@@ -8440,8 +7186,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Corlett",
                             Isbn = "833711760-5",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Irania gutteralis",
                             Type = "printed",
                             Year = 1997
                         },
@@ -8452,8 +7196,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacQuarrie",
                             Isbn = "426144142-X",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Cynictis penicillata",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -8464,8 +7206,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rosencrantz",
                             Isbn = "619015542-1",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Lamprotornis nitens",
                             Type = "printed",
                             Year = 2007
                         },
@@ -8476,8 +7216,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Holliar",
                             Isbn = "830273179-X",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Phascogale calura",
                             Type = "printed",
                             Year = 2012
                         },
@@ -8486,8 +7224,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 638,
                             EditorFirstName = "Rébecca",
                             EditorLastName = "Campanelli",
-                            Isbn = "462630143-6",
-                            Rating = 0.0
+                            Isbn = "462630143-6"
                         },
                         new
                         {
@@ -8496,8 +7233,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Heak",
                             Isbn = "927659200-8",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Phoenicopterus ruber",
                             Type = "printed",
                             Year = 2008
                         },
@@ -8508,8 +7243,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Trevaskis",
                             Isbn = "193246748-3",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Ara ararauna",
                             Type = "printed",
                             Year = 1986
                         },
@@ -8520,8 +7253,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cramb",
                             Isbn = "715580769-9",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Myotis lucifugus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -8532,8 +7263,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wakeman",
                             Isbn = "748654169-6",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Mungos mungo",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -8544,8 +7273,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ruoff",
                             Isbn = "657397485-9",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Lasiodora parahybana",
                             Type = "electronic",
                             Year = 1990
                         },
@@ -8555,8 +7282,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mélys",
                             Isbn = "640268087-7",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Melursus ursinus",
                             Type = "electronic",
                             Year = 2013
                         },
@@ -8567,8 +7292,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacNab",
                             Isbn = "610031549-1",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Coluber constrictor",
                             Type = "printed",
                             Year = 2011
                         },
@@ -8579,8 +7302,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Alleyne",
                             Isbn = "046575709-X",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Tapirus terrestris",
                             Type = "printed",
                             Year = 2007
                         },
@@ -8591,8 +7312,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ekell",
                             Isbn = "028622049-0",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Procyon cancrivorus",
                             Type = "printed",
                             Year = 1995
                         },
@@ -8603,8 +7322,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sayle",
                             Isbn = "144858091-9",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Pseudoleistes virescens",
                             Type = "printed",
                             Year = 2001
                         },
@@ -8615,8 +7332,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lawther",
                             Isbn = "961326995-9",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Ninox superciliaris",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -8627,8 +7342,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Berrisford",
                             Isbn = "322166473-7",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Didelphis virginiana",
                             Type = "printed",
                             Year = 2001
                         },
@@ -8639,8 +7352,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Filan",
                             Isbn = "527958436-3",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Semnopithecus entellus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -8651,8 +7362,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacLaverty",
                             Isbn = "662023762-2",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Bos frontalis",
                             Type = "electronic",
                             Year = 1982
                         },
@@ -8663,8 +7372,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Geer",
                             Isbn = "111408933-8",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Coluber constrictor",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -8675,8 +7382,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ellershaw",
                             Isbn = "464467535-0",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Lemur catta",
                             Type = "printed",
                             Year = 2009
                         },
@@ -8684,8 +7389,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                         {
                             Id = 655,
                             EditorFirstName = "Maëlys",
-                            Isbn = "731281889-7",
-                            Rating = 0.0
+                            Isbn = "731281889-7"
                         },
                         new
                         {
@@ -8694,8 +7398,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Yitzhok",
                             Isbn = "207040080-8",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Dasyurus maculatus",
                             Type = "printed",
                             Year = 1987
                         },
@@ -8706,8 +7408,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bridgland",
                             Isbn = "142206116-7",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Oryx gazella",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -8718,8 +7418,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tarney",
                             Isbn = "475560367-6",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Alligator mississippiensis",
                             Type = "printed",
                             Year = 1993
                         },
@@ -8729,8 +7427,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Léonore",
                             Isbn = "856064140-8",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Cynictis penicillata",
                             Type = "printed",
                             Year = 2001
                         },
@@ -8741,8 +7437,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cullagh",
                             Isbn = "415987917-9",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Galago crassicaudataus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -8753,8 +7447,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hewlings",
                             Isbn = "448297554-0",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Acridotheres tristis",
                             Type = "printed",
                             Year = 2005
                         },
@@ -8765,8 +7457,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wheowall",
                             Isbn = "403386438-5",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Macropus agilis",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -8777,8 +7467,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Springtorp",
                             Isbn = "598372796-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2002
                         },
@@ -8789,8 +7477,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kohring",
                             Isbn = "223652604-0",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Chlamydosaurus kingii",
                             Type = "printed",
                             Year = 2009
                         },
@@ -8801,8 +7487,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Clell",
                             Isbn = "000150729-X",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Damaliscus lunatus",
                             Type = "electronic",
                             Year = 1987
                         },
@@ -8813,8 +7497,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Poile",
                             Isbn = "013405915-8",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Iguana iguana",
                             Type = "printed",
                             Year = 2011
                         },
@@ -8824,8 +7506,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Bérangère",
                             Isbn = "347354588-0",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Columba palumbus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -8835,8 +7515,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Léandre",
                             Isbn = "129857781-0",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Eurocephalus anguitimens",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -8847,8 +7525,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Titlow",
                             Isbn = "544721872-1",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Colobus guerza",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -8859,8 +7535,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Antao",
                             Isbn = "308293833-7",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Climacteris melanura",
                             Type = "printed",
                             Year = 2011
                         },
@@ -8871,8 +7545,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Antoniou",
                             Isbn = "181442654-X",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Chionis alba",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -8883,8 +7555,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Alvar",
                             Isbn = "034097574-1",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Bucephala clangula",
                             Type = "printed",
                             Year = 1993
                         },
@@ -8895,8 +7565,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mein",
                             Isbn = "371802068-8",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Sula dactylatra",
                             Type = "printed",
                             Year = 2010
                         },
@@ -8907,8 +7575,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Duffit",
                             Isbn = "288021575-7",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Rhea americana",
                             Type = "printed",
                             Year = 2010
                         },
@@ -8919,8 +7585,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Merry",
                             Isbn = "247598225-X",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "printed",
                             Year = 1999
                         },
@@ -8930,8 +7594,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Nélie",
                             Isbn = "076555164-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Upupa epops",
                             Type = "printed",
                             Year = 2001
                         },
@@ -8942,8 +7604,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Van der Kruijs",
                             Isbn = "635066747-6",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Tockus erythrorhyncus",
                             Type = "printed",
                             Year = 1996
                         },
@@ -8954,8 +7614,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Polly",
                             Isbn = "766058504-5",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Colobus guerza",
                             Type = "electronic",
                             Year = 1987
                         },
@@ -8965,8 +7623,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Célestine",
                             EditorLastName = "Bodham",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Papio cynocephalus",
                             Type = "printed",
                             Year = 2008
                         },
@@ -8977,8 +7633,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hardey",
                             Isbn = "190252343-1",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Pseudalopex gymnocercus",
                             Type = "printed",
                             Year = 1966
                         },
@@ -8989,8 +7643,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Queyeiro",
                             Isbn = "666272150-6",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Mazama gouazoubira",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -9001,8 +7653,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Van Arsdale",
                             Isbn = "859429064-0",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Phascogale calura",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -9013,8 +7663,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Yurenev",
                             Isbn = "474565241-0",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Zenaida galapagoensis",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -9025,8 +7673,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Steven",
                             Isbn = "086769813-6",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Lepus arcticus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -9037,8 +7683,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Coumbe",
                             Isbn = "031933978-5",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Lorythaixoides concolor",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -9048,8 +7692,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Marlène",
                             Isbn = "882426653-3",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Eira barbata",
                             Type = "printed",
                             Year = 2008
                         },
@@ -9060,8 +7702,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Arkill",
                             Isbn = "944709606-9",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Colobus guerza",
                             Type = "printed",
                             Year = 2007
                         },
@@ -9071,8 +7711,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Laïla",
                             Isbn = "173316270-4",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Gazella granti",
                             Type = "printed",
                             Year = 1992
                         },
@@ -9083,8 +7721,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Spilsted",
                             Isbn = "997557797-0",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Cacatua tenuirostris",
                             Type = "printed",
                             Year = 1994
                         },
@@ -9094,8 +7730,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Véronique",
                             EditorLastName = "Woodson",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Pseudocheirus peregrinus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -9106,8 +7740,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Adne",
                             Isbn = "316537438-4",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Tragelaphus angasi",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -9118,8 +7750,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sweetmore",
                             Isbn = "861769631-1",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Zalophus californicus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -9130,8 +7760,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wildey",
                             Isbn = "968070600-1",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Uraeginthus granatina",
                             Type = "printed",
                             Year = 1987
                         },
@@ -9142,8 +7770,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Copcutt",
                             Isbn = "059824642-8",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Corythornis cristata",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -9154,8 +7780,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Schulter",
                             Isbn = "613450087-9",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Felis concolor",
                             Type = "printed",
                             Year = 2008
                         },
@@ -9166,8 +7790,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Blackader",
                             Isbn = "813597211-3",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Spermophilus tridecemlineatus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -9178,8 +7800,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ruggen",
                             Isbn = "554619760-9",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Spizaetus coronatus",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -9190,8 +7810,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Scollee",
                             Isbn = "091503684-3",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Vanellus armatus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -9202,8 +7820,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lambie",
                             Isbn = "945346114-8",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Larus sp.",
                             Type = "printed",
                             Year = 1989
                         },
@@ -9214,8 +7830,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Banasik",
                             Isbn = "298416164-5",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Tayassu tajacu",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -9226,8 +7840,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Syvret",
                             Isbn = "234477004-6",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Cebus apella",
                             Type = "printed",
                             Year = 2005
                         },
@@ -9238,8 +7850,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hamlett",
                             Isbn = "924504954-X",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Otaria flavescens",
                             Type = "printed",
                             Year = 1988
                         },
@@ -9250,8 +7860,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Scoullar",
                             Isbn = "814761818-2",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Zalophus californicus",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -9262,8 +7870,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Asken",
                             Isbn = "141670453-1",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Ramphastos tucanus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -9273,8 +7879,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Garçon",
                             EditorLastName = "Trice",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Heloderma horridum",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -9285,8 +7889,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Robilliard",
                             Isbn = "056076124-4",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Crocuta crocuta",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -9297,8 +7899,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Du Plantier",
                             Isbn = "524784203-0",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Semnopithecus entellus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -9309,8 +7909,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Trewartha",
                             Isbn = "468869847-X",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Chelodina longicollis",
                             Type = "printed",
                             Year = 2004
                         },
@@ -9320,8 +7918,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Dafnée",
                             Isbn = "498348260-1",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Cathartes aura",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -9332,8 +7928,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cruickshanks",
                             Isbn = "416324972-9",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Ceryle rudis",
                             Type = "printed",
                             Year = 1987
                         },
@@ -9344,8 +7938,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dainty",
                             Isbn = "927290840-X",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Myiarchus tuberculifer",
                             Type = "printed",
                             Year = 1999
                         },
@@ -9356,8 +7948,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Slimings",
                             Isbn = "713301452-1",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -9368,8 +7958,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gapper",
                             Isbn = "792004463-4",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Rhea americana",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -9380,8 +7968,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pimblett",
                             Isbn = "915694055-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Dolichitus patagonum",
                             Type = "printed",
                             Year = 2006
                         },
@@ -9392,8 +7978,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cremins",
                             Isbn = "935053711-7",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Tauraco porphyrelophus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -9404,8 +7988,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Coultas",
                             Isbn = "237929768-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Bucephala clangula",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -9415,8 +7997,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Lorène",
                             Isbn = "592753255-1",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Nucifraga columbiana",
                             Type = "printed",
                             Year = 2012
                         },
@@ -9427,8 +8007,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Draye",
                             Isbn = "585215803-8",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Streptopelia senegalensis",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -9439,8 +8017,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tetley",
                             Isbn = "689155377-6",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Haliaeetus leucocephalus",
                             Type = "printed",
                             Year = 1990
                         },
@@ -9451,8 +8027,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Heys",
                             Isbn = "309950063-1",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Otocyon megalotis",
                             Type = "printed",
                             Year = 1988
                         },
@@ -9463,8 +8037,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Breckell",
                             Isbn = "589480289-X",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Pan troglodytes",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -9475,8 +8047,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Prier",
                             Isbn = "086022298-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Suricata suricatta",
                             Type = "printed",
                             Year = 1993
                         },
@@ -9487,8 +8057,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ewestace",
                             Isbn = "039828214-5",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Corvus brachyrhynchos",
                             Type = "printed",
                             Year = 2003
                         },
@@ -9499,8 +8067,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shave",
                             Isbn = "431918728-8",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Funambulus pennati",
                             Type = "printed",
                             Year = 2002
                         },
@@ -9511,8 +8077,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Palumbo",
                             Isbn = "909090818-8",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Spilogale gracilis",
                             Type = "printed",
                             Year = 2001
                         },
@@ -9523,8 +8087,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mirfin",
                             Isbn = "879082508-X",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Crotalus cerastes",
                             Type = "electronic",
                             Year = 1978
                         },
@@ -9535,8 +8097,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wanell",
                             Isbn = "261740209-6",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Toxostoma curvirostre",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -9547,8 +8107,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Harbage",
                             Isbn = "583852898-2",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Phoca vitulina",
                             Type = "printed",
                             Year = 1997
                         },
@@ -9559,8 +8117,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Siely",
                             Isbn = "485021905-5",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Petaurus breviceps",
                             Type = "printed",
                             Year = 1992
                         },
@@ -9571,8 +8127,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cleeve",
                             Isbn = "799560732-6",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Paraxerus cepapi",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -9582,8 +8136,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Danièle",
                             Isbn = "985586263-5",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Alouatta seniculus",
                             Type = "printed",
                             Year = 2000
                         },
@@ -9594,8 +8146,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Prangley",
                             Isbn = "018749883-0",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Ara chloroptera",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -9606,8 +8156,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bucky",
                             Isbn = "363972984-6",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Erinaceus frontalis",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -9618,8 +8166,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kippax",
                             Isbn = "131287134-2",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Mirounga angustirostris",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -9630,8 +8176,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Barnsdall",
                             Isbn = "923691808-5",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Phasianus colchicus",
                             Type = "printed",
                             Year = 1988
                         },
@@ -9642,8 +8186,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Duhig",
                             Isbn = "451403218-2",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Zonotrichia capensis",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -9654,8 +8196,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Barthrop",
                             Isbn = "461950336-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Anathana ellioti",
                             Type = "printed",
                             Year = 1990
                         },
@@ -9666,8 +8206,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kirsche",
                             Isbn = "478879378-4",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Cynictis penicillata",
                             Type = "printed",
                             Year = 2009
                         },
@@ -9678,8 +8216,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Piddick",
                             Isbn = "700444339-6",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Felis chaus",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -9690,8 +8226,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Robatham",
                             Isbn = "521777703-6",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Aonyx cinerea",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -9702,8 +8236,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Paddie",
                             Isbn = "536743258-1",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Papio cynocephalus",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -9714,8 +8246,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Basey",
                             Isbn = "991468009-7",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Colaptes campestroides",
                             Type = "printed",
                             Year = 1909
                         },
@@ -9726,8 +8256,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Demangel",
                             Isbn = "835167153-3",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Catharacta skua",
                             Type = "printed",
                             Year = 2003
                         },
@@ -9738,8 +8266,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Chubb",
                             Isbn = "977250719-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Dicrostonyx groenlandicus",
                             Type = "printed",
                             Year = 2003
                         },
@@ -9750,8 +8276,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sammars",
                             Isbn = "811112313-2",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Ctenophorus ornatus",
                             Type = "printed",
                             Year = 2011
                         },
@@ -9762,8 +8286,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beamiss",
                             Isbn = "364264525-9",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Oryx gazella callotis",
                             Type = "printed",
                             Year = 1983
                         },
@@ -9774,8 +8296,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bamling",
                             Isbn = "626570832-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Erinaceus frontalis",
                             Type = "printed",
                             Year = 1988
                         },
@@ -9786,8 +8306,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hapgood",
                             Isbn = "781735735-8",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Estrilda erythronotos",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -9798,8 +8316,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Koeppke",
                             Isbn = "996612414-4",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2009
                         },
@@ -9810,8 +8326,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Binley",
                             Isbn = "161025709-X",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Sceloporus magister",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -9822,8 +8336,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Greiser",
                             Isbn = "460877717-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax carbo",
                             Type = "printed",
                             Year = 2007
                         },
@@ -9834,8 +8346,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Oldnall",
                             Isbn = "352845934-4",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Lamprotornis chalybaeus",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -9846,8 +8356,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Brauner",
                             Isbn = "573189384-5",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Aonyx capensis",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -9858,8 +8366,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Greyes",
                             Isbn = "774248345-9",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Pycnonotus barbatus",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -9870,8 +8376,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Featherstonhaugh",
                             Isbn = "295188507-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Tadorna tadorna",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -9882,8 +8386,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Merkle",
                             Isbn = "668192221-X",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Ara macao",
                             Type = "printed",
                             Year = 1994
                         },
@@ -9894,8 +8396,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dymick",
                             Isbn = "989120999-7",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Helogale undulata",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -9906,8 +8406,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Zarb",
                             Isbn = "209588655-0",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Turtur chalcospilos",
                             Type = "printed",
                             Year = 1987
                         },
@@ -9918,8 +8416,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Broadey",
                             Isbn = "897315715-9",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Pavo cristatus",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -9930,8 +8426,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mackrill",
                             Isbn = "800079839-5",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Salvadora hexalepis",
                             Type = "printed",
                             Year = 1989
                         },
@@ -9942,8 +8436,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Steptowe",
                             Isbn = "339863668-3",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Chloephaga melanoptera",
                             Type = "printed",
                             Year = 1997
                         },
@@ -9954,8 +8446,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fleeming",
                             Isbn = "035924119-0",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Redunca redunca",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -9966,8 +8456,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Queripel",
                             Isbn = "013230508-9",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Lorythaixoides concolor",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -9978,8 +8466,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lambarton",
                             Isbn = "004344513-6",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Trichoglossus chlorolepidotus",
                             Type = "printed",
                             Year = 1984
                         },
@@ -9990,8 +8476,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Coltart",
                             Isbn = "339928850-6",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax carbo",
                             Type = "printed",
                             Year = 1993
                         },
@@ -10000,8 +8484,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 766,
                             EditorFirstName = "Yénora",
                             EditorLastName = "Steeden",
-                            Isbn = "964496147-1",
-                            Rating = 0.0
+                            Isbn = "964496147-1"
                         },
                         new
                         {
@@ -10010,8 +8493,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Twaite",
                             Isbn = "075658610-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Canis aureus",
                             Type = "printed",
                             Year = 1996
                         },
@@ -10022,8 +8503,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pimblotte",
                             Isbn = "543110345-8",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Lorythaixoides concolor",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -10034,8 +8513,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Huie",
                             Isbn = "800025074-8",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Anas bahamensis",
                             Type = "printed",
                             Year = 2000
                         },
@@ -10046,8 +8523,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hainey",
                             Isbn = "797655176-0",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Macropus rufogriseus",
                             Type = "printed",
                             Year = 1994
                         },
@@ -10058,8 +8533,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Trusse",
                             Isbn = "014294791-1",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Tiliqua scincoides",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -10070,8 +8543,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Chapelle",
                             Isbn = "565378798-1",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Ciconia ciconia",
                             Type = "printed",
                             Year = 2006
                         },
@@ -10082,8 +8553,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mewett",
                             Isbn = "809752669-7",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Sagittarius serpentarius",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -10093,8 +8562,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Lyséa",
                             Isbn = "073955355-0",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -10105,8 +8572,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rysdale",
                             Isbn = "533749679-4",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Crotalus cerastes",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -10117,8 +8582,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mordue",
                             Isbn = "701238913-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Eremophila alpestris",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -10129,8 +8592,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Khristyukhin",
                             Isbn = "314136300-5",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Ninox superciliaris",
                             Type = "printed",
                             Year = 1994
                         },
@@ -10141,8 +8602,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gerrens",
                             Isbn = "735760290-7",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Potos flavus",
                             Type = "electronic",
                             Year = 1987
                         },
@@ -10153,8 +8612,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Hannay",
                             Isbn = "208322722-0",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Ardea cinerea",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10165,8 +8622,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Durran",
                             Isbn = "674552877-0",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Dendrohyrax brucel",
                             Type = "printed",
                             Year = 1997
                         },
@@ -10177,8 +8632,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Brandom",
                             Isbn = "214354659-9",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Actophilornis africanus",
                             Type = "printed",
                             Year = 2012
                         },
@@ -10189,8 +8642,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jurasz",
                             Isbn = "228715247-4",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Aonyx cinerea",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10201,8 +8652,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bullers",
                             Isbn = "313204824-0",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Stercorarius longicausus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -10213,8 +8662,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Andrin",
                             Isbn = "108347934-2",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Corvus brachyrhynchos",
                             Type = "printed",
                             Year = 1997
                         },
@@ -10225,8 +8672,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Blowing",
                             Isbn = "124355262-X",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Macropus parryi",
                             Type = "printed",
                             Year = 2001
                         },
@@ -10236,8 +8681,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Maëlla",
                             Isbn = "306321804-9",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Helogale undulata",
                             Type = "printed",
                             Year = 1993
                         },
@@ -10248,8 +8691,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rendall",
                             Isbn = "604253411-4",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Uraeginthus granatina",
                             Type = "electronic",
                             Year = 1991
                         },
@@ -10260,8 +8701,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Welberry",
                             Isbn = "764891792-0",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Ceratotherium simum",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10272,8 +8711,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Craven",
                             Isbn = "259381604-X",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Ardea cinerea",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -10284,8 +8721,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Summerson",
                             Isbn = "651806074-3",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10296,8 +8731,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Proske",
                             Isbn = "986351968-5",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Ploceus intermedius",
                             Type = "electronic",
                             Year = 2013
                         },
@@ -10306,8 +8739,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 792,
                             EditorFirstName = "Eugénie",
                             EditorLastName = "Braidford",
-                            Isbn = "529230641-X",
-                            Rating = 0.0
+                            Isbn = "529230641-X"
                         },
                         new
                         {
@@ -10316,8 +8748,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tumulty",
                             Isbn = "649512929-7",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Vanessa indica",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -10328,8 +8758,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fritzer",
                             Isbn = "031940830-2",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Tachybaptus ruficollis",
                             Type = "printed",
                             Year = 2002
                         },
@@ -10340,8 +8768,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tenpenny",
                             Isbn = "665259104-9",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Canis lupus baileyi",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -10352,8 +8778,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cunnow",
                             Isbn = "792002665-2",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Ara chloroptera",
                             Type = "printed",
                             Year = 2012
                         },
@@ -10364,8 +8788,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Leavesley",
                             Isbn = "667362604-6",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Chionis alba",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10376,8 +8798,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tesdale",
                             Isbn = "702769784-X",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Butorides striatus",
                             Type = "printed",
                             Year = 1994
                         },
@@ -10388,8 +8808,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pethick",
                             Isbn = "950754490-9",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Dasyurus viverrinus",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -10400,8 +8818,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Farnan",
                             Isbn = "623664294-X",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Cordylus giganteus",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -10412,8 +8828,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Petricek",
                             Isbn = "830797162-4",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Climacteris melanura",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10424,8 +8838,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shepeard",
                             Isbn = "872197160-9",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Philetairus socius",
                             Type = "printed",
                             Year = 1992
                         },
@@ -10436,8 +8848,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Simondson",
                             Isbn = "364549375-1",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Centrocercus urophasianus",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -10448,8 +8858,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Barts",
                             Isbn = "690012273-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Phalaropus lobatus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -10460,8 +8868,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sayburn",
                             Isbn = "628552131-X",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Columba palumbus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -10471,8 +8877,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Aurélie",
                             Isbn = "521243831-4",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Naja haje",
                             Type = "printed",
                             Year = 1989
                         },
@@ -10483,8 +8887,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nicklin",
                             Isbn = "229773847-1",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Odocoileus hemionus",
                             Type = "electronic",
                             Year = 1984
                         },
@@ -10495,8 +8897,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Treharne",
                             Isbn = "910080406-1",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Echimys chrysurus",
                             Type = "printed",
                             Year = 2000
                         },
@@ -10507,8 +8907,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cherry",
                             Isbn = "046842932-8",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Zalophus californicus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -10519,8 +8917,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hamlett",
                             Isbn = "971310943-0",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Felis concolor",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10531,8 +8927,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Birkett",
                             Isbn = "447490743-4",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Potorous tridactylus",
                             Type = "printed",
                             Year = 2006
                         },
@@ -10543,8 +8937,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Windram",
                             Isbn = "465846894-8",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Agama sp.",
                             Type = "electronic",
                             Year = 1986
                         },
@@ -10555,8 +8947,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stanion",
                             Isbn = "710981795-4",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Zalophus californicus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -10567,8 +8957,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Speck",
                             Isbn = "086789697-3",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Macropus rufogriseus",
                             Type = "printed",
                             Year = 2005
                         },
@@ -10579,8 +8967,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lumley",
                             Isbn = "115684339-1",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Marmota caligata",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -10591,8 +8977,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "McCahey",
                             Isbn = "691512877-8",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Ratufa indica",
                             Type = "printed",
                             Year = 2010
                         },
@@ -10603,8 +8987,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ebbing",
                             Isbn = "259469528-9",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Phalaropus lobatus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -10615,8 +8997,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Aseef",
                             Isbn = "804615236-6",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Terathopius ecaudatus",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -10627,8 +9007,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cubbon",
                             Isbn = "471284544-9",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Tursiops truncatus",
                             Type = "printed",
                             Year = 2003
                         },
@@ -10638,8 +9016,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Stéphanie",
                             Isbn = "921657772-X",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Echimys chrysurus",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -10650,8 +9026,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lax",
                             Isbn = "286166304-9",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Semnopithecus entellus",
                             Type = "electronic",
                             Year = 2000
                         },
@@ -10662,8 +9036,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Darwent",
                             Isbn = "075961682-5",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Damaliscus dorcas",
                             Type = "printed",
                             Year = 2008
                         },
@@ -10674,8 +9046,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jedraszczyk",
                             Isbn = "120707227-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Macaca mulatta",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -10686,8 +9056,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O'Brollachain",
                             Isbn = "018152604-2",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Dusicyon thous",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -10698,8 +9066,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Waugh",
                             Isbn = "375114314-9",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Mephitis mephitis",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -10710,8 +9076,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Halle",
                             Isbn = "577374246-2",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Phascogale tapoatafa",
                             Type = "printed",
                             Year = 2011
                         },
@@ -10722,8 +9086,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Powley",
                             Isbn = "964390261-7",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Ciconia episcopus",
                             Type = "printed",
                             Year = 2006
                         },
@@ -10734,8 +9096,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Giriardelli",
                             Isbn = "010688007-1",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Dasyprocta leporina",
                             Type = "electronic",
                             Year = 1989
                         },
@@ -10746,8 +9106,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tampin",
                             Isbn = "400987979-3",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Ammospermophilus nelsoni",
                             Type = "printed",
                             Year = 2002
                         },
@@ -10758,8 +9116,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Humberstone",
                             Isbn = "912926735-8",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Bettongia penicillata",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -10770,8 +9126,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Yendall",
                             Isbn = "531404147-2",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Eubalaena australis",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -10781,8 +9135,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mélys",
                             Isbn = "895117877-3",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Sylvilagus floridanus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -10791,8 +9143,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 833,
                             EditorFirstName = "Amélie",
                             EditorLastName = "Thackray",
-                            Isbn = "738869312-2",
-                            Rating = 0.0
+                            Isbn = "738869312-2"
                         },
                         new
                         {
@@ -10801,8 +9152,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Beeres",
                             Isbn = "837794119-8",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Canis lupus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -10813,8 +9162,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Luscombe",
                             Isbn = "593165006-7",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Lamprotornis nitens",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -10825,8 +9172,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Earwaker",
                             Isbn = "539849478-3",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Funambulus pennati",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -10836,8 +9181,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Anaël",
                             EditorLastName = "Corkill",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Columba livia",
                             Type = "printed",
                             Year = 2006
                         },
@@ -10848,8 +9191,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bavridge",
                             Isbn = "746596267-6",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Pteronura brasiliensis",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -10860,8 +9201,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Auletta",
                             Isbn = "964576737-7",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Tenrec ecaudatus",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -10872,8 +9211,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Scroggs",
                             Isbn = "484599840-8",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Helogale undulata",
                             Type = "electronic",
                             Year = 1985
                         },
@@ -10884,8 +9221,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Buffham",
                             Isbn = "373876775-4",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Oxybelis fulgidus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -10896,8 +9231,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pears",
                             Isbn = "904853972-2",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Actophilornis africanus",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -10908,8 +9241,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Frackiewicz",
                             Isbn = "168216424-1",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Felis silvestris lybica",
                             Type = "printed",
                             Year = 2002
                         },
@@ -10919,8 +9250,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Pénélope",
                             Isbn = "970753708-6",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Cathartes aura",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -10931,8 +9260,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mandeville",
                             Isbn = "835500806-5",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Crotalus adamanteus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -10942,8 +9269,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Yáo",
                             Isbn = "662911750-6",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Cebus albifrons",
                             Type = "printed",
                             Year = 1996
                         },
@@ -10954,8 +9279,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Garrick",
                             Isbn = "486472614-0",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Bison bison",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -10966,8 +9289,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Goulborn",
                             Isbn = "770923944-7",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Corvus albicollis",
                             Type = "printed",
                             Year = 2004
                         },
@@ -10978,8 +9299,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Blackesland",
                             Isbn = "505674071-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "printed",
                             Year = 1986
                         },
@@ -10990,8 +9309,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rickesies",
                             Isbn = "945744958-4",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Gymnorhina tibicen",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -11002,8 +9319,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rosendall",
                             Isbn = "779732146-9",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Pteronura brasiliensis",
                             Type = "printed",
                             Year = 2005
                         },
@@ -11014,8 +9329,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nozzolinii",
                             Isbn = "173261049-5",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Microcebus murinus",
                             Type = "electronic",
                             Year = 1958
                         },
@@ -11026,8 +9339,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hamlin",
                             Isbn = "720596985-9",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Haliaeetus leucocephalus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -11038,8 +9349,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kenrat",
                             Isbn = "643954340-7",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Helogale undulata",
                             Type = "electronic",
                             Year = 1990
                         },
@@ -11050,8 +9359,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Maundrell",
                             Isbn = "242744944-X",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Ninox superciliaris",
                             Type = "printed",
                             Year = 2004
                         },
@@ -11062,8 +9369,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kovnot",
                             Isbn = "251716425-8",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Phalaropus lobatus",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -11073,8 +9378,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Lóng",
                             EditorLastName = "Deppen",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Perameles nasuta",
                             Type = "printed",
                             Year = 2008
                         },
@@ -11084,8 +9387,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mén",
                             EditorLastName = "Keppe",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Acrobates pygmaeus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -11096,8 +9397,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "O' Hern",
                             Isbn = "583735503-0",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Vanellus armatus",
                             Type = "electronic",
                             Year = 2007
                         },
@@ -11108,8 +9407,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Von Oertzen",
                             Isbn = "851589307-X",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Bassariscus astutus",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -11120,8 +9417,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bonsey",
                             Isbn = "902156321-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Alcelaphus buselaphus cokii",
                             Type = "printed",
                             Year = 2000
                         },
@@ -11131,8 +9426,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Estée",
                             Isbn = "566784430-3",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Zosterops pallidus",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -11143,8 +9436,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fairbairn",
                             Isbn = "064841409-4",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Pseudocheirus peregrinus",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -11155,8 +9446,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bernth",
                             Isbn = "969859810-3",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Crocodylus niloticus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -11167,8 +9456,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pendre",
                             Isbn = "361870671-5",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Macropus giganteus",
                             Type = "electronic",
                             Year = 1989
                         },
@@ -11179,8 +9466,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Thibodeaux",
                             Isbn = "143417612-6",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Motacilla aguimp",
                             Type = "printed",
                             Year = 1997
                         },
@@ -11191,8 +9476,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Antonacci",
                             Isbn = "581137036-9",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Anser anser",
                             Type = "printed",
                             Year = 2008
                         },
@@ -11202,8 +9485,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Néhémie",
                             Isbn = "958415508-3",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Gyps bengalensis",
                             Type = "printed",
                             Year = 2007
                         },
@@ -11214,8 +9495,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mor",
                             Isbn = "789350674-1",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Ammospermophilus nelsoni",
                             Type = "printed",
                             Year = 1979
                         },
@@ -11226,8 +9505,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kid",
                             Isbn = "744364938-X",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Sarcorhamphus papa",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -11238,8 +9515,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gligorijevic",
                             Isbn = "658082465-4",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Amblyrhynchus cristatus",
                             Type = "printed",
                             Year = 1975
                         },
@@ -11250,8 +9525,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Moggle",
                             Isbn = "761196584-0",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Sterna paradisaea",
                             Type = "printed",
                             Year = 1996
                         },
@@ -11262,8 +9535,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tootell",
                             Isbn = "366672997-5",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Phoca vitulina",
                             Type = "electronic",
                             Year = 1988
                         },
@@ -11274,8 +9545,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haverty",
                             Isbn = "613509046-1",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Corythornis cristata",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -11286,8 +9555,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Realy",
                             Isbn = "811532313-6",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Pteronura brasiliensis",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -11298,8 +9565,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kop",
                             Isbn = "569075632-6",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Gyps bengalensis",
                             Type = "printed",
                             Year = 1980
                         },
@@ -11310,8 +9575,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Teaz",
                             Isbn = "935518187-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Acrobates pygmaeus",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -11322,8 +9585,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Strettle",
                             Isbn = "300773094-5",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Bettongia penicillata",
                             Type = "printed",
                             Year = 2007
                         },
@@ -11334,8 +9595,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bassam",
                             Isbn = "054861424-5",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Bubulcus ibis",
                             Type = "printed",
                             Year = 1995
                         },
@@ -11346,8 +9605,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kale",
                             Isbn = "497484082-7",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Lamprotornis chalybaeus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -11358,8 +9615,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Rate",
                             Isbn = "135340036-0",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Amazona sp.",
                             Type = "printed",
                             Year = 1996
                         },
@@ -11370,8 +9625,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Simkin",
                             Isbn = "264786639-2",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Zonotrichia capensis",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -11382,8 +9635,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Stepto",
                             Isbn = "785969185-X",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Macaca mulatta",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -11394,8 +9645,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bownass",
                             Isbn = "477850402-X",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Chloephaga melanoptera",
                             Type = "printed",
                             Year = 1991
                         },
@@ -11405,8 +9654,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Méghane",
                             Isbn = "108674836-0",
                             Journal = "Emerald",
-                            Rating = 0.0,
-                            Title = "Galago crassicaudataus",
                             Type = "printed",
                             Year = 1994
                         },
@@ -11417,8 +9664,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Theyer",
                             Isbn = "298444056-0",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Connochaetus taurinus",
                             Type = "printed",
                             Year = 1993
                         },
@@ -11429,8 +9674,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Butson",
                             Isbn = "281712343-3",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Phalaropus fulicarius",
                             Type = "printed",
                             Year = 2000
                         },
@@ -11441,8 +9684,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Nickels",
                             Isbn = "508218288-9",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Nannopterum harrisi",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -11453,8 +9694,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Feige",
                             Isbn = "662436175-1",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Lamprotornis sp.",
                             Type = "printed",
                             Year = 2003
                         },
@@ -11465,8 +9704,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wallworth",
                             Isbn = "275970715-6",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Felis concolor",
                             Type = "printed",
                             Year = 2009
                         },
@@ -11477,8 +9714,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Janning",
                             Isbn = "751091423-X",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Colaptes campestroides",
                             Type = "printed",
                             Year = 1990
                         },
@@ -11489,8 +9724,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Tregien",
                             Isbn = "049071491-9",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Ephippiorhynchus mycteria",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -11501,8 +9734,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Pattinson",
                             Isbn = "497280136-0",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Pelecans onocratalus",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -11513,8 +9744,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Jeanel",
                             Isbn = "607025535-6",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Haliaeetus leucoryphus",
                             Type = "electronic",
                             Year = 1959
                         },
@@ -11525,8 +9754,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Colaco",
                             Isbn = "391605291-8",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Zenaida asiatica",
                             Type = "printed",
                             Year = 1989
                         },
@@ -11537,8 +9764,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Haslum",
                             Isbn = "134727039-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Heloderma horridum",
                             Type = "printed",
                             Year = 1997
                         },
@@ -11549,8 +9774,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kear",
                             Isbn = "785941736-7",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Choloepus hoffmani",
                             Type = "printed",
                             Year = 1986
                         },
@@ -11561,8 +9784,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Minshull",
                             Isbn = "242107102-X",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Eudyptula minor",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -11573,8 +9794,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mosdall",
                             Isbn = "040625892-9",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Phoenicopterus ruber",
                             Type = "printed",
                             Year = 1997
                         },
@@ -11585,8 +9804,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Zupa",
                             Isbn = "173651883-6",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Echimys chrysurus",
                             Type = "electronic",
                             Year = 1992
                         },
@@ -11597,8 +9814,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Branchet",
                             Isbn = "942474755-1",
                             Journal = "Ingenta",
-                            Rating = 0.0,
-                            Title = "Oryx gazella",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -11609,8 +9824,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Malinson",
                             Isbn = "949761972-3",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Hippotragus equinus",
                             Type = "electronic",
                             Year = 1959
                         },
@@ -11621,8 +9834,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shearstone",
                             Isbn = "243104790-3",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Corythornis cristata",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -11633,8 +9844,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Elphick",
                             Isbn = "364679846-7",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Equus burchelli",
                             Type = "printed",
                             Year = 2010
                         },
@@ -11645,8 +9854,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Askham",
                             Isbn = "716714332-4",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Lophoaetus occipitalis",
                             Type = "electronic",
                             Year = 1984
                         },
@@ -11657,8 +9864,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Monk",
                             Isbn = "083565333-1",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Columba palumbus",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -11669,8 +9874,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ekkel",
                             Isbn = "253169158-8",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Papilio canadensis",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -11681,8 +9884,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Olsen",
                             Isbn = "685688523-7",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Ara macao",
                             Type = "electronic",
                             Year = 1984
                         },
@@ -11692,8 +9893,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Rébecca",
                             Isbn = "363683912-8",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Grus antigone",
                             Type = "printed",
                             Year = 2005
                         },
@@ -11704,8 +9903,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Shawyer",
                             Isbn = "220702579-9",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax varius",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -11715,8 +9912,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Maëline",
                             Isbn = "886581133-1",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Tockus flavirostris",
                             Type = "electronic",
                             Year = 1972
                         },
@@ -11727,8 +9922,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Scouse",
                             Isbn = "943565865-2",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -11739,8 +9932,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ziemens",
                             Isbn = "322296260-X",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Papio cynocephalus",
                             Type = "printed",
                             Year = 1997
                         },
@@ -11751,8 +9942,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Samett",
                             Isbn = "226919938-3",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Cracticus nigroagularis",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -11763,8 +9952,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Spenley",
                             Isbn = "985601405-0",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Creagrus furcatus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -11775,8 +9962,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Custy",
                             Isbn = "621786279-4",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Bubulcus ibis",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -11787,8 +9972,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kenwyn",
                             Isbn = "992741039-5",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Varanus salvator",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -11799,8 +9982,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Furminger",
                             Isbn = "399578877-7",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Coendou prehensilis",
                             Type = "printed",
                             Year = 2005
                         },
@@ -11811,8 +9992,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gritskov",
                             Isbn = "664219409-8",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Anthropoides paradisea",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -11823,8 +10002,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Benediktovich",
                             Isbn = "436929254-9",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Tachyglossus aculeatus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -11835,8 +10012,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Day",
                             Isbn = "153320426-8",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Priodontes maximus",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -11847,8 +10022,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hawkshaw",
                             Isbn = "035392824-0",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Microcebus murinus",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -11859,8 +10032,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Branson",
                             Isbn = "592542321-6",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Equus hemionus",
                             Type = "printed",
                             Year = 2001
                         },
@@ -11871,8 +10042,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Carous",
                             Isbn = "454360003-7",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Genetta genetta",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -11883,8 +10052,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Brea",
                             Isbn = "567218911-3",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Lemur catta",
                             Type = "electronic",
                             Year = 1968
                         },
@@ -11895,8 +10062,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kemshell",
                             Isbn = "540804593-5",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Plegadis ridgwayi",
                             Type = "electronic",
                             Year = 2013
                         },
@@ -11907,8 +10072,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Masseo",
                             Isbn = "245559264-2",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Macropus agilis",
                             Type = "printed",
                             Year = 2000
                         },
@@ -11917,8 +10080,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 928,
                             EditorFirstName = "Céline",
                             EditorLastName = "Skittle",
-                            Isbn = "443947993-6",
-                            Rating = 0.0
+                            Isbn = "443947993-6"
                         },
                         new
                         {
@@ -11926,8 +10088,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Anaé",
                             Isbn = "032412932-7",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Sterna paradisaea",
                             Type = "electronic",
                             Year = 2010
                         },
@@ -11938,8 +10098,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "MacTerlagh",
                             Isbn = "210809956-5",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Funambulus pennati",
                             Type = "printed",
                             Year = 1986
                         },
@@ -11950,8 +10108,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dowrey",
                             Isbn = "541313881-4",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Ctenophorus ornatus",
                             Type = "printed",
                             Year = 2012
                         },
@@ -11962,8 +10118,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Kroch",
                             Isbn = "790463216-0",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Phoenicopterus ruber",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -11974,8 +10128,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bellie",
                             Isbn = "216569532-5",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Porphyrio porphyrio",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -11986,8 +10138,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Oxbe",
                             Isbn = "722239183-5",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Cracticus nigroagularis",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -11998,8 +10148,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Philippart",
                             Isbn = "896595945-4",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Callorhinus ursinus",
                             Type = "printed",
                             Year = 1992
                         },
@@ -12010,8 +10158,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Blezard",
                             Isbn = "023667461-7",
                             Journal = "IGI Global",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax brasilianus",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -12022,8 +10168,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Espadater",
                             Isbn = "897213456-2",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Physignathus cocincinus",
                             Type = "printed",
                             Year = 2000
                         },
@@ -12033,8 +10177,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Méghane",
                             EditorLastName = "Davson",
                             Journal = "Elsevier",
-                            Rating = 0.0,
-                            Title = "Haematopus ater",
                             Type = "printed",
                             Year = 1997
                         },
@@ -12045,8 +10187,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Geffen",
                             Isbn = "124210730-4",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Anhinga rufa",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -12055,8 +10195,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 940,
                             EditorFirstName = "Laïla",
                             EditorLastName = "Birds",
-                            Isbn = "296380173-4",
-                            Rating = 0.0
+                            Isbn = "296380173-4"
                         },
                         new
                         {
@@ -12065,8 +10204,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Creech",
                             Isbn = "883610808-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Phalaropus fulicarius",
                             Type = "printed",
                             Year = 1984
                         },
@@ -12077,8 +10214,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Eustis",
                             Isbn = "093975164-X",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Acrobates pygmaeus",
                             Type = "printed",
                             Year = 1996
                         },
@@ -12088,8 +10223,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Mélissandre",
                             Isbn = "024115310-7",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Macropus fuliginosus",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -12100,8 +10233,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Leads",
                             Isbn = "406068813-4",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Dendrocitta vagabunda",
                             Type = "electronic",
                             Year = 1993
                         },
@@ -12110,8 +10241,7 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             Id = 945,
                             EditorFirstName = "Mélodie",
                             EditorLastName = "Geerling",
-                            Isbn = "924192137-4",
-                            Rating = 0.0
+                            Isbn = "924192137-4"
                         },
                         new
                         {
@@ -12120,8 +10250,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Delaney",
                             Isbn = "438435058-9",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Macaca nemestrina",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -12132,8 +10260,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Batecok",
                             Isbn = "254789464-5",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Columba livia",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -12144,8 +10270,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Radin",
                             Isbn = "963409773-1",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax varius",
                             Type = "printed",
                             Year = 2006
                         },
@@ -12156,8 +10280,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ruthven",
                             Isbn = "754678424-7",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Tadorna tadorna",
                             Type = "printed",
                             Year = 2010
                         },
@@ -12168,8 +10290,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Perrat",
                             Isbn = "394627960-0",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Petaurus norfolcensis",
                             Type = "printed",
                             Year = 2000
                         },
@@ -12180,8 +10300,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Baynes",
                             Isbn = "241092724-6",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Macaca nemestrina",
                             Type = "printed",
                             Year = 1993
                         },
@@ -12192,8 +10310,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Brummitt",
                             Isbn = "984619451-X",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Lybius torquatus",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -12203,8 +10319,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Gisèle",
                             EditorLastName = "O'Luby",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Merops nubicus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -12215,8 +10329,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bowness",
                             Isbn = "743864490-1",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Cebus apella",
                             Type = "printed",
                             Year = 1986
                         },
@@ -12227,8 +10339,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Torrecilla",
                             Isbn = "804216841-1",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "Phascogale tapoatafa",
                             Type = "printed",
                             Year = 2010
                         },
@@ -12239,8 +10349,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sweynson",
                             Isbn = "339844896-8",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Gymnorhina tibicen",
                             Type = "printed",
                             Year = 1988
                         },
@@ -12251,8 +10359,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gilbee",
                             Isbn = "497222159-3",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Felis chaus",
                             Type = "printed",
                             Year = 1989
                         },
@@ -12263,8 +10369,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Dusting",
                             Isbn = "399504256-2",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Chlidonias leucopterus",
                             Type = "electronic",
                             Year = 2009
                         },
@@ -12274,8 +10378,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Félicie",
                             Isbn = "976563247-9",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Canis lupus lycaon",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -12286,8 +10388,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Brecon",
                             Isbn = "945748583-1",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Neophoca cinerea",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -12298,8 +10398,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Vile",
                             Isbn = "733155877-3",
                             Journal = "Versita",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 2005
                         },
@@ -12310,8 +10408,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Ryde",
                             Isbn = "061416511-3",
                             Journal = "INFORMS",
-                            Rating = 0.0,
-                            Title = "Semnopithecus entellus",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -12322,8 +10418,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fernez",
                             Isbn = "735379643-X",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Loxodonta africana",
                             Type = "electronic",
                             Year = 1999
                         },
@@ -12334,8 +10428,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Zamboniari",
                             Isbn = "217166507-6",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Mabuya spilogaster",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -12346,8 +10438,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Atteridge",
                             Isbn = "468084281-4",
                             Journal = "IEEE",
-                            Rating = 0.0,
-                            Title = "Tockus erythrorhyncus",
                             Type = "electronic",
                             Year = 1998
                         },
@@ -12358,8 +10448,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Briar",
                             Isbn = "969260806-9",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Pitangus sulphuratus",
                             Type = "electronic",
                             Year = 2012
                         },
@@ -12370,8 +10458,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Behling",
                             Isbn = "253526765-9",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Taurotagus oryx",
                             Type = "printed",
                             Year = 1994
                         },
@@ -12382,8 +10468,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Van Eeden",
                             Isbn = "683054660-5",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "unavailable",
                             Type = "electronic",
                             Year = 1989
                         },
@@ -12394,8 +10478,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cordeix",
                             Isbn = "739717201-6",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Aquila chrysaetos",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -12406,8 +10488,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Foynes",
                             Isbn = "311532635-1",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Macropus robustus",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -12418,8 +10498,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Riccio",
                             Isbn = "513954777-5",
                             Journal = "Inderscience",
-                            Rating = 0.0,
-                            Title = "Panthera leo",
                             Type = "electronic",
                             Year = 2011
                         },
@@ -12430,8 +10508,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Alldridge",
                             Isbn = "137765198-3",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Spheniscus magellanicus",
                             Type = "electronic",
                             Year = 2001
                         },
@@ -12442,8 +10518,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Wallett",
                             Isbn = "301503826-5",
                             Journal = "Frontiers",
-                            Rating = 0.0,
-                            Title = "Fratercula corniculata",
                             Type = "printed",
                             Year = 1989
                         },
@@ -12454,8 +10528,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Lages",
                             Isbn = "768116417-0",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Pedetes capensis",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -12466,8 +10538,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Joul",
                             Isbn = "899683303-7",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Pseudalopex gymnocercus",
                             Type = "printed",
                             Year = 1997
                         },
@@ -12478,8 +10548,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Deetlof",
                             Isbn = "062387861-5",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Martes pennanti",
                             Type = "printed",
                             Year = 2011
                         },
@@ -12490,8 +10558,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "D'Aubney",
                             Isbn = "172595182-7",
                             Journal = "RonPub",
-                            Rating = 0.0,
-                            Title = "Funambulus pennati",
                             Type = "electronic",
                             Year = 1983
                         },
@@ -12502,8 +10568,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Crooks",
                             Isbn = "891932492-1",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Climacteris melanura",
                             Type = "printed",
                             Year = 2011
                         },
@@ -12514,8 +10578,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Donaghy",
                             Isbn = "009400741-1",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Petaurus norfolcensis",
                             Type = "electronic",
                             Year = 1997
                         },
@@ -12526,8 +10588,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Topley",
                             Isbn = "183800314-2",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Macropus eugenii",
                             Type = "electronic",
                             Year = 1994
                         },
@@ -12538,8 +10598,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Earingey",
                             Isbn = "310762703-8",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Aegypius occipitalis",
                             Type = "printed",
                             Year = 2008
                         },
@@ -12550,8 +10608,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bunch",
                             Isbn = "148125069-8",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Phalacrocorax brasilianus",
                             Type = "printed",
                             Year = 1996
                         },
@@ -12562,8 +10618,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Bemand",
                             Isbn = "161182151-7",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Chloephaga melanoptera",
                             Type = "electronic",
                             Year = 2002
                         },
@@ -12574,8 +10628,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Masden",
                             Isbn = "719168008-3",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Damaliscus lunatus",
                             Type = "printed",
                             Year = 2010
                         },
@@ -12586,8 +10638,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Buncom",
                             Isbn = "476230765-3",
                             Journal = "ICST",
-                            Rating = 0.0,
-                            Title = "Petaurus breviceps",
                             Type = "electronic",
                             Year = 2004
                         },
@@ -12598,8 +10648,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Mathely",
                             Isbn = "971174824-X",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Anas bahamensis",
                             Type = "printed",
                             Year = 2009
                         },
@@ -12610,8 +10658,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Guiel",
                             Isbn = "684391294-X",
                             Journal = "Springer",
-                            Rating = 0.0,
-                            Title = "Ovibos moschatus",
                             Type = "printed",
                             Year = 1994
                         },
@@ -12622,8 +10668,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Fakeley",
                             Isbn = "083770021-3",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Boa constrictor mexicana",
                             Type = "electronic",
                             Year = 1985
                         },
@@ -12634,8 +10678,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Cant",
                             Isbn = "505584256-3",
                             Journal = "ACM",
-                            Rating = 0.0,
-                            Title = "Corvus albus",
                             Type = "electronic",
                             Year = 1967
                         },
@@ -12646,8 +10688,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Gramer",
                             Isbn = "517385033-7",
                             Journal = "BMC",
-                            Rating = 0.0,
-                            Title = "Myrmecophaga tridactyla",
                             Type = "electronic",
                             Year = 1996
                         },
@@ -12658,8 +10698,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Hirtz",
                             Isbn = "432361947-2",
                             Journal = "SIAM",
-                            Rating = 0.0,
-                            Title = "Camelus dromedarius",
                             Type = "printed",
                             Year = 1997
                         },
@@ -12670,8 +10708,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Maestro",
                             Isbn = "596605171-2",
                             Journal = "Oxford University Press",
-                            Rating = 0.0,
-                            Title = "Tockus erythrorhyncus",
                             Type = "printed",
                             Year = 1992
                         },
@@ -12682,8 +10718,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Le Borgne",
                             Isbn = "706736815-4",
                             Journal = "Wiley",
-                            Rating = 0.0,
-                            Title = "Papilio canadensis",
                             Type = "printed",
                             Year = 1993
                         },
@@ -12694,8 +10728,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Baldocci",
                             Isbn = "689807455-5",
                             Journal = "Liebert Open Access",
-                            Rating = 0.0,
-                            Title = "Kobus defassa",
                             Type = "electronic",
                             Year = 1981
                         },
@@ -12706,8 +10738,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Abrahamsen",
                             Isbn = "229645320-1",
                             Journal = "IET",
-                            Rating = 0.0,
-                            Title = "Herpestes javanicus",
                             Type = "printed",
                             Year = 1992
                         },
@@ -12718,8 +10748,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Sprull",
                             Isbn = "132772185-6",
                             Journal = "MIT Press",
-                            Rating = 0.0,
-                            Title = "Merops sp.",
                             Type = "electronic",
                             Year = 1995
                         },
@@ -12730,8 +10758,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Omand",
                             Isbn = "631548375-5",
                             Journal = "SAGE Publications",
-                            Rating = 0.0,
-                            Title = "Macropus robustus",
                             Type = "electronic",
                             Year = 2003
                         },
@@ -12742,8 +10768,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Clausius",
                             Isbn = "436412002-2",
                             Journal = "Hindawi",
-                            Rating = 0.0,
-                            Title = "Bubalus arnee",
                             Type = "electronic",
                             Year = 2008
                         },
@@ -12753,8 +10777,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorFirstName = "Aurélie",
                             Isbn = "278069117-4",
                             Journal = "World Scientific",
-                            Rating = 0.0,
-                            Title = "Chauna torquata",
                             Type = "electronic",
                             Year = 2006
                         },
@@ -12765,8 +10787,6 @@ namespace AcademicReferenceManager.Repositories.Migrations
                             EditorLastName = "Livezey",
                             Isbn = "512063625-X",
                             Journal = "MDPI",
-                            Rating = 0.0,
-                            Title = "Uraeginthus granatina",
                             Type = "electronic",
                             Year = 2007
                         });

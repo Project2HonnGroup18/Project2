@@ -5,6 +5,7 @@ namespace AcademicReferenceManager.Models.Dtos
 {
     public class PublicationReviewsDto
     {
+        public PublicationReviewsDto(){}
         public PublicationReviewsDto(Entities.Publication publication)
         {
             Id = publication.Id;

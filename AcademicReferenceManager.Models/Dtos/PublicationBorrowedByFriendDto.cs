@@ -2,6 +2,7 @@ namespace AcademicReferenceManager.Models.Dtos
 {
     public class PublicationBorrowedByFriendDto
     {
+        public PublicationBorrowedByFriendDto(){}
         public PublicationBorrowedByFriendDto(Entities.Friend friend, Entities.Publication publication)
         {
             EditorFirstName = publication.EditorFirstName;

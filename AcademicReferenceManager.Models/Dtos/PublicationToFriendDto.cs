@@ -4,6 +4,7 @@ namespace AcademicReferenceManager.Models.Dtos
 {
     public class PublicationToFriendDto
     {
+        public PublicationToFriendDto(){}
         public PublicationToFriendDto(Entities.PublicationToFriend p2f)
         {
             FriendId = p2f.FriendId;

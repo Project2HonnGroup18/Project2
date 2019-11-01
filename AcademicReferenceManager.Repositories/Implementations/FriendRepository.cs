@@ -109,12 +109,13 @@ namespace AcademicReferenceManager.Repositories.Implementations
         public IEnumerable<Publication> GetRecommendations(int userId)
         {
             // Validate that given user exists
-            // VALGARÐUR ENDILEGA COMMENTA HER
             var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
             if(friend == null) 
             {
                 throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
             }
+
+            // Get list of publications from list of loans via join
             var userPublications = _armDbContext.PublicationsToFriend
                                     .Where(p2f => p2f.FriendId == userId)
                                     .Join(_armDbContext.Publications, 
@@ -122,14 +123,11 @@ namespace AcademicReferenceManager.Repositories.Implementations
                                             pub => pub.Id,
                                             (outer, inner) => inner);
 
+            // First, get all publications EXCEPT those that have been borrowed to user
+            // Then, order by estimated average review score
             var recommendations =  _armDbContext.Publications
                                     .Except(userPublications)
-                                    .GroupBy(publication => publication.Reviews
-                                                                        .Select(r => r.Rating)
-                                                                        .DefaultIfEmpty(0)
-                                                                        .Average())
-                                    .OrderByDescending(publication => publication.Key)
-                                    .SelectMany(x=>x);
+                                    .OrderByDescending(pub => pub.Rating);
 
             return recommendations;
         }

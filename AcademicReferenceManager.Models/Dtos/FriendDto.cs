@@ -2,6 +2,7 @@ namespace AcademicReferenceManager.Models.Dtos
 {
     public class FriendDto
     {
+        public FriendDto() {}
         public FriendDto(Entities.Friend friend)
         {
             Id = friend.Id;

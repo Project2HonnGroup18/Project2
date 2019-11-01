@@ -2,6 +2,7 @@ namespace AcademicReferenceManager.Models.Dtos
 {
     public class ReviewDto
     {
+        public ReviewDto(){}
         public ReviewDto(Entities.Review review)
         {
             Rating = review.Rating;

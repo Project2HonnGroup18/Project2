@@ -13,6 +13,7 @@ namespace AcademicReferenceManager.Models.Entities
         public string Isbn { get; set; }
         public int? Year { get; set; }
         public string Type { get; set; }
+        public double Rating { get; set; }
 
         [InverseProperty("Publication")]
         public List<PublicationToFriend> PublicationsToFriend { get; set; }

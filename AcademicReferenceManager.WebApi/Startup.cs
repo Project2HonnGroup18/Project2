@@ -75,6 +75,8 @@ namespace AcademicReferenceManager.WebApi
                 if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
                 {
                     context.Database.Migrate();
+                    context.UpdateRatingForAllPublications();
+                    context.SaveChanges();
                 }
             }
             
