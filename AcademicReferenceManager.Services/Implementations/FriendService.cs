@@ -40,7 +40,7 @@ namespace AcademicReferenceManager.Services.Implementations
             return friendList.Select(f => new FriendDto(f));
         }
 
-        public FriendDto GetFriendById(int friendId) => new FriendDto(_friendRepo.GetFriendById(friendId));
+        public FriendWithBorrowHistoryDto GetFriendById(int friendId) => new FriendWithBorrowHistoryDto(_friendRepo.GetFriendById(friendId));
         public FriendDto CreateFriend(FriendInputModel body) => new FriendDto(_friendRepo.CreateFriend(body));
         public FriendDto UpdateFriendById(int friendId, FriendUpdateInputModel body) => new FriendDto(_friendRepo.UpdateFriendById(friendId, body));
         public FriendDto DeleteFriendById(int friendId) => new FriendDto(_friendRepo.DeleteFriendById(friendId));

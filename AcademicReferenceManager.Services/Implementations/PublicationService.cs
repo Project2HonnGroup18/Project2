@@ -33,8 +33,8 @@ namespace AcademicReferenceManager.Services.Implementations
             }
             return pubs.Select(p => new PublicationDto(p));
         }
-        public PublicationDto GetPublicationById(int publicationId) 
-            => new PublicationDto(_publicationRepo.GetPublicationById(publicationId));
+        public PublicationWithBorrowHistoryDto GetPublicationById(int publicationId) 
+            => new PublicationWithBorrowHistoryDto(_publicationRepo.GetPublicationById(publicationId));
         public PublicationDto CreatePublication(PublicationInputModel body) 
             => new PublicationDto(_publicationRepo.CreatePublication(body));
         public PublicationDto UpdatePublicationById(int publicationId, PublicationUpdateInputModel body) 

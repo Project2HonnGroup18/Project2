@@ -5,6 +5,7 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
@@ -30,20 +31,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
         public Friend GetFriendById(int userId)
         {
             // Check if given user exists
-            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == userId);
+            var friend = _armDbContext.Friends
+                            .Include(fr => fr.PublicationsToFriend)
+                            .FirstOrDefault(f => f.Id == userId);
             if(friend == null) 
             {
                 throw new ResourceNotFoundException($"User with id: {userId} was not found");
             }
-            return new Friend
-            {
-                Id = friend.Id,
-                FirstName = friend.FirstName,
-                LastName = friend.LastName,
-                Email = friend.Email,
-                Phone = friend.Phone,
-                Address = friend.Address
-            };
+            return friend;
         }
 
         public Friend CreateFriend(FriendInputModel body)

@@ -5,6 +5,7 @@ using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Data;
 using AcademicReferenceManager.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademicReferenceManager.Repositories.Implementations
 {
@@ -31,21 +32,14 @@ namespace AcademicReferenceManager.Repositories.Implementations
         public Publication GetPublicationById(int publicationId)
         {
             // Validate that given publication exists
-             var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == publicationId);
+             var publication = _armDbContext.Publications
+                                .Include(pub => pub.PublicationsToFriend)
+                                .FirstOrDefault(p => p.Id == publicationId);
              if(publication == null)
              {
                  throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
              }
-             return new Publication
-             {
-                Id = publication.Id,
-                EditorFirstName = publication.EditorFirstName,
-                EditorLastName = publication.EditorLastName,
-                Title = publication.Title,
-                Year = publication.Year,
-                Type = publication.Type,
-                Isbn = publication.Isbn
-             };
+             return publication;
         }
 
         public Publication CreatePublication(PublicationInputModel body)

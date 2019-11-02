@@ -9,7 +9,7 @@ namespace AcademicReferenceManager.Services.Interfaces
     public interface IFriendService
     {
         IEnumerable<FriendDto> GetAllFriends(DateTime? loanDate, int? loanDuration);
-        FriendDto GetFriendById(int friendId);
+        FriendWithBorrowHistoryDto GetFriendById(int friendId);
         FriendDto CreateFriend(FriendInputModel body);
         FriendDto UpdateFriendById(int friendId, FriendUpdateInputModel body);
         FriendDto DeleteFriendById(int friendId);
