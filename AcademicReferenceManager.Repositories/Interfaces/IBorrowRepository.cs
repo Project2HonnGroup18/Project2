@@ -11,7 +11,7 @@ namespace AcademicReferenceManager.Repositories.Interfaces
         IEnumerable<Friend> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime? date);
         IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int? loanDuration);
         IEnumerable<Publication> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime? date);
-        IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime? loanDate, int? loanDuration);
+        IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime loanDate, int loanDuration);
         IEnumerable<Publication> GetAllPublicationsAUserHasOnLoanById(int userId);
         PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);
         PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body);

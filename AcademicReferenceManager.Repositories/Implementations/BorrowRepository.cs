@@ -25,7 +25,8 @@ namespace AcademicReferenceManager.Repositories.Implementations
             // for each loan connection see if it was on loan on a given date - return those who are as a friend view model
             foreach(PublicationToFriend p2f in connection) 
             {
-                if(p2f.BorrowDate <= date && p2f.ReturnDate > date)
+                var retDate = p2f.ReturnDate == null ? DateTime.Now : p2f.ReturnDate;
+                if(p2f.BorrowDate <= date && retDate > date)
                 {
                    var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
                    friends.Add(new Friend
@@ -82,7 +83,8 @@ namespace AcademicReferenceManager.Repositories.Implementations
             // for each loan connection see if it was on loan on a given date - return those who are as a publication view model
             foreach(PublicationToFriend p2f in borrows)
             {
-                if(p2f.BorrowDate < date && p2f.ReturnDate > date)
+                var retDate = p2f.ReturnDate == null ? DateTime.Now : p2f.ReturnDate;
+                if(p2f.BorrowDate < date && retDate > date)
                 {
                     var publication = _armDbContext.Publications.FirstOrDefault(p => p.Id == p2f.PublicationId);
                     publications.Add(new Publication
@@ -100,7 +102,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             return publications;
         }
 
-        public IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime? loanDate, int? loanDuration)
+        public IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(DateTime loanDate, int loanDuration)
         {
             var connections = _armDbContext.PublicationsToFriend.ToList();
             List<Friend> returnList = new List<Friend>();
@@ -117,36 +119,40 @@ namespace AcademicReferenceManager.Repositories.Implementations
                 if(p2f.BorrowDate != null)
                 {
                     var borrowDate = (DateTime)p2f.BorrowDate;
-                    var returnDate = (DateTime)p2f.ReturnDate;
 
                     TimeSpan tsNow = DateTime.Now.Subtract(borrowDate);
                     int NumberOfDaysForNow = (int) tsNow.TotalDays;
-
-                    TimeSpan tsReturnDate = returnDate.Subtract(borrowDate);
-                    int NumberOfDaysForReturnDate = (int) tsReturnDate.TotalDays;
-
-                    bool conditionsMet = false;
-
-                    if(returnDate == null || returnDate > DateTime.Now)
+                    
+                    /*
+                    if(p2f.ReturnDate == null || p2f.ReturnDate > DateTime.Now && ())
                     {
-                        conditionsMet = NumberOfDaysForNow >= loanDuration ? true : false;
+                        conditionsMet = NumberOfDaysForNow >= loanDuration;
                     }
-                    else
+                    else if(p2f.BorrowDate < loanDate && p2f.ReturnDate >= loanDate)
                     {
+                        var retDate = (DateTime)p2f.ReturnDate;
+                        TimeSpan tsReturnDate = retDate.Subtract(borrowDate);
+                        int NumberOfDaysForReturnDate = (int) tsReturnDate.TotalDays;
                         conditionsMet = NumberOfDaysForReturnDate >= loanDuration ? true : false;
-
                     }
-                    if(conditionsMet)
+                    */
+
+                    if(p2f.BorrowDate <= loanDate && (p2f.ReturnDate >= loanDate || p2f.ReturnDate == null))
                     {
-                        var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
-                        returnList.Add( new Friend
+                        TimeSpan tsReturnDate = loanDate.Subtract(borrowDate);
+                        int numberOfDaysForReturnDate = (int) tsReturnDate.TotalDays;
+                        if(numberOfDaysForReturnDate >= loanDuration)
                         {
-                            Id = friend.Id,
-                            FirstName = friend.FirstName,
-                            LastName = friend.LastName,
-                            Email = friend.Email,
-                            Address = friend.Address
-                        });
+                            var friend = _armDbContext.Friends.FirstOrDefault(f => f.Id == p2f.FriendId);
+                            returnList.Add( new Friend
+                            {
+                                Id = friend.Id,
+                                FirstName = friend.FirstName,
+                                LastName = friend.LastName,
+                                Email = friend.Email,
+                                Address = friend.Address
+                            });
+                        }
                     }
                 }
             }

@@ -23,7 +23,7 @@ namespace AcademicReferenceManager.Services.Implementations
             IEnumerable<Friend> friendList;
             if(loanDate.HasValue && loanDuration.HasValue)
             {
-                friendList = _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate(loanDate, loanDuration);
+                friendList = _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDaysByParticularDate((DateTime) loanDate, (int) loanDuration);
             }
             else if(loanDuration.HasValue)
             {
