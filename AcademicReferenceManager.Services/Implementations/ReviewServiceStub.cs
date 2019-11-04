@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AcademicReferenceManager.Models.Dtos;
@@ -13,6 +14,8 @@ namespace UnitTests.ServiceStubs
         private readonly List<Review> _reviews;
         private readonly List<Publication> _publications;
         private readonly List<Friend> _friends;
+        private readonly List<PublicationToFriend> _borrows;
+        
         public ReviewServiceStub()
         {
             _reviews = new List<Review>()
@@ -32,7 +35,7 @@ namespace UnitTests.ServiceStubs
                 new Review()
                 {
                     Rating = 5,
-                    FriendId = 3,
+                    FriendId = 2,
                     PublicationId = 1
                 },
 
@@ -50,7 +53,30 @@ namespace UnitTests.ServiceStubs
                     Isbn = "124601285-0",
                     Year = 2019,
                     Type = "electronic"
+                },
 
+                new Publication()
+                {
+                    Id = 2,
+                    EditorFirstName = "John",
+                    EditorLastName = "Smith",
+                    Title = "Johns pub",
+                    Journal = "World Scientific",
+                    Isbn = "124612345-0",
+                    Year = 2019,
+                    Type = "printed"
+                },
+
+                new Publication()
+                {
+                    Id = 3,
+                    EditorFirstName = "Frank",
+                    EditorLastName = "Miller",
+                    Title = "Frankies pub",
+                    Journal = "World Scientific",
+                    Isbn = "124612345-0",
+                    Year = 2019,
+                    Type = "electronic"
                 }
             };
 
@@ -85,10 +111,47 @@ namespace UnitTests.ServiceStubs
                 },
 
             };
+
+            _borrows = new List<PublicationToFriend>()
+            {
+                new PublicationToFriend()
+                {
+                    Id = 1,
+                    BorrowDate = new DateTime(2019, 1, 1),
+                    ReturnDate = new DateTime(2019, 2, 1),
+                    PublicationId = 1,
+                    FriendId = 1,
+
+                },
+                new PublicationToFriend()
+                {
+                    Id = 2,
+                    BorrowDate = new DateTime(2019, 4, 10),
+                    ReturnDate = new DateTime(2019, 6, 10),
+                    PublicationId = 2,
+                    FriendId = 1,
+                    
+                },
+                new PublicationToFriend()
+                {
+                    Id = 3,
+                    BorrowDate = new DateTime(2019, 7, 15),
+                    ReturnDate = new DateTime(2019, 8, 15),
+                    PublicationId = 3,
+                    FriendId = 1,
+                   
+                },
+
+            };
+
         }
         public IEnumerable<ReviewDto> GetReviewsByUser(int userId) 
         {
-            System.Console.WriteLine("\n\nTEST!\n\n " + userId);
+            var friend = _friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null)
+            {
+                throw new ResourceNotFoundException($"user with id {userId} was not found");
+            }
             var reviewSet =  _reviews;
             var filtered = reviewSet.Where(f => userId == f.FriendId);
             var remapped = filtered.Select(r => new ReviewDto
@@ -105,6 +168,10 @@ namespace UnitTests.ServiceStubs
         {
             var review = _reviews
                 .FirstOrDefault(f => userId == f.FriendId && publicationId == f.PublicationId);
+            if(review == null)
+            {
+                throw new ResourceNotFoundException($"User with id: {userId} has not reviewd publication with id: {publicationId}");
+            }
             var reviewDto = new ReviewDto {
                     Rating = review.Rating,
                     PublicationId = review.PublicationId,
@@ -114,8 +181,27 @@ namespace UnitTests.ServiceStubs
             return reviewDto;
         }
 
-        public Review AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body)
+        public ReviewDto AddUserReviewForPublication(int userId, int publicationId, ReviewInputModel body)
         {
+            // Validate that given user exists
+            var friend = _friends.FirstOrDefault(f => f.Id == userId);
+            if(friend == null) 
+            {
+                throw new ResourceNotFoundException($"User with id: {userId} was not found");
+            }
+            // Validate that given publication exists
+            var publication = _publications.FirstOrDefault(p => p.Id == publicationId);
+            if(publication == null)
+            {
+                throw new ResourceNotFoundException($"Publication with id: {publicationId} was not found");
+            }
+            // Validate that given user has borrowed given publication
+            var connection = _borrows.FirstOrDefault(c => 
+                                c.FriendId == userId && c.PublicationId == publicationId);
+            if(connection == null) 
+            {
+                throw new UserHasNotBorrowedBookException($"User with id: {userId} has not borrowed publication with id: {publicationId} and therefor cannot review it");
+            }
             var review = new Review {
                 Rating = body.Rating,
                 FriendId = userId,
@@ -124,7 +210,10 @@ namespace UnitTests.ServiceStubs
 
             _reviews.Add(review);
             
-            return review;
+            return new ReviewDto()
+            {
+                Rating = review.Rating
+            };
         }
 
         public IEnumerable<PublicationReviewsDto> GetAllReviewsForAllPublications() 
@@ -153,7 +242,7 @@ namespace UnitTests.ServiceStubs
             return publicationReviews;
         }
 
-        public Review DeleteReview(int userId, int publicationId) 
+        public ReviewDto DeleteReview(int userId, int publicationId) 
         {
             var review = _reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
             if(review == null) 
@@ -164,20 +253,27 @@ namespace UnitTests.ServiceStubs
             _reviews.Remove(review);
             
 
-            return review;
+            return new ReviewDto()
+            {
+                Rating = review.Rating
+            };
         }
-        public Review UpdateReview(int userId, int publicationId, ReviewInputModel body) 
+        public ReviewDto UpdateReview(int userId, int publicationId, ReviewInputModel body) 
         {
             var review = _reviews.FirstOrDefault(f => f.FriendId == userId && f.PublicationId == publicationId);
+             
             if(review == null) 
             {
-                throw new ResourceNotFoundException($"Friend with id: {userId} was not found");
+                throw new ResourceNotFoundException($"Review from user with id: {userId} on publication with id: {publicationId} was not found");//($"Friend with id: {userId} was not found");
             }
             
             review.Rating = body.Rating;
+                   
+            return new ReviewDto()
+            {
+                Rating = review.Rating
+            };
             
-
-            return review;
         }
         
         public PublicationReviewsDto GetAllReviewsByPublicationId(int publicationId)

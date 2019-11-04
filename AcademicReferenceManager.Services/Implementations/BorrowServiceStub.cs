@@ -83,7 +83,6 @@ namespace UnitTests.ServiceStubs
         {
             var borrow = _borrows.Select(p => new PublicationToFriendDto
             {
-                Id = p.Id,
                 FriendId = p.FriendId,
                 PublicationId = p.PublicationId,
                 BorrowDate = p.BorrowDate,
@@ -97,7 +96,6 @@ namespace UnitTests.ServiceStubs
             var connection = _borrows.FirstOrDefault(p => p.Id == connectionID);
             return new PublicationToFriendDto
             {
-                Id = connection.Id,
                 FriendId = connection.FriendId,
                 PublicationId = connection.PublicationId,
                 BorrowDate = connection.BorrowDate,
@@ -251,7 +249,7 @@ namespace UnitTests.ServiceStubs
             }
             return publications;
         }
-        public PublicationToFriend CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 
+        public PublicationToFriendDto CreateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body) 
         {
             var friend = _friends.FirstOrDefault(f => f.Id == userId);
 
@@ -284,9 +282,15 @@ namespace UnitTests.ServiceStubs
             };
 
             _borrows.Add(entity);
-            return entity;
+            return new PublicationToFriendDto
+            {
+                FriendId = entity.FriendId,
+                PublicationId = entity.PublicationId,
+                BorrowDate = entity.BorrowDate,
+                ReturnDate = entity.ReturnDate
+            };
         }
-        public PublicationToFriend UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body)
+        public PublicationToFriendDto UpdateFriendBorrowsABookConnection(int userId, int publicationId, PublicationToFriendInputModel body)
         {
             var connection = _borrows.FirstOrDefault(c => c.FriendId == userId && c.PublicationId == publicationId);
             if(connection == null)
@@ -297,9 +301,15 @@ namespace UnitTests.ServiceStubs
             connection.BorrowDate = body.BorrowDate;
             connection.ReturnDate = body.ReturnDate;
 
-            return connection;
+            return new PublicationToFriendDto
+            {
+                FriendId = connection.FriendId,
+                PublicationId = connection.PublicationId,
+                BorrowDate = connection.BorrowDate,
+                ReturnDate = connection.ReturnDate
+            };
         }
-        public PublicationToFriend DeleteFriendBorrowsABookConnection(int userId, int publicationId)
+        public PublicationToFriendDto DeleteFriendBorrowsABookConnection(int userId, int publicationId)
         {
             var connection = _borrows.FirstOrDefault(c => c.FriendId == userId && c.PublicationId == publicationId);
             if(connection == null)
@@ -310,7 +320,13 @@ namespace UnitTests.ServiceStubs
             _borrows.Remove(connection);
 
 
-            return connection;
+            return new PublicationToFriendDto
+            {
+                FriendId = connection.FriendId,
+                PublicationId = connection.PublicationId,
+                BorrowDate = connection.BorrowDate,
+                ReturnDate = connection.ReturnDate
+            };
         }
     }
              

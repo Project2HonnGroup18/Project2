@@ -12,7 +12,7 @@ namespace UnitTests.ServiceStubs
     public class FriendServiceStub : IFriendService
     {
         private readonly List<Friend> _friends;
-        private readonly List<Publication> _recommendations;
+        private readonly List<PublicationDto> _recommendations;
         public FriendServiceStub()
         {
             _friends = new List<Friend>()
@@ -47,15 +47,14 @@ namespace UnitTests.ServiceStubs
 
             };
 
-            _recommendations = new List<Publication>()
+            _recommendations = new List<PublicationDto>()
             {
-                new Publication()
+                new PublicationDto()
                 {
                     Id = 1,
                     EditorFirstName = "David",
                     EditorLastName = "David",
                     Title = "Davids pub",
-                    Journal = "World Scientific",
                     Isbn = "124601285-0",
                     Year = 2019,
                     Type = "electronic"
@@ -78,14 +77,14 @@ namespace UnitTests.ServiceStubs
             return friends;
         }
 
-        public FriendDto GetFriendById(int friendId)
+        public FriendWithBorrowHistoryDto GetFriendById(int friendId)
         {
             var friend = _friends.Where(f => f.Id == friendId).FirstOrDefault();
             if(friend == null) 
             {
                 throw new ResourceNotFoundException($"User with id: {friendId} was not found");     
             }
-            return new FriendDto 
+            return new FriendWithBorrowHistoryDto
             {
                 FirstName = friend.FirstName,
                 LastName = friend.LastName,
@@ -95,13 +94,8 @@ namespace UnitTests.ServiceStubs
             };
         }
 
-        public Friend CreateFriend(FriendInputModel newFriend)
+        public FriendDto CreateFriend(FriendInputModel newFriend)
         {
-            newFriend.FirstName = "Lárus";
-            newFriend.LastName = "Páls";
-            newFriend.Email = "lp@ru.is";
-            newFriend.Phone = "581 2345";
-            newFriend.Address = "Laugavegur";
 
             var friendToAdd = new Friend()
             {
@@ -113,11 +107,18 @@ namespace UnitTests.ServiceStubs
             };
 
             _friends.Add(friendToAdd);
-            return friendToAdd;
+            return new FriendDto()
+            {
+                FirstName = friendToAdd.FirstName,
+                LastName = friendToAdd.LastName,
+                Email = friendToAdd.Email,
+                Phone = friendToAdd.Phone,
+                Address = friendToAdd.Address
+            };
 
         }
 
-        public Friend UpdateFriendById(int friendId, FriendUpdateInputModel body)
+        public FriendDto UpdateFriendById(int friendId, FriendUpdateInputModel body)
         {
             var friend = _friends.FirstOrDefault(f => f.Id == friendId);
             
@@ -127,18 +128,33 @@ namespace UnitTests.ServiceStubs
             friend.Phone = string.IsNullOrEmpty(body.Phone) ? friend.Phone : body.Phone;
             friend.Address = string.IsNullOrEmpty(body.Address) ? friend.Address : body.Address;
 
-            return friend;
+            return new FriendDto()
+            {
+                FirstName = friend.FirstName,
+                LastName = friend.LastName,
+                Email = friend.Email,
+                Phone = friend.Phone,
+                Address = friend.Address
+            };
         }
 
-        public Friend DeleteFriendById(int friendId) 
+        public FriendDto DeleteFriendById(int friendId) 
         {
             var existing = _friends.First(f => f.Id == friendId);
             _friends.Remove(existing);
-            return existing;
+            return new FriendDto()
+            {
+                FirstName = existing.FirstName,
+                LastName = existing.LastName,
+                Email = existing.Email,
+                Phone = existing.Phone,
+                Address = existing.Address
+            };
         }
 
-        public IEnumerable<Publication> GetRecommendations(int userId)
+        public IEnumerable<PublicationDto> GetRecommendations(int userId)
         {
+            
             return _recommendations;
         }
         

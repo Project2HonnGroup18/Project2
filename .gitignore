@@ -5,6 +5,7 @@ project.lock.json
 *.pyc
 nupkg/
 *.db
+shasum.txt
 
 # Visual Studio Code
 .vscode
