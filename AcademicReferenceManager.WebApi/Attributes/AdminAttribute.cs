@@ -9,12 +9,9 @@ namespace AcademicReferenceManager.WebApi.Attributes
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if(context.HttpContext.Request.Query.Count > 0) 
+            if(context.HttpContext.Request.Headers["Role"] != authorizationToken) 
             {
-                if(context.HttpContext.Request.Headers["Role"] != authorizationToken) 
-                {
-                    throw new AuthorizationException("Not authorized as admin");
-                }
+                throw new AuthorizationException("Not authorized as admin");
             }
         }
     }

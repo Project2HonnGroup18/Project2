@@ -44,6 +44,7 @@ public class BorrowTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     [Fact]
     public async Task FriendCanGetpublications()
     {
+        _client.DefaultRequestHeaders.Add(authenticationName, authenticationValue);
         //User 85 has 3 publications loaned 
         int userId = 85;
         string borrowString = UserPublicationPath(userId);
@@ -71,7 +72,7 @@ public class BorrowTests : IClassFixture<CustomWebApplicationFactory<Startup>>
         httpResponse.EnsureSuccessStatusCode();
 
         var httpResponse2 = await _client.PostAsJsonAsync(SpecificUserPublicationPath(userId, publicationId), p2fInput);
-        Assert.Equal(System.Net.HttpStatusCode.Conflict, httpResponse2.StatusCode);
+        Assert.Equal(System.Net.HttpStatusCode.PreconditionFailed, httpResponse2.StatusCode);
     }
 
     [Fact]

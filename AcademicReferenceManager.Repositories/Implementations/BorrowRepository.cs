@@ -203,7 +203,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             bool alreadyBorrowed = _armDbContext.PublicationsToFriend.Any(p => p.FriendId == friend.Id && p.PublicationId == publication.Id);
             if(alreadyBorrowed)
             {
-                throw new ModelFormatException($"Friend: {friend.FirstName} has already borrowed {publication.Title}");
+                throw new ModelFormatException($"User with id: {userId} has already borrowed publication with id: {publicationId}");
             }
 
             // check if we have connection in db if not set Id to 1 else find the highest Id and add 1 to it

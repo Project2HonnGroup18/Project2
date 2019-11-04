@@ -34,6 +34,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(friends);
         }
 
+        [Admin]
         [HttpGet]
         [Route("{userId:int}", Name = "GetFriendById")]
         public IActionResult GetFriendByID(int userId)
@@ -81,6 +82,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
         // * FULL CRUD For reviews *
         // *************************
 
+        [Authenticated]
         [HttpGet]
         [Route("{userId:int}/reviews", Name = "GetReviewsByGivenUser")]
         public IActionResult GetReviewsByUser(int userId) 
@@ -89,6 +91,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
             return Ok(reviews);
         }
 
+        [Authenticated]
         [HttpGet]
         [Route("{userId:int}/reviews/{publicationId:int}", Name = "GetUserReviewsForGivenPublication")]
         public IActionResult GetUserReviewsForPublication(int userId, int publicationId)
@@ -136,6 +139,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
         // * FULL CRUD For Loan connections *
         // **********************************
 
+        [Authenticated]
         [HttpGet]
         [Route("{userId:int}/publications", Name = "GetAllPublicationsAUserHasOnLoanById")]
         public IActionResult GetAllPublicationsAUserHasOnLoanById(int userId)
@@ -150,8 +154,7 @@ namespace AcademicReferenceManager.WebApi.Controllers
         public IActionResult CreateFriendBorrowsABookConnection(int userId, int publicationId, [FromBody] PublicationToFriendInputModel body)
         {
             var entity = _borrowService.CreateFriendBorrowsABookConnection(userId, publicationId, body);
-            //TODO : FIXA OK
-            return Created("Ok", new { publicationId = entity.PublicationId, userId = entity.FriendId });
+            return Ok(entity);
         }
         
         [Authenticated]

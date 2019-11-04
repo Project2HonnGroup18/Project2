@@ -40,25 +40,37 @@ public class FriendTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     [Fact]
     public async Task CanGetFriend()
     {
+        _client.DefaultRequestHeaders.Add(authenticationName, authenticationValue);
         int userId = 1;
         string userPath = GetUserPath(userId);
 
         // The endpoint or route of the controller action.
-        var httpResponse = await _client.GetAsync("/api/users/1");
+        var httpResponse = await _client.GetAsync(userPath);
 
         // Must be successful.
         httpResponse.EnsureSuccessStatusCode();
 
         // Deserialize and examine results.
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        System.Console.WriteLine("Test: " + stringResponse);
         var friend = JsonConvert.DeserializeObject<FriendDto>(stringResponse);
         Assert.Equal(1, friend.Id);
     }
 
     [Fact]
+    public async Task FriendWithIdOfNegativeOneWillThrowException()
+    {
+        _client.DefaultRequestHeaders.Add(authenticationName, authenticationValue);
+        int userId = -1;
+        string userPath = GetUserPath(userId);
+        
+        var httpResponse = await _client.GetAsync(userPath);
+        Assert.Equal(System.Net.HttpStatusCode.NotFound, httpResponse.StatusCode);
+    }
+
+    [Fact]
     public async Task CanCreateFriend()
     {
+        _client.DefaultRequestHeaders.Add(authenticationName, authenticationValue);
         var newFriend = new FriendInputModel();
         newFriend.FirstName = "Arius";
         newFriend.Email = "arius@bland.is";

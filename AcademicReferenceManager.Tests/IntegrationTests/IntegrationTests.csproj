@@ -23,4 +23,10 @@
     <ProjectReference Include="..\..\AcademicReferenceManager.Models\AcademicReferenceManager.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\AcademicReferenceManager.WebApi\SeedData\**"
+    CopyToOutputDirectory="PreserveNewest"
+    LinkBase="SeedData\" />
+  </ItemGroup>
+
 </Project>
