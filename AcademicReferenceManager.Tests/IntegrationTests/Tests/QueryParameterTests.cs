@@ -99,7 +99,7 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
         httpResponse.EnsureSuccessStatusCode();
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var userList = JsonConvert.DeserializeObject<IEnumerable<PublicationDto>>(stringResponse);
+        var userList = JsonConvert.DeserializeObject<IEnumerable<FriendDto>>(stringResponse);
         Assert.Equal(2, userList.Count());
     }
 
@@ -113,7 +113,7 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
         httpResponse.EnsureSuccessStatusCode();
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var userList = JsonConvert.DeserializeObject<IEnumerable<PublicationDto>>(stringResponse);
+        var userList = JsonConvert.DeserializeObject<IEnumerable<FriendDto>>(stringResponse);
         Assert.NotEqual(2, userList.Count());
     }
 
@@ -122,17 +122,17 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
     //**********************************************
 
     [Fact]
-    public async Task GetPublicationsOnLoan12October2015AndExpectOne()
+    public async Task GetPublicationsOnLoan12October2016AndExpectThree()
     {
         _client.DefaultRequestHeaders.Add(authenticationName, authenticationValue);
-        string loanString = publicationBasePath += "?LoanDate=2015-10-12";
+        string loanString = publicationBasePath += "?LoanDate=2016-10-12";
 
         var httpResponse = await _client.GetAsync(loanString);
         httpResponse.EnsureSuccessStatusCode();
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var userList = JsonConvert.DeserializeObject<IEnumerable<PublicationDto>>(stringResponse);
-        Assert.Equal(1, userList.Count());
+        var userList = JsonConvert.DeserializeObject<IEnumerable<FriendDto>>(stringResponse);
+        Assert.Equal(3, userList.Count());
     }
 
     [Fact]
@@ -163,7 +163,7 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
         httpResponse.EnsureSuccessStatusCode();
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var userList = JsonConvert.DeserializeObject<IEnumerable<PublicationDto>>(stringResponse);
+        var userList = JsonConvert.DeserializeObject<IEnumerable<FriendDto>>(stringResponse);
         Assert.Equal(18, userList.Count());
     }
 
@@ -177,7 +177,7 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
         httpResponse.EnsureSuccessStatusCode();
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var userList = JsonConvert.DeserializeObject<IEnumerable<PublicationDto>>(stringResponse);
+        var userList = JsonConvert.DeserializeObject<IEnumerable<FriendDto>>(stringResponse);
         Assert.NotEqual(18, userList.Count());
     }
 
@@ -186,17 +186,17 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
     //*****************************************************************
 
     [Fact] 
-    public async Task GetUserThatHaveHadPublicationOnLoanForMoreThan100DaysGivenSpecificDateExpectOne()
+    public async Task GetUserThatHaveHadPublicationOnLoanForMoreThan100DaysGivenSpecificDateExpectThree()
     {
         _client.DefaultRequestHeaders.Add(authenticationName, authenticationValue);
-        string loanString = userBasePath += "?LoanDuration=10&LoanDate=2015-10-12";
+        string loanString = userBasePath += "?LoanDuration=10&LoanDate=2016-10-12";
 
         var httpResponse = await _client.GetAsync(loanString);
         httpResponse.EnsureSuccessStatusCode();
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var userList = JsonConvert.DeserializeObject<IEnumerable<PublicationDto>>(stringResponse);
-        Assert.Equal(1, userList.Count());
+        var userList = JsonConvert.DeserializeObject<IEnumerable<FriendDto>>(stringResponse);
+        Assert.Equal(3, userList.Count());
     }
 
     [Fact] 
@@ -209,7 +209,7 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
         httpResponse.EnsureSuccessStatusCode();
 
         var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-        var userList = JsonConvert.DeserializeObject<IEnumerable<PublicationDto>>(stringResponse);
+        var userList = JsonConvert.DeserializeObject<IEnumerable<FriendDto>>(stringResponse);
         Assert.NotEqual(2, userList.Count());
     }
 }

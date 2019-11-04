@@ -17,7 +17,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
         {
             _armDbContext = armDbContext;
         }
-        public IEnumerable<Friend> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime? date) 
+        public IEnumerable<Friend> GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(DateTime date) 
         {
             var connection = _armDbContext.PublicationsToFriend.ToList();
             List<Friend> friends = new List<Friend>();
@@ -43,7 +43,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             }
             return friends;
         }
-        public IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int? loanDuration)
+        public IEnumerable<Friend> GetAllFriendsThatBorrowedForLongerThanParticularDuration(int loanDuration)
         {
             var connections = _armDbContext.PublicationsToFriend.ToList();
             List<Friend> friends = new List<Friend>();
@@ -76,7 +76,7 @@ namespace AcademicReferenceManager.Repositories.Implementations
             return friends;
         }
 
-        public IEnumerable<Publication> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime? date)
+        public IEnumerable<Publication> GetAllPublicationsThatAreOnLoanByParticularDate(DateTime date)
         {
             var borrows = _armDbContext.PublicationsToFriend.ToList();
             List<Publication> publications = new List<Publication>();
@@ -122,20 +122,6 @@ namespace AcademicReferenceManager.Repositories.Implementations
 
                     TimeSpan tsNow = DateTime.Now.Subtract(borrowDate);
                     int NumberOfDaysForNow = (int) tsNow.TotalDays;
-                    
-                    /*
-                    if(p2f.ReturnDate == null || p2f.ReturnDate > DateTime.Now && ())
-                    {
-                        conditionsMet = NumberOfDaysForNow >= loanDuration;
-                    }
-                    else if(p2f.BorrowDate < loanDate && p2f.ReturnDate >= loanDate)
-                    {
-                        var retDate = (DateTime)p2f.ReturnDate;
-                        TimeSpan tsReturnDate = retDate.Subtract(borrowDate);
-                        int NumberOfDaysForReturnDate = (int) tsReturnDate.TotalDays;
-                        conditionsMet = NumberOfDaysForReturnDate >= loanDuration ? true : false;
-                    }
-                    */
 
                     if(p2f.BorrowDate <= loanDate && (p2f.ReturnDate >= loanDate || p2f.ReturnDate == null))
                     {

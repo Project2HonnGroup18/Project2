@@ -1,5 +1,3 @@
-using System;
-using System.Web;
 using System.Collections.Generic;
 using AcademicReferenceManager.Models.Exceptions;
 using AcademicReferenceManager.WebApi.Attributes;
@@ -9,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
 using Xunit;
-using System.Reflection;
 
 namespace UnitTests
 {

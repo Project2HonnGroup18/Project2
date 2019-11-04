@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Services.Interfaces;
-using AcademicReferenceManager.WebApi.Attributes;
 using AcademicReferenceManager.WebApi.Controllers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UnitTests.ServiceStubs;
 using Xunit;

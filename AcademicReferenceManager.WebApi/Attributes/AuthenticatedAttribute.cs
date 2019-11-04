@@ -1,4 +1,3 @@
-using System;
 using AcademicReferenceManager.Models.Exceptions;
 using Microsoft.AspNetCore.Mvc.Filters;
 

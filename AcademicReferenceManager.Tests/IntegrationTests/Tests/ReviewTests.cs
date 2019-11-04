@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xunit;
 using AcademicReferenceManager.WebApi;
-using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Models.Dtos;
 using System;
@@ -12,7 +11,6 @@ using System;
 public class ReviewTests : IClassFixture<CustomWebApplicationFactory<Startup>>
 {
     private string userBasePath = "/api/users/";
-    private string publicationBasePath = "/api/publications/";
     private Func<string, int, string> GetReviewPath;
     private Func<string, int, int, string> GetSpecificReviewPath;
 

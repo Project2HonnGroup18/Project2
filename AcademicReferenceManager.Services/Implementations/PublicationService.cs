@@ -25,7 +25,7 @@ namespace AcademicReferenceManager.Services.Implementations
             IEnumerable<Publication> pubs;
             if(loanDate.HasValue)
             {
-                pubs = _borrowRepo.GetAllPublicationsThatAreOnLoanByParticularDate(loanDate);
+                pubs = _borrowRepo.GetAllPublicationsThatAreOnLoanByParticularDate((DateTime) loanDate);
             }
             else 
             {

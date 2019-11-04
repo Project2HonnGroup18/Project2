@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xunit;
 using AcademicReferenceManager.WebApi;
-using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Models.Dtos;
 using System;

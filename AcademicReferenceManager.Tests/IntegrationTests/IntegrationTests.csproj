@@ -24,9 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\AcademicReferenceManager.WebApi\SeedData\**"
-    CopyToOutputDirectory="PreserveNewest"
-    LinkBase="SeedData\" />
+    <None Include="..\..\AcademicReferenceManager.WebApi\SeedData\**" CopyToOutputDirectory="PreserveNewest" LinkBase="SeedData\" />
   </ItemGroup>
 
 </Project>

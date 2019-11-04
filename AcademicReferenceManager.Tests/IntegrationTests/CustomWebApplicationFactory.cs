@@ -4,12 +4,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AcademicReferenceManager.Services.Implementations;
-using AcademicReferenceManager.Services.Interfaces;
-using AcademicReferenceManager.WebApi;
 using AcademicReferenceManager.Repositories.Data;
-using AcademicReferenceManager.Repositories.Interfaces;
-using AcademicReferenceManager.Repositories.Implementations;
 using AcademicReferenceManager.Repositories.Seeding;
 using System.Linq;
 

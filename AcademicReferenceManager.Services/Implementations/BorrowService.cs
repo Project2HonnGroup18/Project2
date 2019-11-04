@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using AcademicReferenceManager.Models.Dtos;
-using AcademicReferenceManager.Models.Entities;
 using AcademicReferenceManager.Models.InputModels;
 using AcademicReferenceManager.Repositories.Interfaces;
 using AcademicReferenceManager.Services.Interfaces;

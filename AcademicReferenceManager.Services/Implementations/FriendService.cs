@@ -27,11 +27,11 @@ namespace AcademicReferenceManager.Services.Implementations
             }
             else if(loanDuration.HasValue)
             {
-                friendList = _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDuration(loanDuration);
+                friendList = _borrowRepo.GetAllFriendsThatBorrowedForLongerThanParticularDuration((int) loanDuration);
             }
             else if(loanDate.HasValue)
             {
-                friendList = _borrowRepo.GetAllFriendsThatHaveAPublicationOnLoanByParticularDate(loanDate);
+                friendList = _borrowRepo.GetAllFriendsThatHaveAPublicationOnLoanByParticularDate((DateTime) loanDate);
             }
             else 
             {
