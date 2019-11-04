@@ -65,7 +65,6 @@ namespace UnitTests
             var context = generateContext();
             context.HttpContext.Request.QueryString = context.HttpContext.Request.QueryString.Add("LoanDuration", "20");
    
-            Console.WriteLine("Count: " + context.HttpContext.Request.Query.Count);
             var admin = new AdminWithQueryAttributes();
             Assert.Throws<AuthorizationException>(() => admin.OnActionExecuting(context));
         }
@@ -77,7 +76,6 @@ namespace UnitTests
             context.HttpContext.Request.Headers["Role"] = "admin";
             context.HttpContext.Request.QueryString = context.HttpContext.Request.QueryString.Add("LoanDuration", "20");
    
-            Console.WriteLine("Count: " + context.HttpContext.Request.Query.Count);
             var admin = new AdminWithQueryAttributes();
             admin.OnActionExecuting(context);
         }

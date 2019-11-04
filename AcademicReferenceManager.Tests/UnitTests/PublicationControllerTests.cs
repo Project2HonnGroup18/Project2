@@ -53,6 +53,21 @@ namespace UnitTests
         }
 
         [Fact]
+        public void UpdatePublicationById_WhenUpdatedWithExistingId_ReturnsOkResult()
+        {
+            var publication = new PublicationUpdateInputModel()
+            {
+                EditorFirstName = "Lárus",
+            };
+
+            var okResult = _controller.UpdatePublicationById(1, publication);
+
+            var result = Assert.IsType<OkObjectResult>(okResult);
+            Assert.Equal(200, result.StatusCode);
+        }
+
+
+        [Fact]
         public void CreatePublication_WhenCreatedCorrectly_ReturnsCreatedResult()
         {
             var publication = new PublicationInputModel()
