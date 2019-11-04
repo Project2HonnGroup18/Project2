@@ -14,7 +14,7 @@ public class FriendTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     private string basePath = "/api/users/";
     private System.Func<int, string> GetUserPath;
     private System.Func<int, string> GetRecommendedPath;
-    private string authenticationName = "Role";
+    private string authenticationName = "Authorization";
     private string authenticationValue = "admin";
     private readonly HttpClient _client;
     

@@ -14,7 +14,7 @@ public class BorrowTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     private string basePath = "/api/users/";
     private Func<int, string> UserPublicationPath;
     private Func<int, int, string> SpecificUserPublicationPath;
-    private string authenticationName = "Role";
+    private string authenticationName = "Authorization";
     private string authenticationValue = "auth";
 
     private readonly HttpClient _client;

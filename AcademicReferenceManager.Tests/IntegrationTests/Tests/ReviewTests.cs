@@ -17,7 +17,7 @@ public class ReviewTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     private Func<string, int, int, string> GetSpecificReviewPath;
 
     
-    private string authenticationName = "Role";
+    private string authenticationName = "Authorization";
     private string authenticationValue = "admin";
 
     private readonly HttpClient _client;
