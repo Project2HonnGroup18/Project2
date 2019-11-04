@@ -36,7 +36,7 @@ namespace UnitTests
         public void AuthorizeAdminAttribute_AsAuthenticated()
         {
             var context = generateContext();
-            context.HttpContext.Request.Headers["Role"] = "auth";
+            context.HttpContext.Request.Headers["Authorization"] = "auth";
 
             var admin = new AdminAttribute();
             Assert.Throws<AuthorizationException>(() => admin.OnActionExecuting(context));
@@ -46,7 +46,7 @@ namespace UnitTests
         public void AuthorizeAdminAttribute_AsAdmin()
         {
             var context = generateContext();
-            context.HttpContext.Request.Headers["Role"] = "admin";
+            context.HttpContext.Request.Headers["Authorization"] = "admin";
 
             var admin = new AdminAttribute();
             admin.OnActionExecuting(context);
@@ -74,7 +74,7 @@ namespace UnitTests
         public void AuthorizeAdminWithQueryAttributes_AsAdminWithQueries()
         {
             var context = generateContext();
-            context.HttpContext.Request.Headers["Role"] = "admin";
+            context.HttpContext.Request.Headers["Authorization"] = "admin";
             context.HttpContext.Request.QueryString = context.HttpContext.Request.QueryString.Add("LoanDuration", "20");
    
             Console.WriteLine("Count: " + context.HttpContext.Request.Query.Count);
@@ -86,7 +86,7 @@ namespace UnitTests
         public void AuthorizeAuthenticatedAttribute_AsAuthenticated()
         {
             var context = generateContext();
-            context.HttpContext.Request.Headers["Role"] = "auth";
+            context.HttpContext.Request.Headers["Authorization"] = "auth";
 
             var admin = new AuthenticatedAttribute();
             admin.OnActionExecuting(context);
@@ -96,7 +96,7 @@ namespace UnitTests
         public void AuthorizeAuthenticatedAttribute_AsAdmin()
         {
             var context = generateContext();
-            context.HttpContext.Request.Headers["Role"] = "admin";
+            context.HttpContext.Request.Headers["Authorization"] = "admin";
 
             var admin = new AuthenticatedAttribute();
             admin.OnActionExecuting(context);

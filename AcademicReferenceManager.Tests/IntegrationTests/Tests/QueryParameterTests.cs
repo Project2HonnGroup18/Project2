@@ -13,7 +13,7 @@ public class QueryParameterTests : IClassFixture<CustomWebApplicationFactory<Sta
     private string userBasePath = "/api/users";
     private string publicationBasePath = "/api/publications/";
     private Func<int, int, string> SpecificUserPublicationPath;
-    private string authenticationName = "Role";
+    private string authenticationName = "Authorization";
     private string authenticationValue = "admin";
 
     private readonly HttpClient _client;
