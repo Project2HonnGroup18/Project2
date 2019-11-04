@@ -1,7 +1,6 @@
 # Academic Reference Manager API
 
-Welcome to the Academic Reference Manager WEB API!
-This API stores information about a library of articles, journals and publications. With it, you can manage loans of publications to friends and friends' reviews of the publications.  
+Welcome to the Academic Reference Manager WEB API! This API stores information about a library of articles, journals and publications. With it, you can manage loans of publications to friends and friends' reviews of the publications.  
 
 ## Installation
 
@@ -70,3 +69,7 @@ e.g.
 ```
 /api/publications?LoanDuration=20&LoanDate=2017-05-06
 ```
+
+## Design patterns used
+Our intent was to create a server that is as loosely coupled as possible as that would allow us to test the server more easily. To do this, we utilized seperated interfaces to avoid controller dependency on actual implementation and stub services for testing. 
+.Net core is built with good support for inversion of control by having native implementations of transients and singletons, which also helped keeping the code loosely coupled.
